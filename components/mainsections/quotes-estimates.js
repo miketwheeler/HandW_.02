@@ -10,7 +10,7 @@ function QuotesEstimates() {
 	return (
 		<div>
 			<div className={QEStyles.title}>
-				Need a Quote or Estimate for Your Next Project?
+				<h2>Need a Quote or Estimate for Your Next Project?</h2>
 			</div>
 			<div className={QEStyles.text}>
 				<p>

@@ -9,10 +9,11 @@ import {
 	Button 
 } from '@material-ui/core'
 import lightblue from '@material-ui/core/colors/lightblue'
+import ContactStyles from './contact-form.module.css'
 
 function ContactForm() {
 	return (
-		<form>
+		<form className={ContactStyles.form}>
 			<TextField 
 				label="Full Name" 
 				labelPlacement="start"
@@ -85,20 +86,22 @@ function ContactForm() {
 				variant="outlined"
 				margin="normal"
 				multiline 
-				rows={4} 
+				rows={3} 
 				autocomplete="none"
 				/>
-			<Button 
-				type="submit" 
-				variant="contained" 
-				color='primary' 
-				textColor="white"
-				size="large"
-				// onClick={}
-				// disableElevation
-				>
-					Submit
-			</Button>
+			<div className={ContactStyles.bttncase}>
+				<Button className={ContactStyles.bttn}
+					type="submit" 
+					variant="contained" 
+					color='primary' 
+					textColor="white"
+					size="large"
+					// onClick={}
+					// disableElevation
+					>
+						Submit
+				</Button>
+			</div>
 		</form>
 	)
 }
