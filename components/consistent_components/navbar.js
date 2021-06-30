@@ -5,8 +5,6 @@ import { Switch, Link, Route } from 'react-router-dom';
 
 
 function Navbar(props) {
-	// const router = useRouter();
-
 	return (
 		<div className={NavbarStyle.wrapper}>
 			<header className={NavbarStyle.header}>
@@ -17,6 +15,7 @@ function Navbar(props) {
 							alt="Company Logo"
 							width={310}
 							height={150}
+							priority={true}
 						/>
 					</Link>
 				</div>
@@ -26,12 +25,6 @@ function Navbar(props) {
 						<li><Link to='/services'>Services</Link></li>
 						<li><Link to='/our-team'>Our Team</Link></li>
 					</ul>
-					{/* <Switch>
-						<Route path="/quotes-estimates" />
-						<Route path="/services" />
-						<Route path="/our-team" />
-						<Route path="/" />
-					</Switch> */}
 			</header>
 		</div>
 	);

@@ -3,6 +3,7 @@ import HomePageStyles from './home-main.module.css'
 import MiniCardDeck from '../minicarddeck' 
 
 function HomePage() {
+	
 	return (
 		<div className={HomePageStyles.bodycontent}>
 			<div className={HomePageStyles.upper}>

@@ -1,12 +1,13 @@
 .objparams {
 	height: 76px;
 	background-color: rgb(53, 53, 53);
+	display: flex;
+	justify-content: center;
 }
 
 .sig{
-	display: flex;
-	padding-top: 26px;
-	justify-content: space-around;
+	align-self: center;
+	padding-top: 10px;
 	font-size: 18px;
 	font-weight: medium;
 	

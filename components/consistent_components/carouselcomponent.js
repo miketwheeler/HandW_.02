@@ -28,7 +28,7 @@ function MyCarousel(props)
 				}}
 				>
 				{
-					items.map( (item, i) => <Item key={i} item={item} /> )
+					items.map((item, i) => <Item key={i} item={item} /> )
 				}
 			</Carousel>
 		</div>
@@ -39,7 +39,9 @@ function Item(props)
 {
     return (
         <Paper>
-            <Image src={props.item.image} 
+            <Image 
+				src={props.item.image}
+				priority={true} 
 				width={1320} 
 				height={350} 
 				alt={"carousel highlight image"}

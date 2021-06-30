@@ -1,9 +1,37 @@
-import { Icon } from '@material-ui/core'
+// import { Icon } from '@material-ui/core'
 import React from 'react'
 import InfolinkStyle from './infolink.module.css'
 import Image from 'next/image'
 
-function Infolink() {
+function Infolink(props) {
+
+	var socials = [
+		{ 
+			image: "/images/icons/2x/2x-facebook.png", 
+			description: "facebook" ,
+			linkedto: "" 
+		},
+		{ 
+			image: "/images/icons/2x/2x-instagram.png", 
+			description: "instagram", 
+			linkedto: ""
+		},
+		{ 
+			image: "/images/icons/2x/2x-linkedin.png", 
+			description: "linked in", 
+			linkedto: ""
+		},
+		{ 
+			image: "/images/icons/2x/2x-twitter.png", 
+			description: "twitter", 
+			linkedto: ""
+		},
+		{ 
+			image: "/images/icons/2x/2x-youtube.png", 
+			description: "youtube", 
+			linkedto: ""
+		}
+	]
 	return (
 		<div className={InfolinkStyle.objparams}>
 			<div className={InfolinkStyle.infobox}>
@@ -31,47 +59,20 @@ function Infolink() {
 					<h2>Follow us on Social Media</h2>
 				</div>
 				<div className={InfolinkStyle.socialicons}>
-					{/* Need click before/after and links */}
-					<Image 
-						src={"/images/icons/2x/2x-facebook.png"} 
-						height={"76px"} 
-						width={"76px"}
-						alt={"facebook"}
-						/>
-					<Image 
-						src={"/images/icons/2x/2x-instagram.png"} 
-						height={"76px"} 
-						width={"76px"}
-						alt={"instagram"}
-						/>
-					<Image 
-						src={"/images/icons/2x/2x-linkedin.png"} 
-						height={"76px"} 
-						width={"76px"}
-						alt={"linked in"}
-						/>
-					<Image 
-						src={"/images/icons/2x/2x-twitter.png"} 
-						height={"76px"} 
-						width={"76px"}
-						alt={"twitter"}
-						/>
-					<Image 
-						src={"/images/icons/2x/2x-youtube.png"} 
-						height={"76px"} 
-						width={"76px"}
-						alt={"you tube"}
-						/>
+					{/* !!!! Need click before/after and links */}
+					{
+						socials.map((item, i) => <SocialIcon key={i} item={item} />)
+					}
 				</div>
 			</div>
 			<div className={InfolinkStyle.businessbox}>
 				<div className={InfolinkStyle.businessicon}>
 					<Image 
 						src="/images/hw_mainlogo.png"
-						alt="Company Logo"
+						alt="H&W Company Logo"
 						width={260}
 						height={115}
-						alt={"H & W Logo"}
+						priority={true}
 						/>
 				</div>
 				<div className={InfolinkStyle.businessdetail}>
@@ -83,6 +84,21 @@ function Infolink() {
 				</div>
 			</div>
 		</div>
+	)
+}
+
+function SocialIcon(props)
+{
+	return (
+		<>
+			<Image 
+				src={props.item.image} 
+				alt={props.item.description} 
+				width={76}
+				height={76}
+				priority={true}
+			/>
+		</>
 	)
 }
 
