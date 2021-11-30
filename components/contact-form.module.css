@@ -6,7 +6,9 @@
 	margin-top: 10px;
 	justify-content: flex-end;
 }
-
+.radiobutton{
+	padding: 0px 30px;
+}
 .bttn {
 	width: 150px;
 	height: 50px;

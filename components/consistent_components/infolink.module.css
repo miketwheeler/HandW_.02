@@ -9,7 +9,6 @@
 		"info business";
 	margin-top: 30px;
 }
-
 .infobox {
 	grid-area: info;
 	max-height: 456px;
@@ -66,6 +65,9 @@
 	padding: 0px 15px 0px 15px;
 	justify-content: space-between;
 }
+.socialicon:hover {
+	cursor: pointer;
+}
 .businessbox {
 	display: flex;
 	justify-content: center;
@@ -78,6 +80,9 @@
 	align-self: center;
 	margin: 24px 10px 0px 40px;
 }
+/* .businessicon:hover {
+	cursor: pointer;
+} */
 .businessdetail {
 	align-self: center;
 	justify-content: center;

@@ -52,25 +52,29 @@ function ContactForm() {
 						value="stairs" 
 						control={<Radio />} 
 						label="Stairs"
-						labelPlacement="start" 
+						labelPlacement="start"
+						className={ContactStyles.radiobutton}
 						/>
 					<FormControlLabel 
 						value="railing" 
 						control={<Radio />} 
 						label="Railing" 
 						labelPlacement="start"
+						className={ContactStyles.radiobutton}
 						/>
 					<FormControlLabel 
 						value="refinishing" 
 						control={<Radio />} 
 						label="Refinishing"
-						labelPlacement="start" 
+						labelPlacement="start"
+						className={ContactStyles.radiobutton}
 						/>
 					<FormControlLabel 
 						value="other" 
 						control={<Radio />} 
 						label="Other"
 						labelPlacement="start"
+						className={ContactStyles.radiobutton}
 						 />
 				</RadioGroup>
 			</FormControl>

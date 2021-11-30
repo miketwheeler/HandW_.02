@@ -19,12 +19,14 @@ function Navbar(props) {
 						/>
 					</Link>
 				</div>
-					<ul className={NavbarStyle.navigation}>
+				<div className={NavbarStyle.navigation}>
+					<ul className={NavbarStyle.linkslist}>
 						<li><Link to='/'>Home</Link></li>
 						<li><Link to='/quotes-estimates'>Quotes & Estimates</Link></li>
 						<li><Link to='/services'>Services</Link></li>
 						<li><Link to='/our-team'>Our Team</Link></li>
 					</ul>
+				</div>
 			</header>
 		</div>
 	);

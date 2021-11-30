@@ -1,35 +1,63 @@
 // import { Icon } from '@material-ui/core'
 import React from 'react'
 import InfolinkStyle from './infolink.module.css'
-import Image from 'next/image'
+import Image from 'next/image';
+
+
 
 function Infolink(props) {
 
-	var socials = [
+	const openNewTab = (url) => {
+		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');
+		if(newWindow) newWindow.opener = null;
+	}
+	
+	const onClickUrl = (url) => {
+		return () => openNewTab(url);
+	}
+
+	function SocialIcon(props){
+		return (
+			<>
+				<a onClick={onClickUrl(props.item.linkedto)}>
+					<Image 
+						src={props.item.image} 
+						alt={props.item.description} 
+						width={76}
+						height={76}
+						priority={true}
+						className={InfolinkStyle.socialicon}
+					/>
+				</a>
+			</>
+		)
+	}
+
+	const socials = [
 		{ 
 			image: "/images/icons/2x/2x-facebook.png", 
 			description: "facebook" ,
-			linkedto: "" 
+			linkedto: "https://www.facebook.com" 
 		},
 		{ 
 			image: "/images/icons/2x/2x-instagram.png", 
 			description: "instagram", 
-			linkedto: ""
+			linkedto: "https://www.instagram.com"
 		},
 		{ 
 			image: "/images/icons/2x/2x-linkedin.png", 
 			description: "linked in", 
-			linkedto: ""
+			linkedto: "https://www.linkedin.com"
 		},
 		{ 
 			image: "/images/icons/2x/2x-twitter.png", 
 			description: "twitter", 
-			linkedto: ""
+			linkedto: "https://www.twitter.com"
 		},
 		{ 
 			image: "/images/icons/2x/2x-youtube.png", 
 			description: "youtube", 
-			linkedto: ""
+			linkedto: "https://www.youtube.com"
 		}
 	]
 	return (
@@ -84,21 +112,6 @@ function Infolink(props) {
 				</div>
 			</div>
 		</div>
-	)
-}
-
-function SocialIcon(props)
-{
-	return (
-		<>
-			<Image 
-				src={props.item.image} 
-				alt={props.item.description} 
-				width={76}
-				height={76}
-				priority={true}
-			/>
-		</>
 	)
 }
 
