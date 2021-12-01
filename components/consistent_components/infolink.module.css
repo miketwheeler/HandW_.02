@@ -74,19 +74,14 @@
 	grid-area: business;
 	background-color: rgba(194, 194, 194, 0.390);
 	padding: 0px 20px 20px 20px;
-	/* border: 1px solid black; */
 }
 .businessicon {
 	align-self: center;
 	margin: 24px 10px 0px 40px;
 }
-/* .businessicon:hover {
-	cursor: pointer;
-} */
 .businessdetail {
 	align-self: center;
 	justify-content: center;
 	width: 350px;
 	padding-left: 28px;
-	/* border: 1px solid black; */
 }

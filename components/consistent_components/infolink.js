@@ -33,6 +33,7 @@ function Infolink(props) {
 		)
 	}
 
+	// TODO: replace with real links to proper socials
 	const socials = [
 		{ 
 			image: "/images/icons/2x/2x-facebook.png", 
