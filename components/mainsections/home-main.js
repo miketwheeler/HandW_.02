@@ -36,12 +36,19 @@ function HomePage() {
 					</div>
 				</div>
 			</div>
+			<div className={HomePageStyles.mission}>
+				<h1>
+					We know you expect great work. 
+					<br/> 
+					We'll bring it, you can hold us to it - 100% guaranteed.
+				</h1>
+			</div>
 			<div className={HomePageStyles.servicesection}>
-				<h2>Our Services</h2>
+				<h2 className={HomePageStyles.servicesheader}>Our Services</h2>
 				<MiniCardDeck />
 			</div>
 		</div>
 	)
 }
 
-export default HomePage
+export default HomePage;

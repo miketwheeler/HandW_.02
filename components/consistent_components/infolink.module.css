@@ -1,87 +1,196 @@
+/*  OVERALL GRID SETTINGS */
 .objparams {
-	max-height: 456px;
-	background-color:white;
 	display: grid;
-	grid-template-columns: .7fr 1fr;
-	grid-template-rows: 1fr .6fr;
+	grid-template-columns: 50% auto;
+	grid-template-rows: 200px auto;
 	grid-template-areas: 
-		"info social"
-		"info business";
+	"info social"
+	"info business";
+	background-color:white;
 	margin-top: 30px;
+	/* border: 1px solid red; */
 }
+
+/* CONTACT US BOX: by hierarchy */
 .infobox {
 	grid-area: info;
-	max-height: 456px;
+	height: 380px;
 	color: white;
 	background-color: rgb(53, 53, 53);
 	border-radius: 0px 25px 0px 0px;
-	display: flexbox;
 	padding: 30px 30px 0px 39px;
-	line-height: 0px;
+	line-height: 2px;
+	/* border: 1px dashed green; */
 }
 .contactus {
-	border: 1px solid transparent;
 	font-size: 20px;
 	text-shadow: 0px 3px 6px black;
+	border: 1px dotted lightpurple;
 }
 .reachus{
-	border: 1px solid transparent;
 	font-size: 22px;
-	margin-top: 18px;
+	margin-top: 12px;
+	/* border: 1px solid yellow; */
 }
 .number{
-	border: 1px solid transparent;
 	font-size: 22px;
 	text-shadow: 0px 3px 6px black;
+	/* border: 1px solid white; */
 }
 .orbar{
-	border: 1px solid transparent;
 	text-align: center;
-	margin: 16px 0px;
+	font-weight: 600;
+	font-size: 22px;
+	margin: 10px 0px;
+	/* border: 1px solid lightgreen; */
 }
 .emailus {
-	border: 1px solid transparent;
 	font-size: 22px;
+	/* border: 1px solid lightblue; */
 }
 .email {
-	border: 1px solid transparent;
 	text-shadow: 0px 3px 6px black;
 	font-size: 22px;
+	/* border: 1px solid pink; */
 }
+
+/* SOCIAL SECTION: by hierarchy */
 .socialbox {
 	grid-area: social;
-	max-height: 270px;
-	padding: 6px 48px 46px 48px;
+	margin: auto;
+	height: 100%;
+	/* border: 1px solid darkgrey; */
 }
 .socialheader {
 	display: flex;
-	padding-left: 15px;
 	font-size: 22px;
 	text-shadow: 0px 2px 6px rgba(87, 87, 87, 0.349);
 }
 .socialicons {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 0px 15px 0px 15px;
-	justify-content: space-between;
+	margin: 0px 15px 0px 15px;
 }
 .socialicon:hover {
 	cursor: pointer;
 }
+
+/* LOGO AND BUSINESS DETAIL: by hierarchy */
 .businessbox {
-	display: flex;
-	justify-content: center;
 	grid-area: business;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	background-color: rgba(194, 194, 194, 0.390);
-	padding: 0px 20px 20px 20px;
 }
 .businessicon {
 	align-self: center;
-	margin: 24px 10px 0px 40px;
 }
 .businessdetail {
 	align-self: center;
-	justify-content: center;
-	width: 350px;
-	padding-left: 28px;
+	font-size: .8rem;
+}
+
+/* MEDIA */
+@media only screen and (max-width: 980px) {
+		/*  MOBILE/TABLET GRID SETTINGS */
+	.objparams {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: minmax(180px, 220px) 280px;
+		grid-template-areas: 
+			"social" 
+			"business"
+			"info";
+		background-color:white;
+		margin-top: 30px;
+	}
+
+	/* SOCIAL SECTION: by hierarchy */
+	.socialbox {
+		grid-area: social;
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 auto;
+		/* max-width: 440px; */
+		justify-content: center;
+		/* border: 1px solid darkgrey; */
+	}
+	.socialheader {
+		display: flex;
+		font-size: 22px;
+		text-shadow: 0px 2px 6px rgba(87, 87, 87, 0.349);
+	}
+	.socialicons {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0px 15px 0px 15px;
+	}
+	.socialicon:hover {
+		cursor: pointer;
+	}
+
+	/* LOGO AND BUSINESS DETAIL: by hierarchy */
+	.businessbox {
+		grid-area: business;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		border-radius: 25px 25px 0px 0px;
+		background-color: rgba(194, 194, 194, 0.390)
+	}
+	.businessicon {
+		align-self: center;
+	}
+	.businessdetail {
+		align-self: center;
+		font-size: .8rem;
+	}
+
+	/* CONTACT US BOX: by hierarchy */
+	.infobox {
+		grid-area: info;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
+		grid-template-areas: 
+			"contactus"
+			"reachus"
+			"emailus"
+			"or"
+			"number"
+			"email";
+		color: white;
+		background-color: rgb(53, 53, 53);
+		text-align: center;
+		border-radius: 0px 0px 0px 0px;
+		line-height: 2px;
+		padding: 15px;
+
+	}
+	.contactus {
+		font-size: 18px;
+		text-shadow: 0px 3px 6px black;
+	}
+	.reachus{
+		font-size: 20px;
+		margin-top: 12px;
+	}
+	.number{
+		font-size: 20px;
+		text-shadow: 0px 3px 6px black;
+	}
+	.orbar{
+		text-align: center;
+		font-weight: 600;
+		font-size: 22px;
+		margin: 10px 0px;
+	}
+	.emailus {
+		font-size: 22px;
+	}
+	.email {
+		text-shadow: 0px 3px 6px black;
+		font-size: 22px
+	}
 }

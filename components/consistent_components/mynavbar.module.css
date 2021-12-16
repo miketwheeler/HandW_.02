@@ -1,0 +1,37 @@
+.logoImage {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+.navbarStyle {
+	/* border-bottom: 1px solid rgba(71, 71, 71, 0.719);
+	border-top: 1px solid rgba(71, 71, 71, 0.719); */
+	margin: 20px;
+}
+.naviList {
+	font-size: 32px;
+	font-weight: 2rem;
+	height: 60px;
+	display: flex;
+	justify-content: space-evenly;
+	/* list-style-type: none; */
+	/* color: rgba(71, 71, 71, 0.853); */
+	
+}
+.linkText {
+	text-decoration: none;
+	margin: auto;
+	color: rgba(71, 71, 71, 0.853);
+	/* height: 80%; */
+	/* background-color: pink; */
+}
+.naviList a:hover {
+	border-bottom: 2.2px solid rgba(71, 71, 71, 0.719);
+	color: rgb(12, 12, 12);
+	cursor: pointer;
+}
+/*
+@media only screen and (max-width: 900px) {
+	.navigation a {
+		font-size: 18px;
+	}
+} */ 

@@ -1,20 +1,19 @@
-import '../styles/globals.css'
-import App from 'next/app'
-// import Layout from '../components/layout'
+import '../styles/globals.css';
+import App from 'next/app';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function MyApp({ Component, pageProps }) {
   return(
-	  
-			<div suppressHydrationWarning>
-				{ 
-					typeof window === 'undefined' ? null : 
-					<Router>
-						<Component {...pageProps} />
-					</Router>
-				}
-			</div>
+		<div suppressHydrationWarning>
+			{ 
+				typeof window === 'undefined' ? null : 
+				<Router>
+					<Component {...pageProps} />
+				</Router>
+			}
+		</div>
 	)
 }
 MyApp.getInitialProps = async (appContext) => {
@@ -24,4 +23,4 @@ MyApp.getInitialProps = async (appContext) => {
   return { ...appProps }
 }
 
-export default MyApp
+export default MyApp;

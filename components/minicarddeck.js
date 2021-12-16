@@ -27,7 +27,12 @@ function MakeMiniCard(props)
 	return (
 		<div className={MiniCardDeckStyles.cardoutline}>
 			<div className={MiniCardDeckStyles.tile}>
-				<Image src={props.item.image} width={"241px"} height={"252px"} alt={"services icons"} priority={true}/>
+				<Image 
+					src={props.item.image} 
+					width={"231px"} 
+					height={"242px"} 
+					alt={"services icons"} 
+					priority={true}/>
 			</div>
 			<div className={MiniCardDeckStyles.caption}>
 				{props.item.description}

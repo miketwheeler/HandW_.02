@@ -1,14 +1,13 @@
 .objparams {
-	height: 76px;
+	min-height: 40px;
 	background-color: rgb(53, 53, 53);
 	display: flex;
-	justify-content: center;
+	text-align: center;
+	width: 100%;
 }
 
-.sig{
+.signatures{
 	align-self: center;
-	padding-top: 10px;
 	font-size: 18px;
 	font-weight: medium;
-	
 }
