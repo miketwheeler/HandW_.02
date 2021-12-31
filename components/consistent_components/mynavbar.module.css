@@ -1,37 +1,40 @@
-.logoImage {
-	margin-top: 20px;
-	margin-left: 30px;
+.linkSurround {
+	width: 190px;
+	/* background-color: bisque; */
+	margin:.9%;
+	/* margin: 0 12px; */
 }
-.navbarStyle {
-	/* border-bottom: 1px solid rgba(71, 71, 71, 0.719);
-	border-top: 1px solid rgba(71, 71, 71, 0.719); */
-	margin: 20px;
-}
-.naviList {
-	font-size: 32px;
-	font-weight: 2rem;
-	height: 60px;
-	display: flex;
-	justify-content: space-evenly;
-	/* list-style-type: none; */
-	/* color: rgba(71, 71, 71, 0.853); */
-	
+.linkBox {
+	text-align: center;
+	/* background-color: aquamarine; */
+	width: 90%;
 }
 .linkText {
-	text-decoration: none;
-	margin: auto;
 	color: rgba(71, 71, 71, 0.853);
-	/* height: 80%; */
-	/* background-color: pink; */
+	margin: 0;
+	padding: 0;
+
+	/* Keep Border: transparent for when hover over - so doesn't shift up */
+	border-bottom: 1.5px solid rgba(71, 71, 71, 0);
+	border-left: 2px solid rgba(71, 71, 71, 0);
+	border-right: 2px solid rgba(71, 71, 71, 0);
 }
-.naviList a:hover {
-	border-bottom: 2.2px solid rgba(71, 71, 71, 0.719);
+.linkText:hover {
+	border-bottom: 1.5px solid rgba(71, 71, 71, 0.719);
 	color: rgb(12, 12, 12);
-	cursor: pointer;
+	font-weight: bolder;
+	border-image: fill black;
 }
-/*
-@media only screen and (max-width: 900px) {
-	.navigation a {
-		font-size: 18px;
-	}
-} */ 
+/* .nav-link:active {
+	border-bottom: 1.5px solid rgba(71, 71, 71, 0.719); */
+	/* font-weight: 600; */
+	/* z-index: 100; */
+/* } */
+/* .active {
+	font-weight: 600;
+} */
+.flexi {
+	display: flex;
+	flex-direction: column;
+	margin: 1.3rem;
+}

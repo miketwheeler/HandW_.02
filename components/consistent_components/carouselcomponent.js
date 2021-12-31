@@ -1,6 +1,5 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@material-ui/core'
 import Image from 'next/image'
 import CarouselStyles from './carouselcomponent.module.css'
 
@@ -16,16 +15,8 @@ function MyCarousel(props)
 		<div className={CarouselStyles.carouselcontainer}>
 			<Carousel 
 				animation={"slide"}
-				borderRadius={"10px"}
-				indicatorIconButtonProps={{
-					style: { padding: '10px' }
-				}}
-				activeIndicatorIconButtonProps={{
-					style: { backgroundColor: 'transparent' }
-				}}
-				indicatorContainerProps={{
-					style: { marginTop:"-35px", alignItems: "center"}
-				}}
+				indicatorIconButtonProps={{style: { padding: '12px'}}}
+				indicatorContainerProps={{style: { marginTop: '-2px'}}}
 				>
 				{
 					items.map((item, i) => <Item key={i} item={item} /> )
@@ -38,15 +29,15 @@ function MyCarousel(props)
 function Item(props)
 {
     return (
-        <Paper>
+        <div>
             <Image 
 				src={props.item.image}
 				priority={true} 
-				width={1320} 
-				height={350} 
+				width={1300} 
+				height={380} 
 				alt={"carousel highlight image"}
 				/>
-        </Paper>
+        </div>
     )
 }
 

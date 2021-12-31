@@ -63,7 +63,6 @@ function ContactForm() {
 		<form className={ContactStyles.form} onSubmit={submitMe}>
 			<TextField 
 				label="Full Name" 
-				labelPlacement="start"
 				variant="outlined"
 				fullWidth
 				margin="normal"
@@ -73,7 +72,6 @@ function ContactForm() {
 				/>
 			<TextField 
 				label="Phone Number" 
-				labelPlacement="start"
 				variant="outlined"
 				fullWidth
 				margin="normal"
@@ -83,7 +81,6 @@ function ContactForm() {
 				/>
 			<TextField 
 				label="Email" 
-				labelPlacement="start"
 				variant="outlined"
 				width="500"
 				fullWidth

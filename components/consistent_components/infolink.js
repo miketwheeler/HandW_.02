@@ -102,7 +102,6 @@ function Infolink(props) {
 						width={260}
 						height={115}
 						priority={true}
-						intrinsic
 						/>
 				</div>
 				<div className={InfolinkStyle.businessdetail}>

@@ -1,12 +1,8 @@
 .objparams{
-	height: 283px;
-	background-color: white;
 	padding-top: 10px;
-	/* border: 1px solid transparent; */
 }
-
 .carouselcontainer {
-	border: 1px solid transparent;
-	border-radius: 20px;
-	/* display: flex; */
+	margin-top: 10px;
+	padding: 10px 10px 20px;
+	border: none;
 }

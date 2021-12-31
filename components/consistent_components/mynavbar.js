@@ -7,129 +7,115 @@ import { LinkContainer } from 'react-router-bootstrap';
 // import { Link } from 'react-router-dom';
 // import Link from 'next/link';
 import { Row, Col, Navbar, Nav, Container } from 'react-bootstrap';
+import { Router, useHistory } from 'react-router-dom';
+
+// const handleLinkClick = (e) => {
+// 	// e.preventDefault()
+// 	let currentLoc = window.location.href;
+// 	console.log(currentLoc);
+
+// }
+
 
 function MyNavbar(props) {
-	const [dimensionWidth, setDimensionWidth] = useState(window.innerWidth);
-	const updateSize = () => setDimensionWidth(window.innerWidth);
-	useEffect(() => (window.onresize = updateSize), []);
-	// console.log(dimensionWidth);
+	const [expanded, setExpanded] = useState(false);
+	// const [active, setActive] = useState("/");
 
+	// function runClick(e, activeLink) {
+	// 	e.preventDefault();
+	// 	setExpanded(false);
+	// 	setActive(activeLink);
+	// 	const els = document.querySelectorAll(`#${active}`);
+	// 	els.classList.remove('active');
+	// 	const activeEl = document.querySelector(`#${active}`);
+	// 	activeEl.classList.add('active');
+	// }
+	
 	return (
 		<div>
-			<Row className="mt-2 mb-3 ml-2 mr-2">
-				<Col className="col-7 col-md-11 m-auto mt-4" >
+			<Row className="mt-2">
+				<Col className="ms-3 mt-4 me-2" >
 					<Image 
 						src="/images/hw_mainlogo.png"
 						alt="Company Logo"
 						width={335}
 						height={160}
 						priority={true}
-						intrinsic
-						className={NavbarStyle.logoImage}
 					/>
 				</Col>
-				<Col className="col-5 col-md-12">
-					<Navbar expand="md" variant="light">
-						<Container>
-							<Navbar.Toggle 
-								className="ms-auto" 
-								aria-controls="navbar-nav"
-								style={{
-									marginTop: '50%',
-									marginRight: '20px',
-								}}
-							/>
-							<Navbar.Collapse id="navbar-nav">
-								<Nav 
-									defaultActiveKey='null'
-									className=""
-									// className={NavbarStyle.naviList} 
-									style={{ 
-										display: 'flex', 
-										justifyContent: 'spaceEvenly',
-										fontSize: '32px',
-										fontWeight: '2rem',
-										// '& a:hover': {
-										// 	borderBottom: '2.2px solid rgba(71, 71, 71, 0.719)',
-										// 	color: 'rgb(12, 12, 12)',
-										// 	cursor: 'pointer',
-										// },
-									}}
-									>
-										{/* md and DOWN; display nav menu as ... */}
-									<div 
-										className="d-block d-md-none d-lg-none d-xl-none d-xxl-none fs-2" 
-										style={{
-											width: 'fitContent',
-											padding: '30px',
-											display: 'flex',
-											flexDirection: 'column',
-											position: 'absolute',
-											zIndex: '100',
-											backgroundColor: 'white',
-											borderRadius: '6px',
-											boxShadow: '2px 2px 2px darkGrey',
-											'& a:hover': {
-											borderBottom: '2.2px solid rgba(71, 71, 71, 0.719)',
-											color: 'rgb(12, 12, 12)',
-											cursor: 'pointer',
-										}}}
-										>
-										<LinkContainer to="/">
-											<Nav.Link className=" active" aria-current="/">
-													Home
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/quotes-estimates">
-											<Nav.Link className={NavbarStyle.linkText}>
-													Quotes
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/services">
-											<Nav.Link className={NavbarStyle.linkText}>
-													Services
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/our-team">
-											<Nav.Link className={NavbarStyle.linkText}>
-													Our Team
+			</Row>
+			<Row>
+				<Col className="col">
+					<Navbar expand="md" expanded={expanded}>
+						<Navbar.Toggle
+							id="navTogglerButton"
+							onClick={() => setExpanded(!expanded)}
+							className="ms-auto me-3 mb-4" 
+							aria-controls="navbar-nav"
+							style={{marginTop: '-180px'}}
+						/>
+						<Navbar.Collapse className="justify-content-center" id="navbar-nav" >
+							<Nav defaultActiveKey="/" activeKey={window.location.pathname} style={{ fontSize: '38px', margin: '0px 10px'}}>
+								{/* //////////////////////////////////////////////////////////////// */}
+								{/*    MINI-> md and DOWN; display nav menu as hamburger menu        */}
+								{/* //////////////////////////////////////////////////////////////// */}
+								<div className="flexi d-md-none d-lg-none d-xl-none d-xxl-none fs-2">
+									<LinkContainer id="homelink" to="/">
+										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
+											Home
+										</Nav.Link>
+									</LinkContainer>
+									<LinkContainer id="qelink" to="/quotes-estimates">
+										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
+											Quotes
+										</Nav.Link>
+									</LinkContainer>
+									<LinkContainer id="serlink" to="/services">
+										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
+											Services
+										</Nav.Link>
+									</LinkContainer>
+									<LinkContainer id="otlink" to="/our-team">
+										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
+											Our Team
+										</Nav.Link>
+									</LinkContainer>
+								</div>
+								{/* //////////////////////////////////////////////////////////////////////// */}
+								{/*     Full -> md and UP; display nav menu as full width navbar tabs        */}
+								{/* //////////////////////////////////////////////////////////////////////// */}
+								<div className="d-none d-md-flex fs-2">
+									<div className={NavbarStyle.linkSurround}>
+										<LinkContainer id="homelink" to="/" className={NavbarStyle.linkBox}>
+											<Nav.Link className={NavbarStyle.linkText} >
+												Home
 											</Nav.Link>
 										</LinkContainer>
 									</div>
-									{/* md and UP; display nav menu as ... */}
-									<div 
-										className="d-none d-md-flex fs-2"
-										style={{
-											'& a:hover': {
-											borderBottom: '2.2px solid rgba(71, 71, 71, 0.719)',
-											color: 'rgb(12, 12, 12)',
-											cursor: 'pointer',
-										}}} 
-										>
-										<LinkContainer to="/">
-											<Nav.Link className="nav-link active" aria-current="/">
-													Home
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/quotes-estimates">
+									<div className={NavbarStyle.linkSurround}>
+										<LinkContainer id="qelink" to="/quotes-estimates" className={NavbarStyle.linkBox}>
 											<Nav.Link className={NavbarStyle.linkText}>
-													Quotes
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/services">
-											<Nav.Link className={NavbarStyle.linkText}>
-													Services
-											</Nav.Link>
-										</LinkContainer>
-										<LinkContainer to="/our-team">
-											<Nav.Link className={NavbarStyle.linkText}>
-													Our Team
+												Quotes
 											</Nav.Link>
 										</LinkContainer>
 									</div>
-								</Nav>
-							</Navbar.Collapse>
-						</Container>
+									<div className={NavbarStyle.linkSurround}>
+										<LinkContainer id="serlink" to="/services" className={NavbarStyle.linkBox}>
+											<Nav.Link className={NavbarStyle.linkText}>
+												Services
+											</Nav.Link>
+										</LinkContainer>
+									</div>
+									<div className={NavbarStyle.linkSurround}>
+										<LinkContainer id="otlink" to="/our-team" className={NavbarStyle.linkBox}>
+											<Nav.Link className={NavbarStyle.linkText}>
+												Our Team
+											</Nav.Link>
+										</LinkContainer>
+									</div>
+								</div>
+							</Nav>
+						</Navbar.Collapse>
 					</Navbar>
 				</Col>
 			</Row>
