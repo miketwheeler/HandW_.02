@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Services() {
 
-	
 	return (
 		<div>
 			<p> SERVICES! Here is some content for testing </p>
@@ -10,4 +9,4 @@ function Services() {
 	)
 }
 
-export default Services
+export default Services;

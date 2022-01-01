@@ -8,8 +8,7 @@ import {
 	Radio, 
 	Button 
 } from '@material-ui/core'
-import lightblue from '@material-ui/core/colors/lightblue'
-import ContactStyles from './contact-form.module.css'
+import ContactFormStyles from './contact-form.module.css'
 
 function ContactForm() {
 	const [fullName, setFullName] = useState("");
@@ -31,7 +30,6 @@ function ContactForm() {
 	}
 	const handleRadioSelectionChange = (event) => {
 		setRadioSelectionValue(event.target.value);
-		// console.log(event.target.value);
 	}
 	const handleDueByChange = (event) => {
 		setDueBy(event.target.value);
@@ -51,6 +49,9 @@ function ContactForm() {
 
 	const submitMe = (event) => {
 		event.preventDefault();
+		// ////////////////////////////////////////////////////////////////////////
+		// TODO: Link below to the email dispatcher!!!!!                    ///////
+		// ////////////////////////////////////////////////////////////////////////
 		// sendEmail(fullName, phoneNummber, email, radioSelection, dueBy, message);
 		// build func to popup alert success/denial 
 		// alertBox();
@@ -60,7 +61,7 @@ function ContactForm() {
 
 
 	return (
-		<form className={ContactStyles.form} onSubmit={submitMe}>
+		<form className={ContactFormStyles.form} onSubmit={submitMe}>
 			<TextField 
 				label="Full Name" 
 				variant="outlined"
@@ -104,28 +105,28 @@ function ContactForm() {
 							control={<Radio color="primary" />} 
 							label="Stairs"
 							labelPlacement="start"
-							className={ContactStyles.radiobutton}
+							className={ContactFormStyles.radiobutton}
 							/>
 						<FormControlLabel 
 							value="railing" 
 							control={<Radio color="primary" />} 
 							label="Railing" 
 							labelPlacement="start"
-							className={ContactStyles.radiobutton}
+							className={ContactFormStyles.radiobutton}
 							/>
 						<FormControlLabel 
 							value="refinishing" 
 							control={<Radio color="primary" />} 
 							label="Refinishing"
 							labelPlacement="start"
-							className={ContactStyles.radiobutton}
+							className={ContactFormStyles.radiobutton}
 							/>
 						<FormControlLabel 
 							value="other" 
 							control={<Radio color="primary" />} 
 							label="Other"
 							labelPlacement="start"
-							className={ContactStyles.radiobutton}
+							className={ContactFormStyles.radiobutton}
 							/>
 					</RadioGroup>
 			</FormControl>
@@ -148,8 +149,8 @@ function ContactForm() {
 				onChange={handleMessageChange}
 				value={message}
 				/>
-			<div className={ContactStyles.bttncase}>
-				<Button className={ContactStyles.bttn}
+			<div className={ContactFormStyles.bttncase}>
+				<Button className={ContactFormStyles.bttn}
 					type="submit" 
 					variant="contained" 
 					color='primary' 

@@ -2,73 +2,67 @@
 .objparams {
 	display: grid;
 	grid-template-columns: 50% auto;
-	grid-template-rows: 200px auto;
+	grid-template-rows: 55% auto;
 	grid-template-areas: 
 	"info social"
 	"info business";
 	background-color:white;
 	margin-top: 30px;
-	/* border: 1px solid red; */
+}
+/* Surrounds the contacts section */
+.contactsContainer {
+	margin: 50px 20px 50px 60px;
 }
 
 /* CONTACT US BOX: by hierarchy */
 .infobox {
 	grid-area: info;
-	height: 380px;
+	height: auto;
 	color: white;
 	background-color: rgb(53, 53, 53);
 	border-radius: 0px 25px 0px 0px;
-	padding: 30px 30px 0px 39px;
 	line-height: 2px;
-	/* border: 1px dashed green; */
 }
 .contactus {
 	font-size: 20px;
 	text-shadow: 0px 3px 6px black;
-	border: 1px dotted lightpurple;
+	margin-bottom: 10px;
 }
 .reachus{
 	font-size: 22px;
 	margin-top: 12px;
-	/* border: 1px solid yellow; */
 }
 .number{
 	font-size: 22px;
 	text-shadow: 0px 3px 6px black;
-	/* border: 1px solid white; */
 }
 .orbar{
 	text-align: center;
 	font-weight: 600;
 	font-size: 22px;
 	margin: 10px 0px;
-	/* border: 1px solid lightgreen; */
 }
 .emailus {
 	font-size: 22px;
-	/* border: 1px solid lightblue; */
 }
 .email {
 	text-shadow: 0px 3px 6px black;
 	font-size: 22px;
-	/* border: 1px solid pink; */
 }
 
 /* SOCIAL SECTION: by hierarchy */
 .socialbox {
 	grid-area: social;
-	margin: auto;
+	margin: 10px auto auto;
 	height: 100%;
 	max-width: 600px;
-	/* border: 1px solid darkgrey; */
 }
 .socialheader {
-	display: flex;
+	margin-left: 18px;
 	font-size: 22px;
 	text-shadow: 0px 2px 6px rgba(87, 87, 87, 0.349);
 }
 .socialicons {
-	display: flex;
 	flex-wrap: wrap;
 	margin: 0px 15px 0px 15px;
 }
@@ -98,7 +92,7 @@
 	.objparams {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: minmax(180px, 220px) 280px;
+		grid-template-rows: minmax(180px, 200px) 200px 300px;
 		grid-template-areas: 
 			"social" 
 			"business"
@@ -113,9 +107,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		margin: 0 auto;
-		/* max-width: 440px; */
 		justify-content: center;
-		/* border: 1px solid darkgrey; */
 	}
 	.socialheader {
 		display: flex;

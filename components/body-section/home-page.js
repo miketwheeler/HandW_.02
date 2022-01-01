@@ -1,6 +1,6 @@
 import React from 'react'
-import HomePageStyles from './home-main.module.css'
-import MiniCardDeck from '../minicarddeck' 
+import HomePageStyles from './home-page.module.css'
+import ServiceDeck from './home-page-addins/services-card-deck' 
 
 function HomePage() {
 	
@@ -8,7 +8,7 @@ function HomePage() {
 		<div className={HomePageStyles.bodycontent}>
 			<div className={HomePageStyles.upper}>
 				<div className={HomePageStyles.titlesection}>
-					<h2>Work That We Do</h2>
+					<h2 clasName={HomePageStyles.head2}>Work That We Do</h2>
 					<p>
 						We're a Nebraska-native Startup, proud to bring our skills with 
 						metalworking to the City of Lincoln, Omaha, and anywhere between. 
@@ -44,8 +44,8 @@ function HomePage() {
 				</h1>
 			</div>
 			<div className={HomePageStyles.servicesection}>
-				<h2 className={HomePageStyles.servicesheader}>Our Services</h2>
-				<MiniCardDeck />
+				<h2 className={HomePageStyles.head2}>Our Services</h2>
+				<ServiceDeck />
 			</div>
 		</div>
 	)

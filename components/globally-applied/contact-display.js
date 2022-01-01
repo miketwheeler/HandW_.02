@@ -1,11 +1,11 @@
 // import { Icon } from '@material-ui/core'
-import React from 'react'
-import InfolinkStyle from './infolink.module.css'
+import React from 'react';
+import ContactDisplayStyle from './contact-display.module.css';
 import Image from 'next/image';
 
 
 
-function Infolink(props) {
+function ContactDisplay(props) {
 
 	const openNewTab = (url) => {
 		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');
@@ -26,7 +26,7 @@ function Infolink(props) {
 						width={76}
 						height={76}
 						priority={true}
-						className={InfolinkStyle.socialicon}
+						className={ContactDisplayStyle.socialicon}
 					/>
 				</a>
 			</>
@@ -62,49 +62,51 @@ function Infolink(props) {
 		}
 	]
 	return (
-		<div className={InfolinkStyle.objparams}>
-			<div className={InfolinkStyle.infobox}>
-				<div className={InfolinkStyle.contactus}>
-					<h2>Contact Us</h2>
-				</div>
-				<div className={InfolinkStyle.reachus}>
-					<p>Reach us by phone 8:00am-6:00pm(CST):</p>
-				</div>
-				<div className={InfolinkStyle.number}>
-					<h2>+1(888) 777-2121</h2>
-				</div>
-				<div className={InfolinkStyle.orbar}>
-					<p>or</p>
-				</div>
-				<div className={InfolinkStyle.emailus}>
-					<p>Email us anytime:</p>
-				</div>
-				<div className={InfolinkStyle.email}>
-					<h2>HMstair&rail@gmail.com</h2>
+		<div className={ContactDisplayStyle.objparams}>
+			<div className={ContactDisplayStyle.infobox}>
+				<div className={ContactDisplayStyle.contactsContainer}>
+					<div className={ContactDisplayStyle.contactus}>
+						<h2>Contact Us</h2>
+					</div>
+					<div className={ContactDisplayStyle.reachus}>
+						<p>Reach us by phone 8:00am-6:00pm(CST):</p>
+					</div>
+					<div className={ContactDisplayStyle.number}>
+						<h2>+1(888) 777-2121</h2>
+					</div>
+					<div className={ContactDisplayStyle.orbar}>
+						<p>or</p>
+					</div>
+					<div className={ContactDisplayStyle.emailus}>
+						<p>Email us anytime:</p>
+					</div>
+					<div className={ContactDisplayStyle.email}>
+						<h2>HMstair&rail@gmail.com</h2>
+					</div>
 				</div>
 			</div>
-			<div className={InfolinkStyle.socialbox}>
-				<div className={InfolinkStyle.socialheader}>
+			<div className={ContactDisplayStyle.socialbox}>
+				<div className={ContactDisplayStyle.socialheader}>
 					<h2>Follow us on Social Media</h2>
 				</div>
-				<div className={InfolinkStyle.socialicons}>
+				<div className={ContactDisplayStyle.socialicons}>
 					{/* !!!! Need click before/after and links */}
 					{
 						socials.map((item, i) => <SocialIcon key={i} item={item} />)
 					}
 				</div>
 			</div>
-			<div className={InfolinkStyle.businessbox}>
-				<div className={InfolinkStyle.businessicon}>
+			<div className={ContactDisplayStyle.businessbox}>
+				<div className={ContactDisplayStyle.businessicon}>
 					<Image 
 						src="/images/hw_mainlogo.png"
 						alt="H&W Company Logo"
-						width={260}
-						height={115}
+						width={250}
+						height={105}
 						priority={true}
 						/>
 				</div>
-				<div className={InfolinkStyle.businessdetail}>
+				<div className={ContactDisplayStyle.businessdetail}>
 					<p>
 						Owned and operated in Lincoln, NE<br/>
 						Business Lic. #000-000101001010<br/>
@@ -116,4 +118,4 @@ function Infolink(props) {
 	)
 }
 
-export default Infolink;
+export default ContactDisplay;

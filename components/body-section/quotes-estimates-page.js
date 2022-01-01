@@ -1,7 +1,7 @@
-import React from 'react'
-import Container from '@material-ui/core/Container'
-import QEStyles from './quotes-estimates.module.css'
-import ContactForm from '../contact-form'
+import React from 'react';
+import Container from '@material-ui/core/Container';
+import QuotesEstimatesStyles from './quotes-estimates-page.module.css';
+import ContactForm from './quotes-estimates-page-addins/contact-form';
 
 
 
@@ -9,10 +9,10 @@ function QuotesEstimates() {
 	
 	return (
 		<div>
-			<div className={QEStyles.title}>
+			<div className={QuotesEstimatesStyles.title}>
 				<h2>Need a Quote or Estimate for Your Next Project?</h2>
 			</div>
-			<div className={QEStyles.text}>
+			<div className={QuotesEstimatesStyles.text}>
 				<p>
 					No worries my friend, you're in the right place!
 					First, we would like to extend our warm-welcome.

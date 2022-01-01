@@ -1,10 +1,9 @@
-import React from 'react'
-import MiniCardDeckStyles from './minicarddeck.module.css'
-import Image from 'next/image'
+import React from 'react';
+import ServiceDeckStyles from './services-card-deck.module.css';
+import Image from 'next/image';
 
-
-function MiniCardDeck(props) 
-{
+// Assembles a series of cards into a div for the imported & rendered component
+function ServiceDeck(props) {
 	var contents = [
 		{ image: "/images/icons/2x/2x-design.png", description: "Design, Repair, Redesign, and Remodeling"},
 		{ image: "/images/icons/2x/2x-stairs.png", description: "Ballast and Handrail"},
@@ -14,31 +13,30 @@ function MiniCardDeck(props)
 	]
 	
 	return (
-		<div className={MiniCardDeckStyles.container}>
-			{
-				contents.map((item, i) => <MakeMiniCard key={i} item={item}/>)
-			}
+		<div className={ServiceDeckStyles.container}>
+			{contents.map((item, i) => <MakeMiniCard key={i} item={item}/>)}
 		</div>
 	)
 }
 
-function MakeMiniCard(props)
-{
+// Main component exported to the appropriate Home Page section
+function MakeMiniCard(props) {
 	return (
-		<div className={MiniCardDeckStyles.cardoutline}>
-			<div className={MiniCardDeckStyles.tile}>
+		<div className={ServiceDeckStyles.cardoutline}>
+			<div className={ServiceDeckStyles.tile}>
 				<Image 
 					src={props.item.image} 
 					width={"231px"} 
 					height={"242px"} 
 					alt={"services icons"} 
-					priority={true}/>
+					priority={true}
+					/>
 			</div>
-			<div className={MiniCardDeckStyles.caption}>
+			<div className={ServiceDeckStyles.caption}>
 				{props.item.description}
 			</div>
 		</div>
 	)
 }
 
-export default MiniCardDeck
+export default ServiceDeck;

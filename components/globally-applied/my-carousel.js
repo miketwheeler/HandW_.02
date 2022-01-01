@@ -1,7 +1,7 @@
 import React from 'react';
-import Carousel from 'react-material-ui-carousel'
-import Image from 'next/image'
-import CarouselStyles from './carouselcomponent.module.css'
+import Carousel from 'react-material-ui-carousel';
+import Image from 'next/image';
+import CarouselStyles from './my-carousel.module.css';
 
 function MyCarousel(props)
 {
