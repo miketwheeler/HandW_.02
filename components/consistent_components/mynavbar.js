@@ -19,17 +19,6 @@ import { Router, useHistory } from 'react-router-dom';
 
 function MyNavbar(props) {
 	const [expanded, setExpanded] = useState(false);
-	// const [active, setActive] = useState("/");
-
-	// function runClick(e, activeLink) {
-	// 	e.preventDefault();
-	// 	setExpanded(false);
-	// 	setActive(activeLink);
-	// 	const els = document.querySelectorAll(`#${active}`);
-	// 	els.classList.remove('active');
-	// 	const activeEl = document.querySelector(`#${active}`);
-	// 	activeEl.classList.add('active');
-	// }
 	
 	return (
 		<div>
@@ -50,9 +39,9 @@ function MyNavbar(props) {
 						<Navbar.Toggle
 							id="navTogglerButton"
 							onClick={() => setExpanded(!expanded)}
-							className="ms-auto me-3 mb-4" 
+							className="ms-auto me-4 mb-4" 
 							aria-controls="navbar-nav"
-							style={{marginTop: '-180px'}}
+							style={{marginTop: '-5rem', backgroundColor: 'transparent', fontSize: '1.5rem', borderColor: 'lightGrey'}}
 						/>
 						<Navbar.Collapse className="justify-content-center" id="navbar-nav" >
 							<Nav defaultActiveKey="/" activeKey={window.location.pathname} style={{ fontSize: '38px', margin: '0px 10px'}}>
@@ -60,22 +49,22 @@ function MyNavbar(props) {
 								{/*    MINI-> md and DOWN; display nav menu as hamburger menu        */}
 								{/* //////////////////////////////////////////////////////////////// */}
 								<div className="flexi d-md-none d-lg-none d-xl-none d-xxl-none fs-2">
-									<LinkContainer id="homelink" to="/">
+									<LinkContainer id="home" exact to="/" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
 											Home
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="qelink" to="/quotes-estimates">
+									<LinkContainer id="quotes-estimates" to="/quotes-estimates" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
 											Quotes
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="serlink" to="/services">
+									<LinkContainer id="services" to="/services" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
 											Services
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="otlink" to="/our-team">
+									<LinkContainer id="our-team" to="/our-team" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} className={NavbarStyle.linkText}>
 											Our Team
 										</Nav.Link>
@@ -86,28 +75,28 @@ function MyNavbar(props) {
 								{/* //////////////////////////////////////////////////////////////////////// */}
 								<div className="d-none d-md-flex fs-2">
 									<div className={NavbarStyle.linkSurround}>
-										<LinkContainer id="homelink" to="/" className={NavbarStyle.linkBox}>
-											<Nav.Link className={NavbarStyle.linkText} >
+										<LinkContainer id="home" exact to="/" className={NavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
+											<Nav.Link className={NavbarStyle.linkText}>
 												Home
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={NavbarStyle.linkSurround}>
-										<LinkContainer id="qelink" to="/quotes-estimates" className={NavbarStyle.linkBox}>
+										<LinkContainer id="quotes-estimates" to="/quotes-estimates" className={NavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 											<Nav.Link className={NavbarStyle.linkText}>
 												Quotes
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={NavbarStyle.linkSurround}>
-										<LinkContainer id="serlink" to="/services" className={NavbarStyle.linkBox}>
+										<LinkContainer id="services" to="/services" className={NavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 											<Nav.Link className={NavbarStyle.linkText}>
 												Services
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={NavbarStyle.linkSurround}>
-										<LinkContainer id="otlink" to="/our-team" className={NavbarStyle.linkBox}>
+										<LinkContainer id="our-team" to="/our-team" className={NavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 											<Nav.Link className={NavbarStyle.linkText}>
 												Our Team
 											</Nav.Link>
