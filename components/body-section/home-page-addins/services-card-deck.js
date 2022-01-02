@@ -2,9 +2,10 @@ import React from 'react';
 import ServiceDeckStyles from './services-card-deck.module.css';
 import Image from 'next/image';
 
+// Main component exported to the appropriate 'Home Page' section
 // Assembles a series of cards into a div for the imported & rendered component
 function ServiceDeck(props) {
-	var contents = [
+	const contents = [
 		{ image: "/images/icons/2x/2x-design.png", description: "Design, Repair, Redesign, and Remodeling"},
 		{ image: "/images/icons/2x/2x-stairs.png", description: "Ballast and Handrail"},
 		{ image: "/images/icons/2x/2x-home-city.png", description: "Commercial and Residential"},
@@ -19,11 +20,11 @@ function ServiceDeck(props) {
 	)
 }
 
-// Main component exported to the appropriate Home Page section
+// creates an individual card out of the passed props- returns and is added to the service-deck
 function MakeMiniCard(props) {
 	return (
-		<div className={ServiceDeckStyles.cardoutline}>
-			<div className={ServiceDeckStyles.tile}>
+		<div>
+			<div>
 				<Image 
 					src={props.item.image} 
 					width={"231px"} 
