@@ -1,10 +1,17 @@
 .form {
 	padding: 0px 20px;
+	width: 90%;
+	margin: 40px auto 80px;
 }
 .bttncase {
 	display: flex;
-	margin-top: 10px;
+	margin-top: 26px;
 	justify-content: flex-end;
+}
+.radioContainer {
+	width: 88%;
+	margin: 8px auto 12px;
+	justify-content: space-between;
 }
 .radiobutton{
 	padding: 0px 30px;
@@ -12,4 +19,11 @@
 .bttn {
 	width: 150px;
 	height: 50px;
+}
+
+@media only screen and (max-width: 550px) {
+	.radioContainer {
+		width: 50%;
+		margin: 0;
+	}
 }
