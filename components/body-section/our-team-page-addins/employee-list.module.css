@@ -1,6 +1,9 @@
+.employeeListWrapper {
+    margin-top: 38px;
+}
 .cards {
-    border-top: 1px dotted rgba(128, 128, 128, 0.534);
-    border-bottom: 1px dotted rgba(128, 128, 128, 0.534);
+    border-top: 1px dotted rgba(90, 90, 90, 0.884);
+    border-bottom: 1px dotted rgba(90, 90, 90, 0.884);
     border-radius: 50px;
     margin: 14px auto;
     width: 90%;

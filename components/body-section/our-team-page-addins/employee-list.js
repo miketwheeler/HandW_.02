@@ -7,6 +7,7 @@ import EmployeeListStyles from './employee-list.module.css';
 const cardInnerStyleAlt = {
     display: 'flex', 
     flexDirection: 'row-reverse', 
+    textAlign: 'left',
     justifyContent: 'space-between', 
     margin: '0px auto',
     width: '78%',
@@ -21,7 +22,7 @@ const cardInnerStyleStd = {
 
 // Main component exported to the appropriate 'Our Team' section
 // Assembles a series of cards into a div for the imported & rendered component
-function EmployeeList(props) {
+function EmployeeList() {
     // Data - List of Employees (props)
 	const employees = [
 		{ 
@@ -83,7 +84,7 @@ function EmployeeList(props) {
 	]
 	
 	return (
-        <div>
+        <div className={EmployeeListStyles.employeeListWrapper}>
 			{employees.map((item, i) => <EmployeeCard key={i} item={item}/>)}
 		</div>
 	)

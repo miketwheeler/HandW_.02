@@ -30,6 +30,9 @@ function OurTeam() {
 			</div>
 			
 			<div className={OurTeamStyles.members}>
+				<div className={OurTeamStyles.teamHeader}>
+					<h2 className={OurTeamStyles.teamHeaderText}>Meet The Team</h2>
+				</div>
 				<div className={OurTeamStyles.employeeList}>
 					<EmployeeList />
 				</div>
