@@ -6,6 +6,9 @@ import CarouselStyles from './my-carousel.module.css';
 function MyCarousel(props)
 {
 	var items = [
+		{ name: "H&W Welders", image: "/images/welders_wbias_9.png" },
+		// { name: "Rail Demo 1", image: "/images/rail_design_1_e.png" },
+		// { name: "Rail Demo 2", image: "/images/rail_design_2_e.png" },
 		{ name: "Welding", image: "/images/welding_railing.jpg" },
 		{ name: "Hardly Working", image: "/images/hardly_working.jpg" },
 		{ name: "Welding2", image: "/images/jigwelding.jpg" }
@@ -41,4 +44,4 @@ function Item(props)
     )
 }
 
-export default MyCarousel
+export default MyCarousel;

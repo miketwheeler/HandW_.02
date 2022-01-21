@@ -104,9 +104,9 @@ function EmployeeCard(props) {
                 <div className={EmployeeListStyles.imageContainer}>
                     <Image
                         src={props.item.image} 
-                        width={"276px"} 
-                        height={"200px"} 
-                        alt={"services icons"} 
+                        width={"276px"}
+                        height={"200px"}
+                        alt={"services icons"}
                         priority={true}
                         className={EmployeeListStyles.images}
                         />

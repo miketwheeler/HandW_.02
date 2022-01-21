@@ -1,0 +1,37 @@
+.serviceContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "svcSec"
+        "imgSec";
+}
+.serviceSection {
+    grid-area: svcSec;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "sec1 sec2 sec3";
+
+    height: 100%;
+}
+.serviceColumn1 {
+    grid-area: sec1;
+    /* height: 100%; */
+}
+.serviceColumn1 {
+    grid-area: sec2;
+    /* height: 100%; */
+}
+.serviceColumn1 {
+    grid-area: sec3;
+    /* height: 100%; */
+}
+
+
+.imgSection {
+    grid-area: imgSec;
+    height: 400px;
+    background-color: aqua;
+}

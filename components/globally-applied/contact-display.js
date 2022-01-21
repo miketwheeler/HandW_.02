@@ -38,7 +38,7 @@ function ContactDisplay(props) {
 		{ 
 			image: "/images/icons/2x/2x-facebook.png", 
 			description: "facebook" ,
-			linkedto: "https://www.facebook.com" 
+			linkedto: "https://www.facebook.com/handwstairandrail" 
 		},
 		{ 
 			image: "/images/icons/2x/2x-instagram.png", 
@@ -75,7 +75,7 @@ function ContactDisplay(props) {
 						<h2>+1(888) 777-2121</h2>
 					</div>
 					<div className={ContactDisplayStyle.orbar}>
-						<p>or</p>
+						<p> - or - </p>
 					</div>
 					<div className={ContactDisplayStyle.emailus}>
 						<p>Email us anytime:</p>
@@ -101,8 +101,8 @@ function ContactDisplay(props) {
 					<Image 
 						src="/images/hw_mainlogo.png"
 						alt="H&W Company Logo"
-						width={250}
-						height={105}
+						width={150}
+						height={75}
 						priority={true}
 						/>
 				</div>
