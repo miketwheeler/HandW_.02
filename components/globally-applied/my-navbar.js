@@ -54,9 +54,9 @@ function MyNavbar(props) {
 											Services
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="our-team" to="/our-team" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
+									<LinkContainer id="projects" to="/projects" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} className={MyNavbarStyle.linkText}>
-											Our Team
+											Projects
 										</Nav.Link>
 									</LinkContainer>
 								</div>
@@ -86,9 +86,9 @@ function MyNavbar(props) {
 										</LinkContainer>
 									</div>
 									<div className={MyNavbarStyle.linkSurround}>
-										<LinkContainer id="our-team" to="/our-team" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
+										<LinkContainer id="projects" to="/projects" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(71, 71, 71, 0.719)'}}>
 											<Nav.Link className={MyNavbarStyle.linkText}>
-												Our Team
+												Projects
 											</Nav.Link>
 										</LinkContainer>
 									</div>

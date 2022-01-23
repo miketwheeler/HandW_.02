@@ -10,7 +10,7 @@ import Layout from '../components/layout/layout';
 import HomePage from '../components/body-section/home-page';
 import QuoteEstimates from '../components/body-section/quotes-estimates-page';
 import Services from '../components/body-section/services-page';
-import OurTeam from '../components/body-section/our-team-page';
+import Projects from '../components/body-section/projects-page';
 
 export default function App(props) {
   return (
@@ -22,7 +22,7 @@ export default function App(props) {
 				<Switch>
 					<Route path="/quotes-estimates" component={QuoteEstimates}/>
 					<Route path="/services" component={Services}/>
-					<Route path="/our-team" component={OurTeam}/>
+					<Route path="/projects" component={Projects}/>
 					<Route path="" component={HomePage}/>
 				</Switch>
 			</div>

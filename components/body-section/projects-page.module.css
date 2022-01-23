@@ -1,0 +1,28 @@
+.titleSection {
+    width: 88%;
+    margin: 40px auto 60px;
+    font-size: 28px;
+}
+.letter {
+    font-size: 28px;
+}
+.signOff {
+    text-align: center;
+}
+.projects {
+    margin: 20px 0;
+    /* text-align: center; */
+}
+.projectHeader {
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 18px;
+}
+.projectHeaderText {
+    color: white;
+    z-index: 100;
+    align-self: center;
+}

@@ -1,37 +1,98 @@
 .serviceContainer {
     display: grid;
+    width: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto 1fr 100px auto;
     grid-template-areas: 
+        "svcHeader"
         "svcSec"
+        "gettaQuote"
         "imgSec";
+    gap: 20px;
+    padding: 20px;
+}
+.serviceHeader {
+    grid-area: svcHeader;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-left: 20px;
 }
 .serviceSection {
     grid-area: svcSec;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3px 1fr 3px 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: 
-        "sec1 sec2 sec3";
-
+        "sec1 divider1 sec2 divider2 sec3";
     height: 100%;
+    gap: 6px;
 }
+
 .serviceColumn1 {
     grid-area: sec1;
-    /* height: 100%; */
+    /* background-color: rgb(146, 146, 146); */
+    padding: 20px;
+    /* color: black; */
+    border: 1px solid transparent;
+    border-radius: 12px;
 }
-.serviceColumn1 {
+.divider1 {
+    grid-area: divider1;
+    background-color: rgb(145, 71, 22, 0.940);
+    border: 1px solid rgb(145, 71, 22, 0.940);
+    border-radius: 25px;
+    height: 70%;
+    /* align-self: center; */
+    margin: auto;
+}
+.serviceColumn2 {
     grid-area: sec2;
-    /* height: 100%; */
+    /* background-color: rgba(0, 0, 0, 0.753); */
+    /* color: white; */
+    padding: 20px;
+    border: 1px solid transparent;
+    border-radius: 12px;
 }
-.serviceColumn1 {
+.divider2 {
+    grid-area: divider2;
+    background-color: rgb(145, 71, 22, 0.940);
+    border: 1px solid rgb(145, 71, 22, 0.940);
+    border-radius: 25px;
+    height: 70%;
+    /* align-self: center; */
+    margin: auto;
+}
+.serviceColumn3 {
     grid-area: sec3;
-    /* height: 100%; */
+    /* background-color: rgba(143, 69, 42, 0.89); */
+    padding: 20px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+}
+.section {
+    margin-bottom: 16px;
 }
 
+.buttonContainer {
+    grid-area: gettaQuote;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgba(128, 128, 128, 0.103); */
+}
+.gettaQuoteButton {
+    width: 230px;
+    height: 60px;
+}
 
 .imgSection {
     grid-area: imgSec;
-    height: 400px;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr; */
+    /* max-height: 400px; */
     background-color: aqua;
+    
 }
