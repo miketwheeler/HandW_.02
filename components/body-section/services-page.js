@@ -1,9 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import ServiceStyles from './services-page.module.css';
-// import ServiceImgs from './services-addins/services-imgs';
 import { Button } from '@material-ui/core'
-// import AssembleImage from './services-addins/services-imgs';
 
 
 function Services() {
@@ -90,18 +88,14 @@ function Services() {
 				<div className={ServiceStyles.buttonContainer}>
 					<Button className={ServiceStyles.gettaQuoteButton}
 						variant="contained"
-						color="primary"
+						// color="primary"
+						style={{backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white'}}
 						size="large"
 						onClick={(e) => goToQuote(e)}
 						>
 							Get a Quote
 					</Button>
 				</div>
-
-				{/* Images */}
-				{/* <div className={ServiceStyles.imgSection} id="imageBox">
-					<AssembleImage />
-				</div> */}
 			</div>
 		</div>
 	)

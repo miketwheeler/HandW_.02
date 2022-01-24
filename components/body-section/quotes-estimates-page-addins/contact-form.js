@@ -43,7 +43,7 @@ function ContactForm() {
 	const [dueBy, setDueBy] = useState("");
 	const [message, setMessage] = useState("");
 
-	// Special state for unadaptable component (date picker -> it's label)
+	// Special state hack for unadaptable component (date picker -> it's label)
 	const [isFocused, setIsFocused] = useState(false);
 
 
@@ -193,7 +193,8 @@ function ContactForm() {
 				<Button className={ContactFormStyles.bttn}
 					type="submit" 
 					variant="contained" 
-					color='primary' 
+					style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white'}}
+					// color="primary" 
 					size="large"
 					>
 						Submit

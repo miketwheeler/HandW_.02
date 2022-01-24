@@ -69,7 +69,7 @@ function ContactDisplay(props) {
 						<h2>Contact Us</h2>
 					</div>
 					<div className={ContactDisplayStyle.reachus}>
-						<p>Reach us by phone 8:00am-6:00pm(CST):</p>
+						<p>Call us 8:00am-5:00pm(CST):</p>
 					</div>
 					<div className={ContactDisplayStyle.number}>
 						<h2>+1(888) 777-2121</h2>
@@ -81,7 +81,7 @@ function ContactDisplay(props) {
 						<p>Email us anytime:</p>
 					</div>
 					<div className={ContactDisplayStyle.email}>
-						<h2>HMstair&rail@gmail.com</h2>
+						<h2>hwstairandrail@gmail.com</h2>
 					</div>
 				</div>
 			</div>
@@ -108,9 +108,10 @@ function ContactDisplay(props) {
 				</div>
 				<div className={ContactDisplayStyle.businessdetail}>
 					<p>
-						Owned and operated in Lincoln, NE<br/>
-						Business Lic. #000-000101001010<br/>
-						BBB, Hardware Assoc. Members Alliance
+						Proudly owned and operated in Lincoln, NE
+						{/* <br/> */}
+						{/* Business Lic. #000-000101001010<br/>
+						BBB, Hardware Assoc. Members Alliance */}
 					</p>
 				</div>
 			</div>

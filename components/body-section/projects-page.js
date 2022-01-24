@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectStyles from './projects-page.module.css';
 import ProjectList from './projects-page-addins/project-list';
 
-function OurTeam() {
+function Projects() {
 
 	return (
 		<div className="row">
@@ -31,7 +31,7 @@ function OurTeam() {
 			
 			<div className={ProjectStyles.projects}>
 				<div className={ProjectStyles.projectHeader}>
-					<h2 className={ProjectStyles.projectHeaderText}>Examples of Our Work</h2>
+					<h2 className={ProjectStyles.projectHeaderText}>Our Work & Faculties</h2>
 				</div>
 				<div className={ProjectStyles.projectList}>
 					<ProjectList />
@@ -41,4 +41,4 @@ function OurTeam() {
 	)
 }
 
-export default OurTeam
+export default Projects;

@@ -1,5 +1,5 @@
-import { Fragment } from "react"
-import LayoutStyle from './layout.module.css'
+import { Fragment } from "react";
+import LayoutStyle from './layout.module.css';
 
 function Layout(props){
 

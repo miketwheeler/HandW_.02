@@ -1,4 +1,4 @@
-import resolve from './Resolver.js.js.js';
+import resolve from './Resolver.js';
 import emailjs from 'emailjs-com';
 
 const iun = '52544255784f4b5f4216534c6b4666744474741e574562617772';

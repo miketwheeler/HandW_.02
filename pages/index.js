@@ -23,7 +23,7 @@ export default function App(props) {
 					<Route path="/quotes-estimates" component={QuoteEstimates}/>
 					<Route path="/services" component={Services}/>
 					<Route path="/projects" component={Projects}/>
-					<Route path="" component={HomePage}/>
+					<Route path="/" component={HomePage}/>
 				</Switch>
 			</div>
 			<Infolink />
