@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { 
 	FormControl, 
 	FormControlLabel, 
@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css'
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import ReCAPTCHA from 'react-google-recaptcha';
+import sendemail from '../../hooks/sendemail.js';
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
 const useStyles = makeStyles ({
@@ -32,8 +34,9 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() {
 	const classes = useStyles();
-	const theme = useTheme();
-	const highlightRef = useRef(null);
+	// const theme = useTheme();
+	// const highlightRef = useRef(null);
+	const recaptchaRef = useRef();
 
 	// States for form inputs - passed to email handler
 	const [fullName, setFullName] = useState("");
@@ -42,6 +45,7 @@ function ContactForm() {
 	const [radioSelectionValue, setRadioSelectionValue] = useState(null);
 	const [dueBy, setDueBy] = useState("");
 	const [message, setMessage] = useState("");
+	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
 
 	// Special state hack for unadaptable component (date picker -> it's label)
 	const [isFocused, setIsFocused] = useState(false);
@@ -57,20 +61,40 @@ function ContactForm() {
 		setRadioSelectionValue(null);
 		setDueBy("");
 		setMessage("");
+		setIsVerifiedOnSubmit(false);
+	}
+
+	const onCaptchaHandler = (value) => {
+		console.log("Captcha value:", value);
+		setIsVerifiedOnSubmit(true);
+	}
+	const onCaptchaExpirationHandler = () => {
+		setIsVerifiedOnSubmit(false);
+	}
+
+	const dispatchAlert = (message) => {
+		message !== "success"
+		? 
+		alert(`Whoops! The ${message} was not successfully added or something else went wrong. Please try again!`)
+		:
+		alert(`Success! Thank you for contacting us! We will get back to you ASAP.`)
 	}
 
 	const submitMe = (event) => {
 		event.preventDefault();
-		// ////////////////////////////////////////////////////////////////////////
-		// TODO: Link below to the email dispatcher!!!!!                    ///////
-		// ////////////////////////////////////////////////////////////////////////
-		// sendEmail(fullName, phoneNummber, email, radioSelection, dueBy, message);
-		// build func to popup alert success/denial ((validation - MUI has a section on validating))
-		// alertBox(); ???? or use above method for feedback - alert box maybe useful for submittion/denial of the form
-		resetForm();
-		console.log(fullName, phoneNumber, radioSelectionValue, dueBy, message, email);
-	}
 
+		//  IF SUCCESS ****
+		dispatchAlert("success");
+		sendemail(fullName, phoneNumber, radioSelectionValue, dueBy, message, email);
+
+		// AND IF FAILURE ****
+		// dispatchAlert("DATE");  <-- pass in var-field to notify & don't reset form or submit, re-eval captcha
+
+		// FINAL STEP ESET CAPTCHA AND FORM FIELDS
+		recaptchaRef.current.reset();
+		console.log(fullName, phoneNumber, radioSelectionValue, dueBy, message, email); // See the passed vals
+		resetForm();
+	}
 
 	return (
 		<form className={ContactFormStyles.form} noValidate autoComplete="off" onSubmit={submitMe}>
@@ -190,12 +214,24 @@ function ContactForm() {
 				value={message}
 				/>
 			<div className={ContactFormStyles.bttncase}>
-				<Button className={ContactFormStyles.bttn}
+				<ReCAPTCHA 
+					// Import Actual public key just like below \/
+
+					sitekey={process.env.NEXT_PUBLIC_TEST_RECAPTCHA_SITE_KEY}
+					onChange={onCaptchaHandler}
+					onExpired={onCaptchaExpirationHandler}
+					theme="light"
+					ref={recaptchaRef}
+					style={{marginRight: '42px'}}
+					/>
+				<Button 
+					className={ContactFormStyles.bttn}
 					type="submit" 
 					variant="contained" 
 					style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white'}}
 					// color="primary" 
 					size="large"
+					disabled={!isVerifiedOnSubmit}
 					>
 						Submit
 				</Button>
