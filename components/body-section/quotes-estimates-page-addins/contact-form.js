@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { 
 	FormControl, 
 	FormControlLabel, 
@@ -9,9 +9,10 @@ import {
 	Button,
 } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css'
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import ReCAPTCHA from 'react-google-recaptcha';
 import sendemail from '../../hooks/sendemail.js';
+import NumberFormat from 'react-number-format';
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
 const useStyles = makeStyles ({
@@ -34,26 +35,44 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() {
 	const classes = useStyles();
-	// const theme = useTheme();
-	// const highlightRef = useRef(null);
 	const recaptchaRef = useRef();
+	const numberRef = useRef();
 
-	// States for form inputs - passed to email handler
+	// Form Inputs
 	const [fullName, setFullName] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [email, setEmail] = useState("");
 	const [radioSelectionValue, setRadioSelectionValue] = useState(null);
 	const [dueBy, setDueBy] = useState("");
 	const [message, setMessage] = useState("");
+
+	// captcha && form fields throw bool
 	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
 
-	// Special state hack for unadaptable component (date picker -> it's label)
-	const [isFocused, setIsFocused] = useState(false);
+	// Special state for adapt'n for component (date picker -> it's label)
+	const [isDateFocused, setDateIsFocused] = useState(false);
+	const [isPhoneFocused, setPhoneIsFocused] = useState(false);
+	const [isNameFocused, setNameIsFocused] = useState(false);
+	const [isEmailFocused, setEmailIsFocused] = useState(false);
+ 
+	// validators
+	const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const rePhone = /[0-9]/g;
+	const reName = /^([^0-9]*)$/;
+	const compareDate = new Date()
+
+	const checkName = (returnValTrueCase, returnValFalseCase) => {
+		return (fullName.length >= 2 && fullName.length <= 3 || !reName.test(fullName)) ? returnValTrueCase : returnValFalseCase;
+	}
+	const checkPhone = (returnValTrueCase, returnValFalseCase) => {
+		console.log(phoneNumber);
+		return !phoneNumber === null || (phoneNumber.match(rePhone).length > 1 && phoneNumber.match(rePhone).length <= 10) ? returnValTrueCase : returnValFalseCase;
+	}
+	const checkEmail = (returnValFalseCase, returnValueTrueCase) => {
+		return email.length < 2 ? false : reEmail.test(email) ? returnValFalseCase : returnValueTrueCase;
+	}
 
 
-/* ***************************************************************************************************** */
-//  if the new onChange assignments don't work as intended -- this is where the commented out section goes
-/* ***************************************************************************************************** */
 	const resetForm = () => {
 		setFullName("");
 		setPhoneNumber("");
@@ -72,6 +91,7 @@ function ContactForm() {
 		setIsVerifiedOnSubmit(false);
 	}
 
+
 	const dispatchAlert = (message) => {
 		message !== "success"
 		? 
@@ -83,6 +103,8 @@ function ContactForm() {
 	const submitMe = (event) => {
 		event.preventDefault();
 
+		//  ON SUBMIT __ NEED TO String.trim() the full name to lob off preceed/proceed spaces
+		
 		//  IF SUCCESS ****
 		dispatchAlert("success");
 		sendemail(fullName, phoneNumber, radioSelectionValue, dueBy, message, email);
@@ -97,38 +119,57 @@ function ContactForm() {
 	}
 
 	return (
-		<form className={ContactFormStyles.form} noValidate autoComplete="off" onSubmit={submitMe}>
+		<form className={ContactFormStyles.form} autoComplete="off" onSubmit={submitMe}>
 			<TextField 
+				onFocus={() => setNameIsFocused(true)}
+				onBlur={() => setNameIsFocused(false)}
 				InputLabelProps={{classes: {root: classes.label}}}
-				label="Name" 
-				variant="outlined"
-				fullWidth
 				type="text"
+				label="Name" 
+				value={fullName}
+				required
+				fullWidth
+				variant="outlined"
 				margin="normal"
 				autoComplete="true"
 				onChange={(e) => setFullName(e.target.value)}
-				value={fullName}
+				error={checkName(true, false)}
+				helperText={checkName("Please provide a valid contact name.",  null)}
 				/>
-			<TextField 
+			<NumberFormat 
+				onFocus={() => setPhoneIsFocused(true)}
+				onBlur={() => setPhoneIsFocused(false)}
 				InputLabelProps={{classes: {root: classes.label}}}
 				label="Phone Number" 
-				variant="outlined"
+				value={phoneNumber}
+				required
 				fullWidth
+				variant="outlined"
 				margin="normal"
 				autoComplete="true"
+				customInput={TextField}
+				format="+1 (###) ###-####"
+				mask="_"
+				allowEmptyFormatting
 				onChange={(e) => setPhoneNumber(e.target.value)}
-				value={phoneNumber}
-				/>
+				error={checkPhone(true, false)}
+				helperText={checkPhone("Please enter a valid Phone Number.", null)}
+			/>
 			<TextField 
+				onFocus={() => setEmailIsFocused(true)}
+				onBlur={() => setEmailIsFocused(false)}
 				InputLabelProps={{classes: {root: classes.label}}}
 				label="Email" 
-				variant="outlined"
-				width="500"
+				value={email}
+				required
 				fullWidth
+				width="500"
+				variant="outlined"
 				margin="normal"
 				autoComplete="true"
 				onChange={(e) => setEmail(e.target.value)}
-				value={email}
+				error={checkEmail(false, true)}
+				helperText={checkEmail(null, "Please enter a valid Email Address.")}
 				/>
 			<FormControl aria-label="radio-list-form" margin="normal" fullWidth>
 				<FormLabel aria-label="subject-radio-list-selection">Subject Matter</FormLabel>
@@ -181,14 +222,15 @@ function ContactForm() {
 						margin: '1ch 0 2ch',
 					}}
 					for="dateField"
-					focused={isFocused}
+					focused={isDateFocused}
 					className={classes.inputLabelBox}
 					>
 					When Would You Like a Call Back?
 				</FormLabel>
 				<TextField
-					onFocus={() => setIsFocused(true)}
-					onBlur={() => setIsFocused(false)}
+					// InputLabelProps={{ shrink: true }}
+					onFocus={() => setDateIsFocused(true)}
+					onBlur={() => setDateIsFocused(false)}
 					name="dateField"
 					id="#dateid"
 					type="date"
@@ -213,22 +255,22 @@ function ContactForm() {
 				onChange={(e) => setMessage(e.target.value)}
 				value={message}
 				/>
+			<div className={ContactFormStyles.captchaRow}>
+			<ReCAPTCHA 
+				// Import Actual public key just like below \/
+				sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+				onChange={onCaptchaHandler}
+				onExpired={onCaptchaExpirationHandler}
+				theme="light"
+				ref={recaptchaRef}
+				/>
+			</div>
 			<div className={ContactFormStyles.bttncase}>
-				<ReCAPTCHA 
-					// Import Actual public key just like below \/
-
-					sitekey={process.env.NEXT_PUBLIC_TEST_RECAPTCHA_SITE_KEY}
-					onChange={onCaptchaHandler}
-					onExpired={onCaptchaExpirationHandler}
-					theme="light"
-					ref={recaptchaRef}
-					style={{marginRight: '42px'}}
-					/>
 				<Button 
 					className={ContactFormStyles.bttn}
 					type="submit" 
 					variant="contained" 
-					style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white'}}
+					style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px' }}
 					// color="primary" 
 					size="large"
 					disabled={!isVerifiedOnSubmit}
