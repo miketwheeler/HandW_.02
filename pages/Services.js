@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import ServiceStyles from './services-page.module.css';
+import ServiceStyles from './Services.module.css';
 import { Button } from '@material-ui/core'
 
 
@@ -11,6 +11,7 @@ function Services() {
 	function goToQuote(event) {
 		event.preventDefault();
 		history.push("/quotes-estimates");
+		window.scrollTo(0, 480);
 	}
 
 	return (

@@ -1,6 +1,7 @@
 import React from 'react';
-import ProjectStyles from './projects-page.module.css';
-import ProjectList from './projects-page-addins/project-list';
+import ProjectStyles from './Projects.module.css';
+import ProjectList from '../components/body-section/projects-page-addins/project-list';
+
 
 function Projects() {
 

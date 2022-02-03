@@ -1,6 +1,6 @@
-import React from 'react'
-import HomePageStyles from './home-page.module.css'
-import ServiceDeck from './home-page-addins/services-card-deck' 
+import React from 'react';
+import HomePageStyles from './Home.module.css';
+import ServiceDeck from '../components/body-section/home-page-addins/services-card-deck';
 
 function HomePage() {
 	
