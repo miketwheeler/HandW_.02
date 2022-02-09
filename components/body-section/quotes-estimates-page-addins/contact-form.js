@@ -16,10 +16,7 @@ import NumberFormat from 'react-number-format';
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
 const theme = createMuiTheme({
-	palette: {
-		primary: { main: 'rgb(145, 71, 22, 0.940)' },
-		secondary: { main: 'rgb(56, 56, 56)' }
-	}
+	palette: { primary: { main: 'rgb(145, 71, 22, 0.940)' }, secondary: { main: 'rgb(56, 56, 56)' } }
 })
 
 const useStyles = makeStyles ({
@@ -50,8 +47,12 @@ function ContactForm() {
 	const [dueBy, setDueBy] = useState(new Date());
 	const [message, setMessage] = useState("");
 
-	// captcha && form fields throw bool
+	// captcha && form fields throw bool for submission button active/non-active
 	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
+	const [scoreCard, setScoreCard] = useState(0.0);
+	const [errorFlag, setErrorFlag] = useState(false);
+	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
+	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
 
 	// Special state for adapt'n for component (date picker -> it's label)
 	const [isDateFocused, setDateIsFocused] = useState(false);
@@ -59,28 +60,48 @@ function ContactForm() {
 	const [isNameFocused, setNameIsFocused] = useState(false);
 	const [isEmailFocused, setEmailIsFocused] = useState(false);
  
-	// validators
+	// field validators
 	const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const rePhone = /[0-9]/g;
 	const reName = /^([^0-9]*)$/;
-	// const compareDate = new Date();
+	const reMessage = /[^\t\r\n]/g;
 
-	const checkName = (returnValTrueCase, returnValFalseCase) => {
-		return (fullName.length >= 2 && fullName.length <= 3 || !reName.test(fullName)) ? returnValTrueCase : returnValFalseCase;
-	}
-	const checkPhone = (returnValTrueCase, returnValFalseCase) => {
+	const checkName = (returnTrueCase, returnFalseCase) => {return (fullName.length >= 2 && fullName.length <= 3 || !reName.test(fullName)) ? returnTrueCase : returnFalseCase}
+	const checkPhone = (returnTrueCase, returnFalseCase) => {
 		if(phoneNumber === null || phoneNumber === "")
 			return false;
 		else
-			return (phoneNumber.match(rePhone).length > 1 && phoneNumber.match(rePhone).length <= 10) ? returnValTrueCase : returnValFalseCase;
-	}
-	const checkEmail = (returnValTrueCase, returnValueFalseCase) => {
+			return (phoneNumber.match(rePhone).length > 1 && phoneNumber.match(rePhone).length <= 10) ? returnTrueCase : returnFalseCase;
+		}
+	const checkEmail = (returnTrueCase, returnueFalseCase) => {
 		if(email === null || email === "")
 			return false;
 		else
-			return email.length < 2 ? false : reEmail.test(email) ? returnValTrueCase : returnValueFalseCase;
+			return email.length < 2 ? false : reEmail.test(email) ? returnTrueCase : returnueFalseCase;
 	}
-	
+	// const checkMessage = (returnTrueCase, returnFalseCase) => {
+	// 	if(message === null || message === "") 
+	// 		return false;
+	// 	else {
+	// 		if (message.length > 1)
+	// 		{
+	// 			return returnFalseCase;
+	// 		}
+	// 		else {
+	// 			if(reMessage.test(message) === true) {
+	// 				message.replace(reMessage, " ");
+	// 				return returnTrueCase;
+	// 			}
+	// 			else return returnFalseCase;
+	// 		}
+			// return message.length < 1 
+			// ? returnFalseCase
+			// : reMessage.test(message) === true 
+			// ? message.replace(reMessage, " ")
+			// : message 
+	// 	}
+	// }
+
 	const resetForm = () => {
 		setFullName("");
 		setPhoneNumber("");
@@ -90,71 +111,92 @@ function ContactForm() {
 		setMessage("");
 		setIsVerifiedOnSubmit(false);
 	}
-
-	const formatCallbackDate = (dueBy) => {
+	const formatCallbackDateAndTime = (dueBy) => {
 		const dateString = dueBy.toString(); // Sets the date to a string to parse out
 		const callBackDate = dateString.substring(0,15); // Dayofweek Month day year (Ex: Monday Jan 30 2022)
 		const callBackTime = dateString.toString().substring(16,24); // time converted to standard time -skip GMT-xxxxx- 
 		const callBackTimezone = dateString.substring(34); // then the suffix time zone
-		return `Call Back Client: ${callBackDate} @ ${callBackTime} ${callBackTimezone}`;
+		return `${callBackDate} @ ${callBackTime} ${callBackTimezone}`;
 	}
 
-	function submitme(event) {
-		event.preventDefault();
-		// if (executeRecaptcha) {
-			handleSubmit();
-		// }
-	};
+	// Invoke Recaptcha evaluation
+	const handleReCaptchaVerify = useCallback(async () => {
+		if(!executeRecaptcha) {
+			console.log('Execute recaptcha not yet available');
+			return;
+		}
+		// const checkDate = new Date().toISOString();
+		const checkRecaptchaRoute = '/.netlify/functions/recaptchas';
+		const token = await executeRecaptcha('submit');
 
-	const handleSubmit = async () => {
+		await axios.post(checkRecaptchaRoute, { 'token': token })
+		.then(function(response) {
+			console.log('client-recaptcha-status: ', response.statusText)
+			setScoreCard(response.data.score * 100);
+
+			if(response.data.score !== 0) {
+				scoreCard > 40 && response.data.action === 'submit' && response.data.success
+				? setIsVerifiedOnSubmit(true)
+				: null; 
+			}
+			else { window.alert(recaptchaErrorText) }
+		})
+		.catch(function(error) {
+			console.log("client-recaptcha-error-message", error)
+			setErrorFlag(true);
+			window.alert(submitErrorText);
+		})
+	},[executeRecaptcha, scoreCard]);
+
+	// Evaluate on page load
+	useEffect(() => {
+		handleReCaptchaVerify();
+	  }, [handleReCaptchaVerify]);
+
+
+	// Dispatch email-data 
+	const handleSubmit = async (event) => {
+		// event.preventDefault();
+
 		if (!executeRecaptcha) {
 			console.log('Execute recaptcha not yet available');
 		}
-		const token = await executeRecaptcha('submit');
-		const timestamp = new Date().toUTCString();
-		const formattedCallbackDateTime = formatCallbackDate(dueBy);
-		const formattedName = fullName.trim();
-		const templateData = {
-			'name': `${formattedName}`,
-			'phone': `${phoneNumber}`,
-			'job': `${radioSelectionValue}`,
-			'needBy': `${formattedCallbackDateTime}`,
-			'text': `${message}`,
-			'from': `${email}`,
+		else {
+			const sendEmailUrl = '/.netlify/functions/sendemail';
+			const formattedCallbackDateTime = formatCallbackDateAndTime(dueBy);
+			const formattedName = fullName.trim();
+			
+			const templateData = {
+				'name': `${formattedName}`,
+				'phone': `${phoneNumber}`,
+				'job': `${radioSelectionValue}`,
+				'needBy': `${formattedCallbackDateTime}`,
+				'text': `${message}`,
+				'from': `${email}`,
+			};
+
+			const sendDatData = await axios.post(sendEmailUrl, templateData)
+			.then(function(response) {
+				console.log('client-email-success-message: ', response.data.message, response.status);
+				window.alert("Thank you for your getting in touch with us! We will get back to you on the date you've provided.");
+				// recaptchaRef.current.reset();
+				resetForm();
+			})
+			.catch(function(error) {
+				console.log('client-email-error: ', error);
+				setErrorFlag(true);
+				window.alert(submitErrorText);
+			})
 		}
-		const request = new XMLHttpRequest();
-		request.open("POST", '/.netlify/functions/sendemail')
-		request.send(JSON.stringify(templateData))
 	}
-
-
-	// const dispatchAlert = (message) => {
-	// 	message !== "success"
-	// 	? 
-	// 	alert(`Whoops! The ${message} was not successfully added or something else went wrong. Please try again!`)
-	// 	:
-	// 	alert(`Success! Thank you for contacting us! We will get back to you ASAP.`)
-	// }
-
-	// const submitMe = (event) => {
-	// 	event.preventDefault();
-	// 	const formattedCallbackString = formatCallbackDate(dueBy);
-	// 	const formattedName = fullName.trim();
-
-	// 	//  IF SUCCESS ****
-	// 	// dispatchAlert("success");
-	// 	// sendemail(fullName, phoneNumber, radioSelectionValue, dueBy, message, email);
-
-	// 	// FINAL STEP ESET CAPTCHA AND FORM FIELDS
-	// 	recaptchaRef.current.reset();
-	// 	console.log(formattedName, phoneNumber, radioSelectionValue, `${formattedCallbackString}`, message, email); // See the passed vals
-	// 	resetForm();
-	// }
 
 	return (
 		<ThemeProvider theme={theme}>
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
-				<form className={ContactFormStyles.form} autoComplete="off" onSubmit={submitme}>
+				<form 
+					className={ContactFormStyles.form} 
+					autoComplete="off" 
+					onSubmit={(event) => handleSubmit(event)}>
 					<TextField 
 						onFocus={() => setNameIsFocused(true)}
 						onBlur={() => setNameIsFocused(false)}
@@ -172,6 +214,7 @@ function ContactForm() {
 						helperText={checkName("Please provide a valid contact name.",  null)}
 						style={{color: theme.secondary}}
 					/>
+					{/* includes TextField props - has mask, verify, enforcement */}
 					<NumberFormat 
 						InputLabelProps={{classes: {root: classes.label}}}
 						label="Phone Number" 
@@ -197,7 +240,7 @@ function ContactForm() {
 						fullWidth
 						width="500"
 						variant="outlined"
-						margin="normal"
+						margin="normal"      
 						autoComplete="true"
 						onChange={(e) => setEmail(e.target.value)}
 						error={email !== null ? checkEmail(false, true) : false}
@@ -279,29 +322,21 @@ function ContactForm() {
 						required
 						InputLabelProps={{classes: {root: classes.label}}}
 						id="message"
-						label="My Message"
-						input='My Message'
+						label="Message"
+						input='message'
 						type="text"
+						value={message}
 						fullWidth 
 						variant="outlined"
 						margin="normal"
-						multiline 
-						rows={3} 
+						multiline
+						rows={4} 
 						autoComplete="none"
+						// error={checkMessage(true, false)}
+						// helperText={checkPhone("Please enter a message regarding your quote.", null)}
 						onChange={(e) => setMessage(e.target.value)}
-						value={message}
 					/>
-					<div className={ContactFormStyles.captchaRow}>
-					{/* <ReCAPTCHA 
-						// Import Actual public key just like below \/
-						// sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-						sitekey={process.env.NEXT_PUBLIC_TESTRECAPTCHA_SITE_KEY}
-						onChange={onCaptchaHandler}
-						onExpired={onCaptchaExpirationHandler}
-						theme="light"
-						ref={recaptchaRef}
-						/> */}
-					</div>
+
 					<div className={ContactFormStyles.bttncase}>
 						<Button 
 							className={ContactFormStyles.bttn}
@@ -310,11 +345,12 @@ function ContactForm() {
 							style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px' }}
 							// color="primary" 
 							size="large"
-							// disabled={!isVerifiedOnSubmit}
+							disabled={!isVerifiedOnSubmit}
 						>
 							Submit
 						</Button>
 					</div>
+
 				</form>
 			</MuiPickersUtilsProvider>
 		</ThemeProvider>

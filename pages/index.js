@@ -16,7 +16,7 @@ import Projects from './Projects';
 export default function App(props) {
 	return (
 		<>
-			<GoogleReCaptchaProvider reCaptchaKey='6LedbD0eAAAAALJBXE96TQcxHc3tWlnYaxcBPv8D'>
+			<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}>
 			<Layout>
 				<Navigation />
 				<CarouselComponent />

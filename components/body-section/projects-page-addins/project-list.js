@@ -33,90 +33,89 @@ function ProjectList() {
 	const projects = [
 		{ 
             id: 1,
-            job: true,
-            title: "Recent Equipment Addition", 
+            title: "Our Shop Forklift", 
             type: "Equipment",
             description: "Interior and Exterior Fabrication, metalergy certified",
             image: '/images/services-imgs/forklift.png',
         },
         { 
             id: 2,
-            job: true,
-            title: "Custom & Complex Fabrication", 
-            type: "Fabrication Example",
+            title: "Custom Railing for School", 
+            type: "Workshop Builds",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "July 16, 2019",
             image: '/images/services-imgs/raildesign_2_1.jpg',
         },
         { 
             id: 3,
-            job: true,
             title: "Linear Railing", 
-            type: "Fabrication Example",
+            type: "Workshop Builds",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "October 10, 2020",
             image: '/images/services-imgs/raildesign_3.jpg',
         },
         { 
             id: 4,
-            job: true,
             title: "Straight Railing", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication",
+            completion: " 22, 2020",
             image: '/images/services-imgs/raildesign_5.jpg',
         },
         { 
             id: 5,
-            job: true,
             title: "Custom Design", 
-            type: "Fabrication Example",
+            type: "workshop-builds",
             description: "Interior and Exterior Fabrication",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/raildesign_6.jpg',
         },
         { 
             id: 6,
-            job: true,
             title: "Custom Fabrication", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/raildesign_7.jpg',
         },
         { 
             id: 7,
-            job: true,
             title: "Finished Order", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/railstack.jpg',
         },
         { 
             id: 8,
-            job: true,
             title: "Installed Railing", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/railwork_1.png',
         },
         { 
             id: 9,
-            job: true,
             title: "Finished Railing", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/railwork_2.jpg',
         },
         { 
             id: 10,
-            job: true,
             title: "Welding Railing", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/railwork.jpg',
         },
         { 
             id: 11,
-            job: true,
             title: "Weld", 
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
+            completion: "Febuary 22, 2020",
             image: '/images/services-imgs/weld.jpg',
         },
 	]
@@ -165,7 +164,12 @@ function ProjectCard(props) {
                                 captionStyle2
                             }>
                             <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
-                            <p><strong>Role: </strong> {props.item.type}</p>
+                            <p><strong>Category: </strong> {props.item.type}</p>
+                            { 
+                                props.item.completion 
+                                ? <p><strong>Completed: </strong> {props.item.completion}</p>
+                                : null
+                            }
                             <p><strong>Description: </strong> {props.item.description}</p>
                         </div>
                     </div>
