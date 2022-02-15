@@ -9,7 +9,7 @@ function Projects() {
 		<div className="row">
 			<div className={ProjectStyles.titleSection}>
 				<h2>Why We Do It</h2>
-				<p>
+				<div>
 					As a welder I noticed my abilities rose quickly.  After working many hours at another company, 
 					I asked myself: "Why not make a company to do the same myself?". I felt I could apply a greater mission 
 					to the work I wanted to be proud of. This was it, apply myself in the way I thought was the best way, 
@@ -21,13 +21,13 @@ function Projects() {
 						Invest in us, we will invest in you. 
 					</p> 
 					<br />
-					<p>
+					<div>
 						Thanks for your time, 
 						<br/>
 						<br />
 						<p> - Tanner Danielson, CEO - H&W Stair and Rail</p>
-					</p>
-				</p>
+					</div>
+				</div>
 			</div>
 			
 			<div className={ProjectStyles.projects}>

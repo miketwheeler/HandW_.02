@@ -43,7 +43,8 @@ exports.handler = async function(event, context) {
     //     responseStatusCode = error.statusCode;
     //     responseMessage = error.message;
     // })
-    console.log('send-email ')
+    
+    console.log('send-email: ', parsedTemplateData)
 
     return {
         statusCode: 200,

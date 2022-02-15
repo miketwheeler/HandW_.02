@@ -15,7 +15,7 @@
 }
 .radioContainer {
 	width: 88%;
-	margin: 8px auto 12px;
+	margin: 8px auto 14px;
 	justify-content: space-between;
 }
 .radiobutton{
@@ -24,6 +24,7 @@
 .bttn {
 	width: 150px;
 	height: 50px;
+	margin-top: 14px;
 }
 
 @media only screen and (max-width: 550px) {
