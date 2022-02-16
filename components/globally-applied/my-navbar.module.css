@@ -2,22 +2,32 @@
 	width: 180px;
 	max-height: 40px !important;
 	margin: 0 1% 10px;
+	/* border: 1px solid palevioletred; */
 }
 .linkBox {
 	text-align: center;
+	/* color: white; */
+	/* border: 1px solid lightgreen; */
 }
 .linkText {
-	color: rgba(71, 71, 71, 0.853);
+	/* color: rgba(255, 255, 255, 0.853); */
 	margin: 0;
 	padding: 0;
 }
 .linkText:hover {
-	color: rgb(12, 12, 12);
+	color: rgb(255, 255, 255);
 	font-weight: bolder;
-	border-image: fill black;
+	/* border-image: fill black; */
 }
 .flexi {
 	display: flex;
 	flex-direction: column;
 	margin: 1.3rem;
+}
+.contbox {
+	background: rgb(65, 65, 65);
+	/* box-shadow: 0px 10px 20px rgb(53, 53, 53); */
+	height: fit-content;
+	padding: 10px;
+	color: white;
 }

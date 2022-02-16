@@ -1,0 +1,33 @@
+.bodycontainer {
+    width: 92%;
+    margin: 56px auto 88px;
+    font-size: 26px;
+}
+.pageheader {
+    font-size: 38px;
+    font-weight: 680;
+    margin-bottom: 22px;
+}
+.subheader1 {
+    font-weight: 650;
+    margin-bottom: 20px;
+}
+.subheader2 {
+    font-weight: 600;
+    margin-top: 18px;
+    font-style: italic;
+}
+.bodytextsection {
+    margin: 12px;
+}
+.bodybar {
+    background-color: rgb(182, 98, 50);
+    color: white;
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+    /* border-radius: 18px; */
+    padding: 26px;
+    margin: 56px 30px;
+    /* box-shadow: 2px 2px 2px rgba(87, 87, 87, 0.349); */
+}

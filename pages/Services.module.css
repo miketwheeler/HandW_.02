@@ -8,14 +8,11 @@
         "svcSec"
         "gettaQuote"
         "imgSec";
-    gap: 20px;
-    padding: 20px;
 }
 .serviceHeader {
     grid-area: svcHeader;
     margin-bottom: 0;
     padding-bottom: 0;
-    margin-left: 20px;
 }
 .serviceSection {
     grid-area: svcSec;
@@ -25,52 +22,44 @@
     grid-template-areas: 
         "sec1 divider1 sec2 divider2 sec3";
     height: 100%;
+    margin-bottom: 60px;
     gap: 6px;
 }
 
 .serviceColumn1 {
     grid-area: sec1;
-    /* background-color: rgb(146, 146, 146); */
-    padding: 20px;
-    /* color: black; */
-    border: 1px solid transparent;
-    border-radius: 12px;
+    padding: 0px 20px 0px 0px;
 }
 .divider1 {
     grid-area: divider1;
-    background-color: rgb(145, 71, 22, 0.940);
-    border: 1px solid rgb(145, 71, 22, 0.940);
+    background-color: rgb(182, 98, 50);
+    border: 1px solid rgb(182, 98, 50);
     border-radius: 25px;
     height: 70%;
-    /* align-self: center; */
     margin: auto;
 }
 .serviceColumn2 {
     grid-area: sec2;
-    /* background-color: rgba(0, 0, 0, 0.753); */
-    /* color: white; */
-    padding: 20px;
-    border: 1px solid transparent;
-    border-radius: 12px;
+    padding: 0px 20px;
 }
 .divider2 {
     grid-area: divider2;
-    background-color: rgb(145, 71, 22, 0.940);
-    border: 1px solid rgb(145, 71, 22, 0.940);
+    background-color: rgb(182, 98, 50);
+    border: 1px solid rgb(182, 98, 50);
     border-radius: 25px;
     height: 70%;
-    /* align-self: center; */
     margin: auto;
 }
 .serviceColumn3 {
     grid-area: sec3;
-    /* background-color: rgba(143, 69, 42, 0.89); */
-    padding: 20px;
-    border: 1px solid transparent;
-    border-radius: 12px;
+    padding: 0px 0px 0px 20px;
 }
 .section {
     margin-bottom: 16px;
+}
+.sectionlist {
+    margin-bottom: 16px;
+    margin-left: 40px;
 }
 
 .buttonContainer {
@@ -78,21 +67,91 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rgba(128, 128, 128, 0.103); */
 }
 .gettaQuoteButton {
     width: 230px;
     height: 60px;
 }
 
-.imgSection {
-    grid-area: imgSec;
-    display: flex;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
-    /* grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr; */
-    /* max-height: 400px; */
-    background-color: aqua;
+
+@media only screen and (max-width: 985px) {
+    .serviceContainer {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr 100px;
+        grid-template-areas: 
+            "svcHeader"
+            "svcSec"
+            "gettaQuote";
+    }
+    .serviceHeader {
+        grid-area: svcHeader;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .serviceSection {
+        grid-area: svcSec;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 40px auto 40px auto;
+        grid-template-areas: 
+            "sec1"
+            "divider1"
+            "sec2"
+            "divider2"
+            "sec3";
+        height: 100%;
+        margin-bottom: 60px;
+    }
     
+    .serviceColumn1 {
+        grid-area: sec1;
+        padding: 20px 0px;
+        border: 1px solid transparent;
+    }
+    .divider1 {
+        grid-area: divider1;
+        background-color: rgb(182, 98, 50);
+        border: 1px solid rgb(182, 98, 50);
+        border-radius: 25px;
+        width: 75%;
+        height: 0;
+        margin: auto;
+    }
+    .serviceColumn2 {
+        grid-area: sec2;
+        padding: 20px 0px;
+        border: 1px solid transparent;
+    }
+    .divider2 {
+        grid-area: divider2;
+        background-color: rgb(182, 98, 50);
+        border: 1px solid rgb(182, 98, 50);
+        border-radius: 25px;
+        width: 70%;
+        height: 0;
+        margin: auto;
+    }
+    .serviceColumn3 {
+        grid-area: sec3;
+        padding: 20px 0px;
+        border: 1px solid transparent;
+    }
+    .section {
+        margin-bottom: 16px;
+    }
+    
+    .buttonContainer {
+        grid-area: gettaQuote;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .gettaQuoteButton {
+        width: 230px;
+        height: 60px;
+    }
+    
+
 }

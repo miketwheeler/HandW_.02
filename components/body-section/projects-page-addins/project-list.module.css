@@ -38,10 +38,13 @@
 }
 .imageStyle {
     border-radius: 15px;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 445px;
+    min-height: 345px;
+    height: fit-content;
 }
 .card:hover {
     box-shadow: 1px 2px 8px rgba(173, 173, 173, 0.308);
     z-index: 100;
 }
-
-/* i */

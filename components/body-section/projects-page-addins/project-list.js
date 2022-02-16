@@ -119,6 +119,7 @@ function ProjectList() {
             image: '/images/services-imgs/weld.jpg',
         },
 	]
+    const headerList = ['The Shop & Work', 'Custom Railwork', 'Installations', 'Custom Fabrications']
 	
 	return (
         <div className={ProjectStyles.projectListWrapper}>
@@ -145,10 +146,11 @@ function ProjectCard(props) {
                         <div className={ProjectStyles.imageContainer}>
                             <Image
                                 src={props.item.image} 
-                                width={"265px"}
-                                height={"285px"}
+                                width={"400px"}
+                                height={"445px"}
                                 alt={"services icons"}
                                 priority={true}
+                                fixed
                                 className={ProjectStyles.imageStyle}
                                 />
                         </div>

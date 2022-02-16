@@ -1,6 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
-import { MuiPickersUtilsProvider, DateTimePicker } from '@material-ui/pickers';
-import EventIcon from '@material-ui/icons/Event';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css'
@@ -13,7 +12,7 @@ import Modal from '@material-ui/core/Modal';
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
 const theme = createMuiTheme({
-	palette: { primary: { main: 'rgb(145, 71, 22, 0.940)' }, secondary: { main: 'rgb(56, 56, 56)' } }
+	palette: { primary: { main: 'rgb(182, 98, 50)' }, secondary: { main: 'rgb(56, 56, 56)' } }
 })
 
 const useStyles = makeStyles ({
@@ -406,7 +405,7 @@ function ContactForm() {
 							className={ContactFormStyles.bttn}
 							type="submit" 
 							variant="contained"
-							style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px' }}
+							style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px' }}
 							size="large"
 							disabled={!isVerifiedOnSubmit && errorFlag }
 							>
