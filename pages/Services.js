@@ -40,7 +40,7 @@ function Services() {
 						<h4 className={DocStyles.subheader2}> - Stairs - </h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
-								<li>Straighaway</li>
+								<li>Straightaway</li>
 								<li>Loft Fixtures</li>
 								<li>Winding</li>
 								<li>Reinforced</li>

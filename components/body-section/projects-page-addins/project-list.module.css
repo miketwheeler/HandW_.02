@@ -2,13 +2,11 @@
     margin-top: 38px;
 }
 .card {
-    /* display: flex; */
     background-color: white;
     border-top: 1px dotted rgba(90, 90, 90, 0.884);
     border-bottom: 1px dotted rgba(90, 90, 90, 0.884);
     border-radius: 50px;
     margin: 14px auto;
-    /* min-height: 300px; */
     font-size: 18px;
     padding: 20px 15%;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,9 +18,16 @@
     height: 100%;
     width: 100%;   
 }
+.headingstyle {
+    margin-top: 40px;
+    padding: 10px 0 10px 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgb(53, 53, 53), rgba(167, 167, 167, 0.473), transparent) 0 0 60% 0;
+}
 .caption {
-	margin: auto 0;
-    /* min-width: 190px; */
+	margin: auto 12px;
+    width: 100%;
     /* border: 1px solid blue; */
 }
 .cardHeader {
@@ -32,17 +37,20 @@
 .imageContainer {
     align-self: center;
     display: flex;
-    justify-content: center;
-    width: 300px;
+    /* width: 300px; */
+    max-width: 400px;
+    min-width: 220px;
     /* border: 1px solid palevioletred; */
 }
 .imageStyle {
     border-radius: 15px;
     max-width: 400px;
-    min-width: 300px;
-    max-height: 445px;
-    min-height: 345px;
+    min-width: 200px;
+    max-height: 475px;
+    min-height: 275px;
     height: fit-content;
+    padding: 0;
+    margin: 0;
 }
 .card:hover {
     box-shadow: 1px 2px 8px rgba(173, 173, 173, 0.308);

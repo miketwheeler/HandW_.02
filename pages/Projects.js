@@ -36,6 +36,7 @@ function Projects() {
 					<h2 className={ProjectStyles.projectHeaderText}>Dozens of Projects Completed, 100% Satisfaction Delivered</h2>
 				</div>
 				<div className={ProjectStyles.projectList}>
+				<h2 className={DocStyles.pageheader}>Projects & Facility</h2>
 					<ProjectList />
 				</div>
 			</div>
