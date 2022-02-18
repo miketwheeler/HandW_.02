@@ -24,18 +24,25 @@ function Services() {
 					<div className={ServiceStyles.serviceColumn1}>
 						<h3 className={DocStyles.subheader1}>Installs</h3>
 						<div className={ServiceStyles.section}>
-							Our specialty! We implement custom and/or template design. We're flexible and ultimately ]
-							put you the control. It's the first thing your patrons see, its a subtle but 
-							an essential piece... lets make that grand entrance!
+							<p>
+								Our specialty! We implement custom and/or template designs that fit you and your needs needs. 
+								We like to remain flexible and put you in control. 
+							</p> 
+							<p>
+								Our stairs and railing are sure to increase the 
+								value of your home or business. It's the first thing your patrons see, its 
+								a subtle but an essential piece... lets make that grand entrance!
+							</p>
 						</div>
 						<h4 className={DocStyles.subheader2}>Rail & Ballast</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
-								<li>Installs</li>
+								<li>Decorative</li>
+								<li>Mixed-Material</li>
 								<li>Design</li>
-								<li>On-site Implementation</li>
+								<li>Implementation</li>
 								<li>Fabrication</li>
-								<li>Custom Fit</li>
+								<li>Custom</li>
 							</ul>
 						</div>
 						<h4 className={DocStyles.subheader2}>Stairs</h4>
@@ -56,8 +63,14 @@ function Services() {
 					<div className={ServiceStyles.serviceColumn2}>
 						<h3 className={DocStyles.subheader1}>Restorations</h3>
 						<div className={ServiceStyles.section}>
-							Have a project where a refresh is needed? We can fabricate portions or overhaul an existing 
-							structure.
+							<p>
+								Have a project where a refresh is needed? We can fabricate portions or overhaul an existing 
+								installation in some cases. Most of the time however, it's far more effective to implement a new setup. 
+							</p>
+							<p>
+								If a project like this is requested, but involves over 25% in overhauls, we are venturing into the 
+								'Installation' category for your job. Let's discuss what you have in mind.
+							</p>
 						</div>
 						<h4 className={DocStyles.subheader2}>Portional Additions</h4>
 						<div className={ServiceStyles.sectionlist}>
@@ -86,9 +99,13 @@ function Services() {
 					<div className={ServiceStyles.serviceColumn3}>
 						<h3 className={DocStyles.subheader1}>Finishing</h3>
 						<div className={ServiceStyles.section}>
-							Want a pearly coat on that new stairway? Got rust? Need paint? 
-							We can refinish an existing structure too! Disclosure: we may still want to 
-							promote what we do best by offering a complete project we're proud of!
+							<p>
+								Want a pearly coat on that new stairway? Got rust? Need paint? 
+								So long as we don't have to remove the structure, we can refinish some current installations too! 
+							</p>
+							<p>
+								Disclosure: we may still promote what we do best by offering a complete project we're proud of!
+							</p>
 						</div>
 						<h4 className={DocStyles.subheader2}>Sealing & Paint</h4>
 						<div className={ServiceStyles.sectionlist}>
