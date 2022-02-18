@@ -14,7 +14,6 @@ import Modal from '@material-ui/core/Modal';
 const theme = createMuiTheme({
 	palette: { primary: { main: 'rgb(182, 98, 50)' }, secondary: { main: 'rgb(56, 56, 56)' } }
 })
-
 const useStyles = makeStyles ({
 	label: {
 		backgroundColor: "white",
@@ -42,82 +41,44 @@ const useStyles = makeStyles ({
     },
 });
 
+
 // Contact form Component for the Quotes page
 function ContactForm() {
 	const classes = useStyles();
 	const { executeRecaptcha } = useGoogleReCaptcha();
+	// TODO: on recaptcha error - reset api call to endpoint
 	// const { recaptchaRef } = useRef();
 
 	// Form Fields
 	const [fullName, setFullName] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [email, setEmail] = useState("");
-	const [radioSelectionValue, setRadioSelectionValue] = useState("Other");
+	const [radioSubjectSelectionValue, setRadioSubjectSelectionValue] = useState("Other");
 	const [radioDateSelectionValue, setRadioDateSelectionValue] = useState("Next Business Day");
-	const [dueBy, setDueBy] = useState(new Date());
+	const [message, setMessage] = useState("");
 
 	// Modal & Error Messages
-	const [message, setMessage] = useState("");
 	const [success, setSuccess] = useState(false);
     const [modalOpen, setModalOpen] = useState(modalOpen ? modalOpen : false);
 
 	// captcha && form fields throw bool for submission button active/non-active
-	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
 	const [scoreCard, setScoreCard] = useState(0.0);
-	const [errorFlag, setErrorFlag] = useState(false);
+	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(true);
+	const [postErrorFlag, setPostErrorFlag] = useState(false);
+
+	// Error Messages
 	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
 	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
 	const thankYouMessage = `Thank you for your getting in touch with us! We will get back to you on: ${radioDateSelectionValue}.`;
+	const errorMessage = `There was an error with your information submission. Please try again.`;
 
-	// Special state for adapt'n for component (date picker -> it's label)
-	const [isPhoneFocused, setPhoneIsFocused] = useState(false);
-	const [isNameFocused, setNameIsFocused] = useState(false);
-	const [isEmailFocused, setEmailIsFocused] = useState(false);
-	const [isMessageFocused, setMessageIsFocused] = useState(false);
- 
-	// Re-Validators
-	const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	const rePhone = /[0-9]/g;
+	// Regex Validation
 	const reName = /^([^0-9]*)$/;
+	const rePhone = /[0-9]/g;
+	const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	const reMessage = /([\n\r\t])/g;
 	
-	// Modal Close
-	const handleModalClose = () => {
-        setModalOpen(false),
-		setSuccess(false),
-		window.scrollTo({ top: 0, behavior: 'smooth'})
-    }
-
-	// field enforcement
-	const checkName = (returnTrueCase, returnFalseCase) => {return (fullName.length >= 2 && fullName.length <= 3 || !reName.test(fullName)) ? returnTrueCase : returnFalseCase}
-	const checkPhone = (returnTrueCase, returnFalseCase) => {
-		if(phoneNumber === null || phoneNumber === "")
-			return false;
-		else
-			return (phoneNumber.match(rePhone).length > 1 && phoneNumber.match(rePhone).length <= 10) ? returnTrueCase : returnFalseCase;
-		}
-	const checkEmail = (returnTrueCase, returnFalseCase) => {
-		if(email === null || email === "")
-			return false;
-		else
-			return email.length < 2 ? false : reEmail.test(email) ? returnTrueCase : returnFalseCase;
-		}
-	const checkMessage = (returnTrueCase, returnFalseCase) => {
-		if(message === null || message === "") 
-			return false;
-		else
-			return message.length > 2 ? returnFalseCase : returnTrueCase;
-		}
-	const resetForm = () => {
-		setFullName("");
-		setPhoneNumber("");
-		setEmail("");
-		setRadioSelectionValue("Other");
-		setDueBy(new Date());
-		setRadioDateSelectionValue("Next Business Day");
-		setMessage("");
-		setIsVerifiedOnSubmit(false);
-	}
+	// Formats current date
 	const formatCallbackDateAndTime = (date) => {
 		const dateString = date.toString(); // Sets the date to a string to parse
 		const callBackDate = dateString.substring(0,15); // Dayofweek Month day year (Ex: Monday Jan 30 2022)
@@ -126,13 +87,73 @@ function ContactForm() {
 		return `${callBackDate} ${callBackTime} ${callBackTimezone}`;
 	}
 
-	// Invoke Recaptcha evaluation
+	// Final Check for submit button engage/disengage
+	function isCheckedReadyForSubmitUnlock() {
+		if(!checkName() && !checkPhone() && !checkMessage())
+			return false;
+		else
+			return true;
+	}
+	
+	// Evals on page load -- need to min this to var <onActivelyTypingOnForm>
+	useEffect(() => {
+		if(executeRecaptcha)
+			handleReCaptchaVerify();
+	  }, [executeRecaptcha, handleReCaptchaVerify]);
+
+	// Modal Close
+	const handleModalClose = () => {
+        setModalOpen(false),
+		setSuccess(false),
+		window.scrollTo({ top: 0, behavior: 'smooth'})
+    }
+
+	// On success submit - sets all fields back to default
+	const resetForm = () => {
+		setFullName("");
+		setPhoneNumber("");
+		setEmail("");
+		setRadioSubjectSelectionValue("Other");
+		setRadioDateSelectionValue("Next Business Day");
+		setMessage("");
+		setIsVerifiedOnSubmit(false);
+	}
+
+	// /////////////////////////////////////////////////
+	// Field Enforcement Checks
+	const checkName = () => {
+		return ((fullName.length >= 1 && fullName.length <= 2 )|| !reName.test(fullName)) ? true : false
+	}
+	const checkPhone = () => {
+		if(phoneNumber === null || phoneNumber === "")
+			return false;
+		else
+			return (phoneNumber.match(rePhone).length > 1 && phoneNumber.match(rePhone).length <= 10) ? true : false;
+	}
+	const checkEmail = () => {
+		if(email === null || email === "") {
+			return false;
+		}
+		else {
+			return email.length < 2 ? true : reEmail.test(email) ? false : true;
+		}
+	}
+	const checkMessage = () => {
+		if(message === null || message === "") {
+			return false;
+		}
+		else {
+			return message.length > 2 ? false : true;
+		}
+	}
+
+	// ////////////////////////////////////////////////
+	// Invoke Recaptcha Evaluation
 	const handleReCaptchaVerify = useCallback(async () => {
 		if(!executeRecaptcha) {
 			console.log('Execute recaptcha not yet available');
 			return;
 		}
-		// const checkDate = new Date().toISOString();
 		const checkRecaptchaRoute = '/.netlify/functions/recaptchas';
 		const token = await executeRecaptcha('submit');
 
@@ -150,17 +171,13 @@ function ContactForm() {
 		})
 		.catch(function(error) {
 			console.log("client-recaptcha-error-message", error)
-			setErrorFlag(true);
+			setPostErrorFlag(true);
+			setModalOpen(true);
 			window.alert(submitErrorText);
 		})
 	}, [executeRecaptcha, scoreCard]);
-
-	// Evals on page load -- need to min this to var <onActivelyTypingOnForm>
-	useEffect(() => {
-		if(executeRecaptcha)
-			handleReCaptchaVerify();
-	  }, [executeRecaptcha, handleReCaptchaVerify]);
 	
+	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -176,7 +193,7 @@ function ContactForm() {
 			const templateData = {
 				'name': `${formattedName}`,
 				'phone': `${phoneNumber}`,
-				'job': `${radioSelectionValue}`,
+				'job': `${radioSubjectSelectionValue}`,
 				'needBy': `${radioDateSelectionValue.toUpperCase()} from (${formatCallbackDateAndTime(new Date())})`,
 				'text': `${formattedMessage}`,
 				'from': `${email}`,
@@ -192,13 +209,12 @@ function ContactForm() {
 			})
 			.catch(function(error) {
 				console.log('client-email-error: ', error);
-				setErrorFlag(true);
+				setPostErrorFlag(true);
+				setModalOpen(true);
 				window.alert(submitErrorText);
 			})
 		}
 	}
-    
-    
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -208,11 +224,8 @@ function ContactForm() {
 					autoComplete="off" 
 					onSubmit={(event) => handleSubmit(event)}
 					>
-					
-					{/* Full Name */}
+					{/* Name */}
 					<TextField 
-						onFocus={() => setNameIsFocused(true)}
-						onBlur={() => setNameIsFocused(false)}
 						InputLabelProps={{classes: {root: classes.label}}}
 						type="text"
 						label="Name" 
@@ -223,12 +236,11 @@ function ContactForm() {
 						margin="normal"
 						autoComplete="true"
 						onChange={(e) => setFullName(e.target.value)}
-						error={fullName !== null ? checkName(true, false) : false}
-						helperText={checkName("Please provide a valid contact name.",  null)}
+						error={fullName !== null ? checkName() : false}
+						helperText={checkName() ? "Please provide a valid contact name." :  null}
 						style={{color: theme.secondary}}
 					/>
-					
-					{/* Phone Number - includes TextField props - has mask, verify, enforcement */}
+					{/* Number - incl TextField props */}
 					<NumberFormat 
 						InputLabelProps={{classes: {root: classes.label}}}
 						label="Phone Number" 
@@ -241,12 +253,10 @@ function ContactForm() {
 						customInput={TextField}
 						format="+1 (###) ###-####"
 						mask="_"
-						allowEmptyFormatting={ isPhoneFocused ? true : false }					
 						onChange={(e) => setPhoneNumber(e.target.value)}
-						error={checkPhone(true, false)}
-						helperText={checkPhone("Please enter a valid Phone Number.", null)}
+						error={checkPhone()}
+						helperText={checkPhone() ? "Please enter a valid Phone Number." : null}
 					/>
-
 					{/* Email */}
 					<TextField 
 						InputLabelProps={{classes: {root: classes.label}}}
@@ -259,10 +269,9 @@ function ContactForm() {
 						margin="normal"      
 						autoComplete="true"
 						onChange={(e) => setEmail(e.target.value)}
-						error={email !== null ? checkEmail(false, true) : false}
-						helperText={checkEmail(null, "Please enter a valid Email Address.")}
+						error={checkEmail()}
+						helperText={checkEmail() ? "Please enter a valid Email Address." : null}
 					/>
-
 					{/* Services */}
 					<FormControl aria-label="radio-list-form" margin="normal" fullWidth>
 						<FormLabel aria-label="subject-radio-list-selection">
@@ -270,11 +279,12 @@ function ContactForm() {
 						</FormLabel>
 						<RadioGroup 
 							row 
+							required
 							aria-label="select-service-radio-buttons" 
 							defaultValue="Other"
 							name="currentSelection" 
-							value={radioSelectionValue} 
-							onChange={(e) => setRadioSelectionValue(e.target.value)}
+							value={radioSubjectSelectionValue} 
+							onChange={(e) => setRadioSubjectSelectionValue(e.target.value)}
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
@@ -307,14 +317,14 @@ function ContactForm() {
 							/>
 						</RadioGroup>
 					</FormControl>
-
-					{/* DATE */}
+					{/* Date */}
 					<FormControl aria-label="date-radios" margin="normal" fullWidth>
 						<FormLabel aria-label="date-radio-list-selection">
 							<strong>Timeframe You Want A Call Back</strong>
 						</FormLabel>
 						<RadioGroup 
 							row 
+							required
 							aria-label="select-date-radio-buttons" 
 							defaultValue="Next Business Day"
 							name="dateSelection" 
@@ -345,19 +355,16 @@ function ContactForm() {
 							/>
 						</RadioGroup>
 					</FormControl>
-
 					{/* Message */}
 					<FormControl style={{width: '100%'}}>
-						<FormLabel aria-label="message-form" focused={isMessageFocused}>
-							<strong>Leave us some input on your needs</strong>
-						</FormLabel>
+						{/* <FormLabel aria-label="message-form" focused={isMessageFocused}>
+							<strong>Message or Specifics</strong>
+						</FormLabel> */}
 						<TextField
 							required
-							onFocus={() => setMessageIsFocused(true)}
-							onBlur={() => setMessageIsFocused(false)}
 							InputLabelProps={{classes: {root: classes.label}}}
 							id="#message"
-							label="Message"
+							label="Message or Any Other Specifics"
 							input='message'
 							type="text"
 							value={message}
@@ -367,13 +374,12 @@ function ContactForm() {
 							multiline
 							rows={4} 
 							autoComplete="none"
-							error={checkMessage(true, false)}
-							helperText={checkMessage("Please enter a message regarding your quote.", null)}
+							error={checkMessage()}
+							helperText={checkMessage() ? "Please enter a message regarding your quote." : null}
 							onChange={(e) => setMessage(e.target.value)}
 						/>
 					</FormControl>
-
-					{/* MODAL */}
+					{/* MODAL - Display on successful filling and submission of form data*/}
 					<Modal
 						open={modalOpen}
 						onClose={handleModalClose}
@@ -381,11 +387,16 @@ function ContactForm() {
 						aria-describedby="simple-modal-description"
 						>
 						<div className={classes.paper}>
-							<h2 id="simple-modal-title">Message Sent</h2>
+							<h2 id="simple-modal-title">
+								{
+									success ? "Message Sent Successfully" : "Uh Oh, There Was An Error!"
+								}
+							</h2>
 							<p id="simple-modal-description" style={{margin: '26px 0px'}}>
-								{thankYouMessage}
+								{
+									success ? thankYouMessage : errorMessage
+								}
 							</p>
-						
 							<Button 
 								className={ContactFormStyles.bttn}
 								type="button" 
@@ -398,7 +409,6 @@ function ContactForm() {
 							</Button>
 						</div>
 					</Modal>
-
 					{/* Form Submit Button */}
 					<div className={ContactFormStyles.bttncase}>
 						<Button 
@@ -407,12 +417,11 @@ function ContactForm() {
 							variant="contained"
 							style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px' }}
 							size="large"
-							disabled={!isVerifiedOnSubmit && errorFlag }
+							disabled={isVerifiedOnSubmit && isCheckedReadyForSubmitUnlock()}
 							>
 							Submit
 						</Button>
 					</div>
-
 				</form>
 			</MuiPickersUtilsProvider>
 		</ThemeProvider>

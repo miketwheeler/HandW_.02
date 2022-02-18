@@ -14,7 +14,6 @@
 }
 .cardInteriorContainer {
     grid-area: innerContainer;
-    /* border: 1px solid green;  */
     height: 100%;
     width: 100%;   
 }
@@ -55,4 +54,10 @@
 .card:hover {
     box-shadow: 1px 2px 8px rgba(173, 173, 173, 0.308);
     z-index: 100;
+}
+
+@media only screen and (max-width: 650px) {
+	.card {
+        padding: 20px 6%;
+    }
 }
