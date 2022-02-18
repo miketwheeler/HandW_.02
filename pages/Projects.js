@@ -33,7 +33,7 @@ function Projects() {
 			
 			<div className={ProjectStyles.projects}>
 				<div className={DocStyles.bodybar}>
-					<h2 className={ProjectStyles.projectHeaderText}>Dozens of Projects Completed, 100% Satisfaction Delivered</h2>
+					<h2 className={ProjectStyles.projectHeaderText}>Dozens of projects completed, 100% satisfaction rate to boot!</h2>
 				</div>
 				<div className={ProjectStyles.projectList}>
 				<h2 className={DocStyles.pageheader}>Projects & Facility</h2>

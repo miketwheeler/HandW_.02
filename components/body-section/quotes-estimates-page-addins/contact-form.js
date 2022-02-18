@@ -12,7 +12,9 @@ import Modal from '@material-ui/core/Modal';
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
 const theme = createMuiTheme({
-	palette: { primary: { main: 'rgb(182, 98, 50)' }, secondary: { main: 'rgb(56, 56, 56)' } }
+	palette: { 
+		primary: { main: 'rgb(182, 98, 50)'	}, 
+		secondary: { main: 'rgb(56, 56, 56)' } }
 })
 const useStyles = makeStyles ({
 	label: {
@@ -29,7 +31,8 @@ const useStyles = makeStyles ({
 	},
 	paper: {
         position: 'absolute',
-        width: 500,
+        width: 520,
+		height: 400,
         backgroundColor: '#1f1f1f',
         color: 'white',
         border: '2px solid #000',
@@ -38,7 +41,21 @@ const useStyles = makeStyles ({
 		top: '50%',
 		transform: 'translate(-50%, -50%)',
         padding: theme.spacing(2, 4, 3),
+		borderRadius: 20,
+		borderColor: theme.palette.primary,
     },
+	modalcontainer: {
+		margin: 30,
+	},
+	modaltitle: {
+		marginBottom: 40,
+	},
+	modaltext: {
+		height: '30%',
+	},
+	gudday: {
+		marginBottom: 40, 
+	}
 });
 
 
@@ -69,7 +86,7 @@ function ContactForm() {
 	// Error Messages
 	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
 	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
-	const thankYouMessage = `Thank you for your getting in touch with us! We will get back to you on: ${radioDateSelectionValue}.`;
+	const thankYouMessage = `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within (the) ${radioDateSelectionValue}.`;
 	const errorMessage = `There was an error with your information submission. Please try again.`;
 
 	// Regex Validation
@@ -383,32 +400,36 @@ function ContactForm() {
 					<Modal
 						open={modalOpen}
 						onClose={handleModalClose}
-						aria-labelledby="simple-modal-title"
-						aria-describedby="simple-modal-description"
+						aria-labelledby="modal-title"
+						aria-describedby="modal-description"
 						>
 						<div className={classes.paper}>
-							<h2 id="simple-modal-title">
-								{
-									success ? "Message Sent Successfully" : "Uh Oh, There Was An Error!"
-								}
-							</h2>
-							<p id="simple-modal-description" style={{margin: '26px 0px'}}>
-								{
-									success ? thankYouMessage : errorMessage
-								}
-							</p>
-							<Button 
-								className={ContactFormStyles.bttn}
-								type="button" 
-								variant="contained" 
-								onClick={handleModalClose}
-								style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px', float: 'right' }}
-								size="large"
-								>
-								Ok
-							</Button>
+							<div className={classes.modalcontainer}>
+								<h2 id="modal-title" className={classes.modaltitle}>
+									{
+										success ? "Message Sent Successfully" : "Uh Oh, There Was An Error!"
+									}
+								</h2>
+								<p id="modal-description" className={classes.modaltext}>
+									{
+										success ? thankYouMessage : errorMessage
+									}
+								</p>
+								<h4 className={classes.gudday}>Have a good one!</h4>
+								<Button 
+									className={ContactFormStyles.bttn}
+									type="button" 
+									variant="contained" 
+									onClick={handleModalClose}
+									style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px', float: 'right' }}
+									size="large"
+									>
+									Ok
+								</Button>
+							</div>
 						</div>
 					</Modal>
+
 					{/* Form Submit Button */}
 					<div className={ContactFormStyles.bttncase}>
 						<Button 

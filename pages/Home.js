@@ -44,7 +44,7 @@ function HomePage() {
 						<h1>
 							We know you expect great work. 
 							<br/> 
-							We'll bring it, you can hold us to it - 100% guaranteed.
+							We stand by our work, you can hold us to it - our work is 100% guaranteed.
 						</h1>
 					</div>
 				</div>
