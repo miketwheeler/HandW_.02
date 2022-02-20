@@ -11,13 +11,12 @@ function HomePage() {
 			<div className={HomePageStyles.bodycontent}>
 				<div className={HomePageStyles.upper}>
 					<div className={HomePageStyles.titlesection}>
-						<h2 className={DocStyles.pageheader}>Work That We Do</h2>
+						<h2 className={DocStyles.pageheader}>Hello There Friend</h2>
 						<p>
 							We're a Nebraska-native Startup, proud to bring our skills with 
-							metalworking to the City of Lincoln, Omaha, and anywhere between. 
+							metalworking to the City of Lincoln, Omaha and the greater area. 
 							Our primary focus is to provide a range of custom and integrated 
-							projects for all of your Stairway and Railing needs. Want an 
-							all-metal stairway fabricated for your new home or business? 
+							projects for all of your Stairway and Railing needs. 
 							We're qualified for both commercial and residential builds. We 
 							also provide servicing and remodeling to existing structures in 
 							the case you're looking for a refresh.

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 
 
-function ContactDisplay(props) {
+function ContactDisplay() {
 
 	const openNewTab = (url) => {
 		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');
@@ -45,21 +45,21 @@ function ContactDisplay(props) {
 			description: "instagram", 
 			linkedto: "https://www.instagram.com"
 		},
-		{ 
-			image: "/images/icons/2x/2x-linkedin.png", 
-			description: "linked in", 
-			linkedto: "https://www.linkedin.com"
-		},
+		// { 
+		// 	image: "/images/icons/2x/2x-linkedin.png", 
+		// 	description: "linked in", 
+		// 	linkedto: "https://www.linkedin.com"
+		// },
 		{ 
 			image: "/images/icons/2x/2x-twitter.png", 
 			description: "twitter", 
 			linkedto: "https://www.twitter.com"
 		},
-		{ 
-			image: "/images/icons/2x/2x-youtube.png", 
-			description: "youtube", 
-			linkedto: "https://www.youtube.com"
-		}
+		// { 
+		// 	image: "/images/icons/2x/2x-youtube.png", 
+		// 	description: "youtube", 
+		// 	linkedto: "https://www.youtube.com"
+		// }
 	]
 	return (
 		<div className={ContactDisplayStyle.objparams}>
@@ -69,28 +69,28 @@ function ContactDisplay(props) {
 						<h2>Contact Us</h2>
 					</div>
 					<div className={ContactDisplayStyle.reachus}>
-						<p>Call us 8:00am-5:00pm(CST):</p>
+						<p>Call us 9:00am-6:00pm (CST):</p>
 					</div>
 					<div className={ContactDisplayStyle.number}>
-						<h2>+1(888) 777-2121</h2>
+						<h2>+1 (888) 777-2121</h2>
 					</div>
 					<div className={ContactDisplayStyle.orbar}>
 						<p> - or - </p>
 					</div>
 					<div className={ContactDisplayStyle.emailus}>
-						<p>Email us anytime:</p>
+						<p>Customer Service Inquiries:</p>
 					</div>
 					<div className={ContactDisplayStyle.email}>
-						<h2>hwstairandrail@gmail.com</h2>
+						<h2>hwstair@gmail.com</h2>
 					</div>
 				</div>
 			</div>
 			<div className={ContactDisplayStyle.socialbox}>
 				<div className={ContactDisplayStyle.socialheader}>
-					<h2>Follow us on Social Media</h2>
+					<h2>Follow Us and Share</h2>
 				</div>
 				<div className={ContactDisplayStyle.socialicons}>
-					{/* !!!! Need click before/after and links */}
+					{/* !!!! Need links */}
 					{
 						socials.map((item, i) => <SocialIcon key={i} item={item} />)
 					}
@@ -109,9 +109,6 @@ function ContactDisplay(props) {
 				<div className={ContactDisplayStyle.businessdetail}>
 					<p>
 						Proudly owned and operated in Lincoln, NE
-						{/* <br/> */}
-						{/* Business Lic. #000-000101001010<br/>
-						BBB, Hardware Assoc. Members Alliance */}
 					</p>
 				</div>
 			</div>

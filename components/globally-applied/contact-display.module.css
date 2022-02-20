@@ -8,16 +8,16 @@
 	"info business";
 	background-color:white;
 	margin-top: 30px;
+	text-align: center;
+	border-bottom: 10px solid rgb(182, 98, 50);
 }
 /* Surrounds the contacts section */
 .contactsContainer {
-	margin: 50px 20px 50px 60px;
+	padding: 34px 20px 34px;
 }
-
-/* CONTACT US BOX: by hierarchy */
+/* CONTACT US */
 .infobox {
 	grid-area: info;
-	/* height: auto; */
 	color: white;
 	background-color: rgb(53, 53, 53);
 	border-radius: 0px 25px 0px 0px;
@@ -26,51 +26,47 @@
 .contactus {
 	font-size: 20px;
 	text-shadow: 0px 3px 6px black;
-	margin-bottom: 20px;
+	padding: 8px;
+	margin-bottom: 10px;
 }
 .reachus{
 	font-size: 22px;
-	margin-top: 12px;
+	padding: 4px;
 }
 .number{
 	font-size: 22px;
-	text-shadow: 0px 3px 6px black;
 }
 .orbar{
-	text-align: center;
 	font-weight: 600;
 	font-size: 22px;
-	margin: 20px 0px;
+	padding: 18px;
 }
 .emailus {
 	font-size: 22px;
+	padding: 8px;
 }
 .email {
-	text-shadow: 0px 3px 6px black;
 	font-size: 22px;
 }
-
-/* SOCIAL SECTION: by hierarchy */
+/* SOCIAL */
 .socialbox {
 	grid-area: social;
-	margin: 10px auto;
-	height: 100%;
-	max-width: 600px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 .socialheader {
-	margin-left: 18px;
 	font-size: 22px;
 	text-shadow: 0px 2px 6px rgba(87, 87, 87, 0.349);
 }
 .socialicons {
-	flex-wrap: wrap;
-	margin: 0px 15px;
+	margin: 0;
 }
 .socialicon:hover {
 	cursor: pointer;
 }
-
-/* LOGO AND BUSINESS DETAIL: by hierarchy */
+/* LOGO AND BUSINESS DETAIL */
 .businessbox {
 	grid-area: business;
 	display: flex;
@@ -87,13 +83,13 @@
 	font-size: .8rem;
 }
 
-/* MEDIA */
+
 @media only screen and (max-width: 980px) {
-		/*  MOBILE/TABLET GRID SETTINGS */
+	/*  MOBILE GRID */
 	.objparams {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 150px 160px 280px;
+		grid-template-rows: 150px 160px auto;
 		grid-template-areas: 
 			"social" 
 			"business"
@@ -101,93 +97,13 @@
 		background-color:white;
 		margin-top: 30px;
 	}
-
-	/* SOCIAL SECTION: by hierarchy */
-	.socialbox {
-		grid-area: social;
-		margin: 0 auto;
-		justify-content: center;
-	}
-	.socialheader {
-		text-align: center;
-		font-size: 22px;
-		text-shadow: 0px 2px 6px rgba(87, 87, 87, 0.349);
-	}
-	.socialicons {
-		display: flex;
-		flex-wrap: wrap;
-		margin: 0px 15px;
-	}
-	.socialicon:hover {
-		cursor: pointer;
-	}
-
-	/* LOGO AND BUSINESS DETAIL: by hierarchy */
+	/* LOGO AND BUSINESS DETAIL */
 	.businessbox {
-		grid-area: business;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
 		border-radius: 25px 25px 0px 0px;
 		background-color: rgba(194, 194, 194, 0.390)
 	}
-	.businessicon {
-		align-self: center;
-	}
-	.businessdetail {
-		align-self: center;
-		font-size: .8rem;
-	}
-
-	/* CONTACT US BOX: by hierarchy */
+	/* CONTACT US */
 	.infobox {
-		grid-area: info;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr;
-		grid-template-areas: 
-			"contactus"
-			"reachus"
-			"number"
-			"or"
-			"emailus"
-			"email";
-		color: white;
-		background-color: rgb(53, 53, 53);
-		text-align: center;
-		border-radius: 0px 0px 0px 0px;
-		line-height: 3px;
-		margin: 0;
-		align-content: center;
-	}
-	.contactus {
-		grid-area: contactus;
-		font-size: 18px;
-		text-shadow: 0px 3px 6px black;
-	}
-	.reachus{
-		grid-area: reachus;
-		font-size: 20px;
-		margin-top: 12px;
-	}
-	.number{
-		grid-area: number;
-		font-size: 20px;
-		text-shadow: 0px 3px 6px black;
-	}
-	.orbar{
-		grid-area: or;
-		font-weight: 600;
-		font-size: 22px;
-		margin: 20px 0px;
-	}
-	.emailus {
-		grid-area: emailus;
-		font-size: 22px;
-	}
-	.email {
-		grid-area: email;
-		text-shadow: 0px 3px 6px black;
-		font-size: 22px
+		border-radius: 0px;
 	}
 }

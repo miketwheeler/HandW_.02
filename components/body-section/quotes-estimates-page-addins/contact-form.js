@@ -374,9 +374,6 @@ function ContactForm() {
 					</FormControl>
 					{/* Message */}
 					<FormControl style={{width: '100%'}}>
-						{/* <FormLabel aria-label="message-form" focused={isMessageFocused}>
-							<strong>Message or Specifics</strong>
-						</FormLabel> */}
 						<TextField
 							required
 							InputLabelProps={{classes: {root: classes.label}}}

@@ -6,7 +6,6 @@
 		"mission"
 		"services";
 }
-
 /* upper-mid section material */
 .upper{
 	grid-area: upper;
@@ -38,7 +37,6 @@
 .asidecontact{
 	font-size: 26px;
 	font-weight: 600;
-	/* line-height: 1.3; */
 }
 .asidenumber{
 	padding-top: 20px;
@@ -46,7 +44,6 @@
 .mission {
 	grid-area: mission;
 }
-
 /* dynamic cards */
 .servicesection {
 	grid-area: services;

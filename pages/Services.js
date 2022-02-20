@@ -18,7 +18,7 @@ function Services() {
 	return (
 		<div className={DocStyles.bodycontainer}>
 			<div className={ServiceStyles.serviceContainer}>
-			<h2 className={DocStyles.pageheader}>Services</h2>
+			<h2 className={DocStyles.pageheader}>Our Services</h2>
 				{/* Services Listed */}
 				<div className={ServiceStyles.serviceSection}>
 					<div className={ServiceStyles.serviceColumn1}>
