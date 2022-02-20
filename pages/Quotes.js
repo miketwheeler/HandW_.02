@@ -1,8 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import QuotesEstimatesStyles from './Quotes.module.css';
 import ContactForm from './../components/body-section/quotes-estimates-page-addins/contact-form';
-import DocStyles from '../styles/contentStyles.module.css'
+import DocStyles from '../styles/contentStyles.module.css';
 
 
 function QuotesEstimates() {
@@ -31,4 +30,4 @@ function QuotesEstimates() {
 	)
 }
 
-export default QuotesEstimates
+export default QuotesEstimates;

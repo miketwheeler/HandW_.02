@@ -10,7 +10,7 @@ function Services() {
 		<div className={DocStyles.bodycontainer}>
 			<div className={ServiceStyles.serviceContainer}>
 			<h2 className={DocStyles.pageheader}>Our Services</h2>
-			
+
 				{/* Services Listed */}
 				<div className={ServiceStyles.serviceSection}>
 					<div className={ServiceStyles.serviceColumn1}>
@@ -45,6 +45,14 @@ function Services() {
 								<li>Split</li>
 								<li>Reinforced</li>
 								<li>Custom Design</li>
+							</ul>
+						</div>
+						<h4 className={DocStyles.subheader2}>Commercial & Residential</h4>
+						<div className={ServiceStyles.sectionlist}>
+							<ul>
+								<li>Interior</li>
+								<li>Exterior</li>
+								<li>Businesses</li>
 							</ul>
 						</div>
 					</div>

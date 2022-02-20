@@ -16,7 +16,6 @@ exports.handler = async function(event, context) {
     
     await axios.post(`${NEXT_PUBLIC_GRU}?secret=${NEXT_PUBLIC_RCSK}&response=${token}`, undefined, heads)
     .then(function(res) {
-        // console.log('* api-response.data *: ', res.data);
         responseStatusCode = res.status;
         responseData = res.data;
     })

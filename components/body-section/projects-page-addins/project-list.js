@@ -38,7 +38,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/railwork_1.jpg',
+            image: '/images/services-imgs/railwork_1.jpg',
         },
         // Railing Examples
         { 
@@ -47,7 +47,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/railstack.jpg',
+            image: '/images/services-imgs/railstack.jpg',
         },
         { 
             id: 3,
@@ -55,7 +55,7 @@ function ProjectList() {
             type: "Workshop Builds",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "July 16, 2019",
-            image: '/images/services-imgs2/raildesign_2_1.jpg',
+            image: '/images/services-imgs/raildesign_2_1.jpg',
         },
         { 
             id: 4,
@@ -63,7 +63,7 @@ function ProjectList() {
             type: "Workshop Builds",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "October 10, 2020",
-            image: '/images/services-imgs2/raildesign_3.jpg',
+            image: '/images/services-imgs/raildesign_3.jpg',
         },
         { 
             id: 5,
@@ -71,7 +71,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication",
             completion: " 22, 2020",
-            image: '/images/services-imgs2/raildesign_5.jpg',
+            image: '/images/services-imgs/raildesign_5.jpg',
         },
         // We Do Custom Fabrication
         { 
@@ -80,7 +80,7 @@ function ProjectList() {
             type: "workshop-builds",
             description: "Interior and Exterior Fabrication",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/rail_design_closeup.jpg',
+            image: '/images/services-imgs/rail_design_closeup.jpg',
         },
         { 
             id: 7,
@@ -88,7 +88,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/raildesign_7.jpg',
+            image: '/images/services-imgs/raildesign_7.jpg',
         },
         // Handbuilt Excellence in Quality 
         { 
@@ -97,7 +97,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/railwork_2.jpg',
+            image: '/images/services-imgs/railwork_2.jpg',
         },
         { 
             id: 9,
@@ -105,7 +105,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/hw_crew.jpg',
+            image: '/images/services-imgs/hw_crew.jpg',
         },
         { 
             id: 10,
@@ -113,7 +113,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/hw_crew2.jpg',
+            image: '/images/services-imgs/hw_crew2.jpg',
         },
         { 
             id: 11,
@@ -121,7 +121,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/weld.jpg',
+            image: '/images/services-imgs/weld.jpg',
         },
         { 
             id: 12,
@@ -129,7 +129,7 @@ function ProjectList() {
             type: "Fabrication Example",
             description: "Interior and Exterior Fabrication, metalergy certified",
             completion: "Febuary 22, 2020",
-            image: '/images/services-imgs2/weld_closeup.jpg',
+            image: '/images/services-imgs/weld_closeup.jpg',
         },
         // The Shop
         { 
@@ -137,21 +137,21 @@ function ProjectList() {
             title: "Our Forklift", 
             type: "Equipment",
             description: "Interior and Exterior Fabrication, metalergy certified",
-            image: '/images/services-imgs2/forklift_front.jpg',
+            image: '/images/services-imgs/forklift_front.jpg',
         },
         { 
             id: 14,
             title: "Our Forklift", 
             type: "Equipment",
             description: "Interior and Exterior Fabrication, metalergy certified",
-            image: '/images/services-imgs2/rail_overhead.jpg',
+            image: '/images/services-imgs/rail_overhead.jpg',
         },
         { 
             id: 15,
             title: "Our Forklift", 
             type: "Equipment",
             description: "Interior and Exterior Fabrication, metalergy certified",
-            image: '/images/services-imgs2/whole_shop.jpg',
+            image: '/images/services-imgs/whole_shop.jpg',
         },
 	]
     

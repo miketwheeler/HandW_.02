@@ -23,9 +23,7 @@ function HomePage() {
 							the case you're looking for a refresh.
 						</p>
 					</div>
-					{/*  */}
 					<div className={HomePageStyles.mybar}></div>
-					{/*  */}
 					<div className={HomePageStyles.asidesection}>
 						<div className={HomePageStyles.asidecontact}>
 							<p>
@@ -55,7 +53,7 @@ function HomePage() {
 
 				{/* Get a quote button */}
 				<GettaQuoteButton />
-				
+
 			</div>
 		</div>
 	)

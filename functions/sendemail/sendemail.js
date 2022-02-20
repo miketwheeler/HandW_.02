@@ -3,7 +3,6 @@ require('dotenv').config()
 
 const { NEXT_PUBLIC_EJSU, NEXT_PUBLIC_EJS_SID, NEXT_PUBLIC_EJS_TID, NEXT_PUBLIC_EJS_UID, NEXT_PUBLIC_EJS_AT } = process.env;
 const axios = require('axios');
-// const urlSend = 'https://api.emailjs.com/api/v1.0/email/send';
 
 exports.handler = async function(event, context) {
     if(!event.httpMethod === 'POST'){
