@@ -22,24 +22,20 @@
     padding: 10px 0 10px 10px;
     border-width: 2px;
     border-style: solid;
-    border-image: linear-gradient(to right, rgb(53, 53, 53), rgba(167, 167, 167, 0.473), transparent) 0 0 60% 0;
+    border-image: linear-gradient(to right, rgb(182, 98, 50), rgba(182, 98, 50, 0.507), transparent) 0 0 60% 0;
 }
 .caption {
 	margin: auto 12px;
     width: 100%;
-    /* border: 1px solid blue; */
 }
 .cardHeader {
     margin-bottom: 1.5rem;
-    /* border: 1px solid red; */
 }
 .imageContainer {
     align-self: center;
     display: flex;
-    /* width: 300px; */
     max-width: 400px;
     min-width: 220px;
-    /* border: 1px solid palevioletred; */
 }
 .imageStyle {
     border-radius: 15px;

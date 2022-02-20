@@ -31,8 +31,8 @@ const useStyles = makeStyles ({
 	},
 	paper: {
         position: 'absolute',
-        width: 520,
-		height: 400,
+        width: 500,
+		height: 'fit-content',
         backgroundColor: '#1f1f1f',
         color: 'white',
         border: '2px solid #000',
@@ -40,18 +40,20 @@ const useStyles = makeStyles ({
 		left: '50%',
 		top: '50%',
 		transform: 'translate(-50%, -50%)',
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(2, 4, 6),
 		borderRadius: 20,
 		borderColor: theme.palette.primary,
     },
 	modalcontainer: {
 		margin: 30,
+		// padding: 20,
 	},
 	modaltitle: {
-		marginBottom: 40,
+		marginBottom: 30,
 	},
 	modaltext: {
 		height: '30%',
+		fontSize: 28,
 	},
 	gudday: {
 		marginBottom: 40, 
@@ -86,7 +88,9 @@ function ContactForm() {
 	// Error Messages
 	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
 	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
-	const thankYouMessage = `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within (the) ${radioDateSelectionValue}.`;
+	const thankYouMessage = (date) => {
+		return `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within (the) ${date}.`;
+	}
 	const errorMessage = `There was an error with your information submission. Please try again.`;
 
 	// Regex Validation
@@ -409,7 +413,7 @@ function ContactForm() {
 								</h2>
 								<p id="modal-description" className={classes.modaltext}>
 									{
-										success ? thankYouMessage : errorMessage
+										success ? thankYouMessage(radioDateSelectionValue) : errorMessage
 									}
 								</p>
 								<h4 className={classes.gudday}>Have a good one!</h4>

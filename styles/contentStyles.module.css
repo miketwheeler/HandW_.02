@@ -17,6 +17,12 @@
     margin-top: 18px;
     font-style: italic;
 }
+.quotebutton {
+    width: 100%;
+    margin: 60px 0 40px;
+    display: flex;
+    justify-content: center;
+}
 .bodytextsection {
     margin: 12px;
 }

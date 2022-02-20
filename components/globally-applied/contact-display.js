@@ -72,7 +72,7 @@ function ContactDisplay() {
 						<p>Call us 9:00am-6:00pm (CST):</p>
 					</div>
 					<div className={ContactDisplayStyle.number}>
-						<h2>+1 (888) 777-2121</h2>
+						<h2>+1 (000) 000-0000</h2>
 					</div>
 					<div className={ContactDisplayStyle.orbar}>
 						<p> - or - </p>

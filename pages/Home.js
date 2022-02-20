@@ -1,7 +1,8 @@
 import React from 'react';
 import HomePageStyles from './Home.module.css';
 import ServiceDeck from '../components/body-section/home-page-addins/services-card-deck';
-import DocStyles from '../styles/contentStyles.module.css'
+import DocStyles from '../styles/contentStyles.module.css';
+import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
 
 
 function HomePage() {
@@ -51,6 +52,10 @@ function HomePage() {
 					<h2 className={DocStyles.pageheader}>Our Services</h2>
 					<ServiceDeck />
 				</div>
+
+				{/* Get a quote button */}
+				<GettaQuoteButton />
+				
 			</div>
 		</div>
 	)

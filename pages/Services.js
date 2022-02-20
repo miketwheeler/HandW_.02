@@ -1,24 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import ServiceStyles from './Services.module.css';
-import { Button } from '@material-ui/core'
-import DocStyles from '../styles/contentStyles.module.css'
+import DocStyles from '../styles/contentStyles.module.css';
+import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
 
 
 function Services() {
-
-	const history = useHistory();
-
-	function goToQuotesForm(e) {
-		e.preventDefault();
-		history.push("/quotes-estimates");
-		window.scrollTo(0, 480);
-	}
 
 	return (
 		<div className={DocStyles.bodycontainer}>
 			<div className={ServiceStyles.serviceContainer}>
 			<h2 className={DocStyles.pageheader}>Our Services</h2>
+			
 				{/* Services Listed */}
 				<div className={ServiceStyles.serviceSection}>
 					<div className={ServiceStyles.serviceColumn1}>
@@ -136,16 +128,8 @@ function Services() {
 				</div>
 
 				{/* Get a Quote Button */}
-				<div className={ServiceStyles.buttonContainer}>
-					<Button className={ServiceStyles.gettaQuoteButton}
-						variant="contained"
-						style={{backgroundColor: 'rgb(182, 98, 50)', color: 'white'}}
-						size="large"
-						onClick={(e) => goToQuotesForm(e)}
-						>
-						Get a Quote
-					</Button>
-				</div>
+				<GettaQuoteButton />
+
 			</div>
 		</div>
 	)
