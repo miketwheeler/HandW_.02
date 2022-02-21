@@ -1,5 +1,4 @@
 .container {
-	/* background-color: rgba(255, 255, 255, 0.493); */
 	align-items: center;
 	width: 100%;
 	display:flex;
@@ -7,10 +6,6 @@
 	justify-content: center;
 	height: fit-content;
 	padding: 20px;
-	/* border-top: 10px solid rgb(182, 98, 50); */
-	/* border-left: 1px solid rgb(56, 56, 56);
-	border-right: 1px solid rgb(56, 56, 56);
-	border-width: 40%; */
 }
 .logoandtext {
 	display: flex;
@@ -22,17 +17,20 @@
 	justify-content: space-evenly;
 	width: 40%;
 }
+.imageattrs {
+	height: 50px;
+	width: 150px;
+}
 .logotext {
 	margin: auto auto;
 }
 .texts {
 	min-height: 40px;
-	color: rgb(207, 207, 207);
+	color: rgb(75, 75, 75);
 	text-align: center;
 	width: 100%;
 	font-size: 18px;
 }
 .image{
-	/* margin: 0 auto 16px; */
 	padding: 0 20px 0 0;
 }

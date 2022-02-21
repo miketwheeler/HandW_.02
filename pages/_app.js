@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps }) {
   return(
 		<div suppressHydrationWarning>
 			<Head>
+				<title>H&W Stair and Rail</title>
 				<link rel="icon" href="/android-chrome-512x512.png" />
+				{/* <meta name="viewport" content="initial-scale=1.0, width=device-width" /> */}
 			</Head>
 			{ 
 				typeof window === 'undefined' ? null : 

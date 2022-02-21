@@ -90,7 +90,6 @@ function ContactDisplay() {
 					<h2>Follow Us and Share</h2>
 				</div>
 				<div className={ContactDisplayStyle.socialicons}>
-					{/* !!!! Need links */}
 					{
 						socials.map((item, i) => <SocialIcon key={i} item={item} />)
 					}

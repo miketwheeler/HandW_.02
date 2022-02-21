@@ -7,14 +7,18 @@ function Footer() {
 	return (
 		<div className={FooterStyle.container}>
 			<div className={FooterStyle.logoandtext}>
-				<Image 
-				src={"/images/emptydub_logo_t.png"} 
-				height={50} 
-				width={150} 
-				alt="emptydub-logo" 
-				priority 
-				className={FooterStyle.image}
-				/>
+				<div className={FooterStyle.imageattrs}>
+					<Image 
+						src={"/images/emptydub_logo_t.png"} 
+						height={50} 
+						width={150}
+						aria-label='emptydub-production-logo'
+						alt="emptydub-logo" 
+						priority
+						layout='responsive'
+						className={FooterStyle.image}
+						/>
+				</div>
 				<div className={FooterStyle.logotext}>
 					Copyright © 2022, Emptydub Products
 				</div>

@@ -16,8 +16,8 @@ function MyCarousel(props)
 		<div className={CarouselStyles.carouselcontainer}>
 			<Carousel 
 				animation={"slide"}
-				indicatorIconButtonProps={{style: { padding: '12px'}}}
-				indicatorContainerProps={{style: { marginTop: '-2px'}}}
+				indicatorIconButtonProps={{style: { padding: '12px'}, ariaLabel: 'prev-next-carousel-image-button'}}
+				indicatorContainerProps={{style: { marginTop: '-2px'}, ariaLabel: 'current-carousel-image'}}
 				>
 				{
 					items.map((item, i) => <Item key={i} item={item} /> )
@@ -34,6 +34,7 @@ function Item(props)
             <Image 
 				src={props.item.image}
 				priority={true} 
+				aria-label={props.item.name}
 				width={1300} 
 				height={380} 
 				alt={"carousel highlight image"}

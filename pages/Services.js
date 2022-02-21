@@ -5,7 +5,6 @@ import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
 
 
 function Services() {
-
 	return (
 		<div className={DocStyles.bodycontainer}>
 			<div className={ServiceStyles.serviceContainer}>

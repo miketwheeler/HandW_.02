@@ -20,6 +20,7 @@ function GettaQuoteButton() {
             <div className={DocStyles.quotebutton}>
                 <Button
                     variant="contained"
+                    aria-label='navigate-quote-page'
                     style={{backgroundColor: 'rgb(182, 98, 50)', color: 'white', width: 230, height: 60}}
                     size="large"
                     onClick={(e) => goToQuotesForm(e)}

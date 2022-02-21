@@ -10,6 +10,10 @@
 	margin: 0;
 	padding: 0;
 }
+.imageattrs {
+	width: 335px;
+	height: 160px;
+}
 .linkText:hover {
 	color: rgb(255, 255, 255);
 	font-weight: bolder;

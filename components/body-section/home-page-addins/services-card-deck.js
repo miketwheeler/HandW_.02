@@ -24,12 +24,13 @@ function ServiceDeck(props) {
 function MakeMiniCard(props) {
 	return (
 		<div>
-			<div>
+			<div className={ServiceDeckStyles.imageattrs}>
 				<Image 
 					src={props.item.image} 
-					width={"231px"} 
-					height={"242px"} 
-					alt={"services icons"} 
+					layout='responsive'
+					alt={"services icons"}
+					width={245}
+					height={255}
 					priority={true}
 					/>
 			</div>

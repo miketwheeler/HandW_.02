@@ -6,14 +6,20 @@ import Infolink from '../components/globally-applied/contact-display';
 import Footer from '../components/globally-applied/footer';
 import Layout from '../components/layout/layout';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import dynamic from 'next/dynamic';
 
 // Mainsection content for routing in
-import HomePage from './Home';
-import QuoteEstimates from './Quotes';
-import Services from './Services';
-import Projects from './Projects';
+const HomePage = dynamic(() => import("./Home"));
+const QuoteEstimates = dynamic(() => import("./Quotes"));
+const Services = dynamic(() => import("./Services"));
+const Projects = dynamic(() => import("./Projects"));
+// import HomePage from './Home';
+// import QuoteEstimates from './Quotes';
+// import Services from './Services';
+// import Projects from './Projects';
 
-export default function App(props) {
+
+export default function App() {
 	return (
 		<>
 			<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}>

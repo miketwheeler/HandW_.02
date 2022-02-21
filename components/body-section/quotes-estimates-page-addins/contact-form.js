@@ -7,7 +7,8 @@ import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/sty
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
-import Modal from '@material-ui/core/Modal';
+import dynamic from 'next/dynamic';
+const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying
@@ -89,7 +90,7 @@ function ContactForm() {
 	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
 	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
 	const thankYouMessage = (date) => {
-		return `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within (the) ${date}.`;
+		return `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within now and your callback range.`;
 	}
 	const errorMessage = `There was an error with your information submission. Please try again.`;
 
@@ -244,12 +245,14 @@ function ContactForm() {
 					className={ContactFormStyles.form} 
 					autoComplete="off" 
 					onSubmit={(event) => handleSubmit(event)}
+					aria-label="quote-form"
 					>
 					{/* Name */}
 					<TextField 
 						InputLabelProps={{classes: {root: classes.label}}}
 						type="text"
-						label="Name" 
+						label="Name"
+						aria-label="first-name"
 						value={fullName}
 						required
 						fullWidth
@@ -260,11 +263,13 @@ function ContactForm() {
 						error={fullName !== null ? checkName() : false}
 						helperText={checkName() ? "Please provide a valid contact name." :  null}
 						style={{color: theme.secondary}}
+						
 					/>
 					{/* Number - incl TextField props */}
 					<NumberFormat 
 						InputLabelProps={{classes: {root: classes.label}}}
-						label="Phone Number" 
+						label="Phone Number"
+						aria-label='phone-number'
 						value={phoneNumber}
 						required
 						fullWidth
@@ -282,6 +287,7 @@ function ContactForm() {
 					<TextField 
 						InputLabelProps={{classes: {root: classes.label}}}
 						label="Email" 
+						aria-label='email'
 						value={email}
 						required
 						fullWidth
@@ -309,7 +315,8 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
-								value="Stairs" 
+								value="Stairs"
+								aria-label='radio-service-selection-value-stairs' 
 								control={<Radio color="primary" />} 
 								label="Stairs"
 								labelPlacement="start"
@@ -317,6 +324,7 @@ function ContactForm() {
 							/>
 							<FormControlLabel 
 								value="Railing" 
+								aria-label='radio-service-selection-value-railing'
 								control={<Radio color="primary" />} 
 								label="Railing" 
 								labelPlacement="start"
@@ -324,6 +332,7 @@ function ContactForm() {
 							/>
 							<FormControlLabel
 								value="Refinishing" 
+								aria-label='radio-service-selection-value-refinishing'
 								control={<Radio color="primary" />} 
 								label="Refinishing"
 								labelPlacement="start"
@@ -331,6 +340,7 @@ function ContactForm() {
 							/>
 							<FormControlLabel 
 								value="Other"
+								aria-label='radio-service-selection-value-other'
 								control={<Radio color="primary" />} 
 								label="Other"
 								labelPlacement="start"
@@ -354,7 +364,8 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
-								value="Next Business Day" 
+								value="Next Business Day"
+								aria-label='radio-callback-date-selection-value-next-business-day'
 								control={<Radio color="primary" />} 
 								label="Next Business Day"
 								labelPlacement="start"
@@ -362,6 +373,7 @@ function ContactForm() {
 							/>
 							<FormControlLabel 
 								value="2 Business Days" 
+								aria-label='radio-callback-date-selection-value-two-business-days'
 								control={<Radio color="primary" />} 
 								label="2 Business Days" 
 								labelPlacement="start"
@@ -369,6 +381,7 @@ function ContactForm() {
 							/>
 							<FormControlLabel
 								value="3 Business Days" 
+								aria-label='radio-callback-date-selection-value-three-business-days'
 								control={<Radio color="primary" />} 
 								label="3 Business Days"
 								labelPlacement="start"
@@ -385,6 +398,7 @@ function ContactForm() {
 							label="Message or Any Other Specifics"
 							input='message'
 							type="text"
+							aria-label='your-message'
 							value={message}
 							fullWidth 
 							variant="outlined"
@@ -420,7 +434,8 @@ function ContactForm() {
 								<Button 
 									className={ContactFormStyles.bttn}
 									type="button" 
-									variant="contained" 
+									variant="contained"
+									aria-label='ok-close-modal-button' 
 									onClick={handleModalClose}
 									style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px', float: 'right' }}
 									size="large"
@@ -436,6 +451,7 @@ function ContactForm() {
 						<Button 
 							className={ContactFormStyles.bttn}
 							type="submit" 
+							aria-label='submit-information-button'
 							variant="contained"
 							style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px' }}
 							size="large"
