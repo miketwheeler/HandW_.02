@@ -26,6 +26,7 @@ function ContactDisplay() {
 						width={76}
 						height={76}
 						priority={true}
+						layout='intrinsic'
 						className={ContactDisplayStyle.socialicon}
 					/>
 				</a>
@@ -103,6 +104,7 @@ function ContactDisplay() {
 						width={150}
 						height={75}
 						priority={true}
+						layout='intrinsic'
 						/>
 				</div>
 				<div className={ContactDisplayStyle.businessdetail}>

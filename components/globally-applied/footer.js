@@ -4,6 +4,15 @@ import Image from 'next/image';
 
 
 function Footer() {
+	const openNewTab = (url) => {
+		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');
+		if(newWindow) newWindow.opener = null;
+	}
+	
+	const onClickUrl = (url) => {
+		return () => openNewTab(url);
+	}
+
 	return (
 		<div className={FooterStyle.container}>
 			<div className={FooterStyle.logoandtext}>
@@ -15,7 +24,7 @@ function Footer() {
 						aria-label='emptydub-production-logo'
 						alt="emptydub-logo" 
 						priority
-						layout='responsive'
+						layout='intrinsic'
 						className={FooterStyle.image}
 						/>
 				</div>
@@ -24,7 +33,10 @@ function Footer() {
 				</div>
 			</div>
 			<div className={FooterStyle.texts}>
-				Some graphical elements and social icons were sourced and derived from asset sources at https://flaticon.com/
+				Some graphical elements and social icons were sourced and derived from asset sources at 
+				<a onClick={onClickUrl('https://flaticon.com')}>
+					FlatIcon.com
+				</a>
 			</div>
 		</div>
 	)

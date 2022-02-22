@@ -27,7 +27,7 @@ function MakeMiniCard(props) {
 			<div className={ServiceDeckStyles.imageattrs}>
 				<Image 
 					src={props.item.image} 
-					layout='responsive'
+					layout='intrinsic'
 					alt={"services icons"}
 					width={245}
 					height={255}

@@ -37,6 +37,7 @@ function Item(props)
 				aria-label={props.item.name}
 				width={1300} 
 				height={380} 
+				layout='intrinsic'
 				alt={"carousel highlight image"}
 				/>
         </div>

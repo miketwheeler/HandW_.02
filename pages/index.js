@@ -22,22 +22,24 @@ const Projects = dynamic(() => import("./Projects"));
 export default function App() {
 	return (
 		<>
-			<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}>
+			
 			<Layout>
 				<Navigation />
 				<CarouselComponent />
-				<div style={{backgroundColor: 'rgb(255, 255, 255)'}}>
+				<div>
+					<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}>
 					<Switch>
-						<Route path="/quotes-estimates" component={QuoteEstimates}/>
+							<Route path="/quotes-estimates" component={QuoteEstimates}/>
 						<Route path="/services" component={Services}/>
 						<Route path="/projects" component={Projects}/>
 						<Route path="/" component={HomePage}/>
 					</Switch>
+					</GoogleReCaptchaProvider>
 				</div>
 				<Infolink />
 				<Footer />
 			</Layout>
-			</GoogleReCaptchaProvider>
+			
 		</>
 	);
 }

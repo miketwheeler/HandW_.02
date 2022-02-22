@@ -200,11 +200,10 @@ function ProjectCard(props) {
                             <div className={ProjectStyles.imageContainer}>
                                 <Image
                                     src={props.item.image} 
-                                    width={"400px"}
-                                    height={"465px"}
+                                    width={400}
+                                    height={465}
                                     alt={"services icons"}
                                     priority={true}
-                                    // fixed
                                     className={ProjectStyles.imageStyle}
                                     />
                             </div>
