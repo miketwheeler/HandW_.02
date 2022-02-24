@@ -63,6 +63,10 @@
 .socialicons {
 	margin: 0;
 }
+.socialicon {
+	height: 76;
+	width: 76;
+}
 .socialicon:hover {
 	cursor: pointer;
 }
@@ -77,6 +81,8 @@
 .businessicon {
 	align-self: center;
 	margin: 10px;
+	width: 150px;
+	height: 75px;
 }
 .businessdetail {
 	align-self: center;

@@ -65,22 +65,22 @@ function MyNavbar() {
 								{/* //////////////////////////////////////////////////////////////// */}
 								
 								<div className="flexi d-md-none d-lg-none d-xl-none d-xxl-none fs-2 mt-3 mb-3">
-									<LinkContainer id="home" exact to="/" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+									<LinkContainer id="home-collapsed" exact to="/" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} aria-label='navigate-home' className={MyNavbarStyle.linkText}>
 											Home
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="quotes-estimates" to="/quotes-estimates" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+									<LinkContainer id="quotes-estimates-collapsed" to="/quotes-estimates" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} aria-label='navigate-quotes-page' className={MyNavbarStyle.linkText}>
 											Quotes
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="services" to="/services" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+									<LinkContainer id="services-collapsed" to="/services" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} aria-label='navigate-services-page' className={MyNavbarStyle.linkText}>
 											Services
 										</Nav.Link>
 									</LinkContainer>
-									<LinkContainer id="projects" to="/projects" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+									<LinkContainer id="projects-collapsed" to="/projects" activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 										<Nav.Link onClick={() => setExpanded(false)} aria-label='navigate-projects-page' className={MyNavbarStyle.linkText}>
 											Projects
 										</Nav.Link>
@@ -91,28 +91,28 @@ function MyNavbar() {
 								{/* //////////////////////////////////////////////////////////////////////// */}
 								<div className="d-none d-md-flex fs-2">
 									<div className={MyNavbarStyle.linkSurround}>
-										<LinkContainer id="home" exact to="/" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+										<LinkContainer id="home-expanded" exact to="/" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 											<Nav.Link aria-label='navigate-home' className={MyNavbarStyle.linkText}>
 												Home
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={MyNavbarStyle.linkSurround}>
-										<LinkContainer id="quotes-estimates" to="/quotes-estimates" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+										<LinkContainer id="quotes-estimates-expanded" to="/quotes-estimates" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 											<Nav.Link aria-label='navigate-quotes-page' className={MyNavbarStyle.linkText}>
 												Quotes
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={MyNavbarStyle.linkSurround}>
-										<LinkContainer id="services" to="/services" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+										<LinkContainer id="services-expanded" to="/services" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 											<Nav.Link aria-label='navigate-services-page' className={MyNavbarStyle.linkText}>
 												Services
 											</Nav.Link>
 										</LinkContainer>
 									</div>
 									<div className={MyNavbarStyle.linkSurround}>
-										<LinkContainer id="projects" to="/projects" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
+										<LinkContainer id="projects-expanded" to="/projects" className={MyNavbarStyle.linkBox} activeStyle={{fontWeight: 'bolder', borderBottom: '1.5px solid rgba(255, 255, 255, 0.716)'}}>
 											<Nav.Link aria-label='navigate-projects-page' className={MyNavbarStyle.linkText}>
 												Projects
 											</Nav.Link>
