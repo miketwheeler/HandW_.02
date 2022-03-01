@@ -29,8 +29,8 @@ function MakeMiniCard(props) {
 					src={props.item.image} 
 					layout='intrinsic'
 					alt={"services icons"}
-					width={245}
-					height={255}
+					width={256}
+					height={256}
 					priority={true}
 					/>
 			</div>

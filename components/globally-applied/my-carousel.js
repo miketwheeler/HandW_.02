@@ -39,6 +39,8 @@ function Item(props)
 				height={380} 
 				layout='intrinsic'
 				alt={"carousel highlight image"}
+				id={`image-${props.item.name}`}
+				type="image"
 				/>
         </div>
     )

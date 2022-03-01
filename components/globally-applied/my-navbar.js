@@ -24,7 +24,7 @@ function MyNavbar() {
 							src="/images/hw_mainlogo.png"
 							alt="Company Logo"
 							width={335}
-							height={160}
+							height={162}
 							layout='responsive'
 							priority={true}
 							/>

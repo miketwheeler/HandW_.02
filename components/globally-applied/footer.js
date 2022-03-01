@@ -20,7 +20,7 @@ function Footer() {
 					<Image 
 						src={"/images/emptydub_logo_t.png"} 
 						height={50} 
-						width={150}
+						width={160}
 						aria-label='emptydub-production-logo'
 						alt="emptydub-logo" 
 						priority

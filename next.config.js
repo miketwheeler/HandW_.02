@@ -2,6 +2,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
 
+
 module.exports = withBundleAnalyzer({
 	reactStrictMode: true,
 	i18n: {
@@ -15,45 +16,20 @@ module.exports = withBundleAnalyzer({
 		}]
 	},
 	async headers() {
-		return [
-			{
-				// Headers to all routes in your application
-				// source: '/:path*',
-				source: '/:path*',
-				headers: [
-					{
-						key: 'Content-Security-Policy',
-						value: "default-src 'self'; font-src 'self' 'https://fonts.googleapis.com'; img-src 'self'; script-src 'self'",
-					},
-					{
-						key: 'X-Frame-Options',
-						value: 'DENY',
-					},
-					{
-						key: 'X-Content-Type-Options',
-						value: 'nosniff',
-					},
-					{
-						key: 'Referrer-Policy',
-						value: 'origin-when-cross-origin',
-					},
-					{
-						key: 'Permissions-Policy',
-						value: "camera=(); battery=(self); geolocation=(); microphone=()",
-					},
-				]
-			},
-		]
+		return [{
+			source: '/:any*',
+			headers: [
+				{
+					key: 'Content-Security-Policy',
+					value: "default-src 'unsafe-inline' 'self'; font-src 'none'; img-src 'self' data:; script-src 'unsafe-eval' 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src 'self' https://www.google.com/",
+				},
+				{
+					key: 'Referrer-Policy',
+					value: 'origin-when-cross-origin',
+				},
+			]
+		}]
 	}
 });
 
-// module.exports = {
-// 	reactStrictMode: true,
-// 	async rewrites() {
-// 		return [{
-// 			source: "/:any*",
-// 			destination: "/",
-// 		},];
-// 	},
-// };
 

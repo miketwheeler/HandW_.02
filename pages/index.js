@@ -7,7 +7,6 @@ import Footer from '../components/globally-applied/footer';
 import Layout from '../components/layout/layout';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import dynamic from 'next/dynamic';
-import QuotesEstimates from './Quotes';
 
 // Mainsection content for routing in
 const HomePage = dynamic(() => import("./Home"));

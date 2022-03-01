@@ -21,7 +21,7 @@ function GettaQuoteButton() {
                 <Button
                     variant="contained"
                     aria-label='navigate-quote-page'
-                    style={{backgroundColor: 'rgb(182, 98, 50)', color: 'black', width: 230, height: 60}}
+                    style={{backgroundColor: 'rgb(182, 98, 50)', color: 'white', width: 230, height: 60, fontSize: '18px'}}
                     size="large"
                     onClick={(e) => goToQuotesForm(e)}
                     >

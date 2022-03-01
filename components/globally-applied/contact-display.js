@@ -101,8 +101,8 @@ function ContactDisplay() {
 					<Image 
 						src="/images/hw_mainlogo.png"
 						alt="H&W Company Logo"
-						width={150}
-						height={75}
+						width={192}
+						height={97}
 						priority={true}
 						layout='intrinsic'
 						/>

@@ -245,14 +245,17 @@ function ContactForm() {
 					className={ContactFormStyles.form} 
 					autoComplete="off" 
 					onSubmit={(event) => handleSubmit(event)}
+					id='quote-form'
+					type='form'
 					aria-label="quote-form"
 					>
 					{/* Name */}
 					<TextField 
 						InputLabelProps={{classes: {root: classes.label}}}
-						type="text"
+						id='full-name'
+						type="textfield"
 						label="Name"
-						aria-label="first-name"
+						aria-label="full-name"
 						value={fullName}
 						required
 						fullWidth
@@ -268,6 +271,8 @@ function ContactForm() {
 					{/* Number - incl TextField props */}
 					<NumberFormat 
 						InputLabelProps={{classes: {root: classes.label}}}
+						id='phone-number'
+						type='textfield'
 						label="Phone Number"
 						aria-label='phone-number'
 						value={phoneNumber}
@@ -286,6 +291,8 @@ function ContactForm() {
 					{/* Email */}
 					<TextField 
 						InputLabelProps={{classes: {root: classes.label}}}
+						id='email'
+						type='textfield'
 						label="Email" 
 						aria-label='email'
 						value={email}
@@ -307,6 +314,8 @@ function ContactForm() {
 						<RadioGroup 
 							row 
 							required
+							id='radio-selection-group-service-type'
+							type='radio-group'
 							aria-label="select-service-radio-buttons" 
 							defaultValue="Other"
 							name="currentSelection" 
@@ -315,6 +324,8 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
+								id='radio-button-value-stairs'
+								type='radio-selection'
 								value="Stairs"
 								aria-label='radio-service-selection-value-stairs' 
 								control={<Radio color="primary" />} 
@@ -323,6 +334,8 @@ function ContactForm() {
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
+								id='radio-button-value-railing'
+								type='radio-selection'
 								value="Railing" 
 								aria-label='radio-service-selection-value-railing'
 								control={<Radio color="primary" />} 
@@ -331,6 +344,8 @@ function ContactForm() {
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel
+								id='radio-button-value-refinishing'
+								type='radio-selection'
 								value="Refinishing" 
 								aria-label='radio-service-selection-value-refinishing'
 								control={<Radio color="primary" />} 
@@ -339,6 +354,8 @@ function ContactForm() {
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
+								id='radio-button-value-other'
+								type='radio-selection'
 								value="Other"
 								aria-label='radio-service-selection-value-other'
 								control={<Radio color="primary" />} 
@@ -356,6 +373,8 @@ function ContactForm() {
 						<RadioGroup 
 							row 
 							required
+							id='radio-selection-group-date'
+							type='radio-group'
 							aria-label="select-date-radio-buttons" 
 							defaultValue="Next Business Day"
 							name="dateSelection" 
@@ -364,6 +383,8 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
+								id='radio-button-value-next-day'
+								type='radio-selection'
 								value="Next Business Day"
 								aria-label='radio-callback-date-selection-value-next-business-day'
 								control={<Radio color="primary" />} 
@@ -372,6 +393,8 @@ function ContactForm() {
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
+								id='radio-button-value-two-business-days'
+								type='radio-selection'
 								value="2 Business Days" 
 								aria-label='radio-callback-date-selection-value-two-business-days'
 								control={<Radio color="primary" />} 
@@ -380,6 +403,8 @@ function ContactForm() {
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel
+								id='radio-button-value-three-business-days'
+								type='radio-selection'
 								value="3 Business Days" 
 								aria-label='radio-callback-date-selection-value-three-business-days'
 								control={<Radio color="primary" />} 
@@ -394,7 +419,7 @@ function ContactForm() {
 						<TextField
 							required
 							InputLabelProps={{classes: {root: classes.label}}}
-							id="#message"
+							id="message"
 							label="Message or Any Other Specifics"
 							input='message'
 							type="text"
@@ -453,7 +478,7 @@ function ContactForm() {
 							type="submit" 
 							aria-label='submit-information-button'
 							variant="contained"
-							style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px' }}
+							style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px', fontSize: '18px' }}
 							size="large"
 							disabled={isVerifiedOnSubmit && isCheckedReadyForSubmitUnlock()}
 							>

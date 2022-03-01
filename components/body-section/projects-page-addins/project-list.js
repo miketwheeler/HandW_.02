@@ -203,6 +203,7 @@ function ProjectCard(props) {
                                     width={400}
                                     height={465}
                                     alt={"services icons"}
+                                    layout='intrinsic'
                                     priority={true}
                                     className={ProjectStyles.imageStyle}
                                     />
