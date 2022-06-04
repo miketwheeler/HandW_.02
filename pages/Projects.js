@@ -16,24 +16,19 @@ function Projects() {
 					<br />
 					<p>
 						As welders we noticed our abilities set us apart.  After working at other companies, 
-						we found ourselves asking: "Why not us?". We felt it was necessary that we apply our vision while 
-						having the opportunity to put our name on the work we were so proud of. From the team at H&W Stair 
-						and Rail - we're ready to provide you the best results available.
+						we found ourselves asking: "Why not us?". We wanted to <i>forge</i> our own path, finally getting 
+						the opportunity to put our name on the work we are so proud of. From the team at H&W Stair 
+						and Rail - we're ready to put our name on your next project and make your vision a reality.
 					</p>
 					<br />
-					<p>
-						Invest in us, we'll invest in you. 
-					</p> 
-					<br />
 					<div>
-						<p>Thank you for your time and visiting us today,</p> 
-						<br/>
+						<p>Feel free to reach us at any time,</p> 
 						<br />
 						<p><strong>The whole team at H&W Stair and Rail</strong></p>
 					</div>
 				</div>
 				<div className={DocStyles.bodybar}>
-					<h2 className={ProjectStyles.projectHeaderText}>Dozens of projects completed, 100% satisfaction rate to boot!</h2>
+					<h2 className={ProjectStyles.projectHeaderText}>Dozens of projects completed, 100% satisfaction!</h2>
 				</div>
 			</div>
 			<div className={ProjectStyles.projects}>

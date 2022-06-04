@@ -15,12 +15,12 @@ function HomePage() {
 						<h2 className={DocStyles.pageheader}>Hello There Friend</h2>
 						<p>
 							We're a Nebraska-native Startup, proud to bring our skills with 
-							metalworking to the City of Lincoln, Omaha and the greater area. 
+							metalworking to the City of Lincoln and the greater area. 
 							Our primary focus is to provide a range of custom and integrated 
 							projects for all of your Stairway and Railing needs. 
-							We're qualified for both commercial and residential builds. We 
-							also provide servicing and remodeling to existing structures in 
-							the case you're looking for a refresh.
+							We're qualified for both commercial and residential builds. 
+							{/* We also provide servicing and remodeling to existing structures in  */}
+							{/* the case you're looking for a refresh. */}
 						</p>
 					</div>
 					<div className={HomePageStyles.mybar}></div>
@@ -28,11 +28,11 @@ function HomePage() {
 						<div className={HomePageStyles.asidecontact}>
 							<p>
 								Whatever your metalworking needs may be, we're  
-								happy to answer any questions you may have. We're 
+								happy to answer any questions you have. We're 
 								here to help.
 							</p>
 							<p className={HomePageStyles.asidenumber}>
-								Call Us: +1(888) 777-2121
+								Contact Us 9am -5pm CST: <br /><strong>+1 (402) 805-2341</strong>
 							</p>
 						</div>
 					</div>

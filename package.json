@@ -10,10 +10,10 @@
     "find:unused": "next-unused"
   },
   "next-unused": {
-      "alias": {},
-      "include": [],
-      "exclude": [],
-      "entrypoints": []
+    "alias": {},
+    "include": [],
+    "exclude": [],
+    "entrypoints": []
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",

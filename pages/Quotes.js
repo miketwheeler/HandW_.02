@@ -13,14 +13,10 @@ function QuotesEstimates() {
 			</div>
 			<div>
 				<p>
-					No worries my friend, you're in the right place!
-					Set up a free consultation today.
-				</p>
-				<p>
-					We understand there are many unknowns, and you can count
-					on our professionals to fill you in with the details.
-					Please fill in the information below and we'll get back to 
-					you ASAP.
+					You can count on us to fill you in with the details and assist you with any questions you have.
+					<br />
+					<br />
+					Please fill in the information below and we'll get back to you.
 				</p>
 			</div>
 			<Container>

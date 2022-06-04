@@ -6,6 +6,7 @@
 	justify-content: center;
 	height: fit-content;
 	padding: 20px;
+	/* background-color: rgb(53, 53, 53); */
 }
 .logoandtext {
 	display: flex;
@@ -22,11 +23,12 @@
 	width: 160px;
 }
 .logotext {
+	color: rgba(75, 75, 75, 0.5);
 	margin: auto auto;
 }
 .texts {
 	min-height: 40px;
-	color: rgb(75, 75, 75);
+	color: rgba(75, 75, 75, 0.267);
 	text-align: center;
 	width: 100%;
 	font-size: 18px;

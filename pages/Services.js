@@ -16,42 +16,42 @@ function Services() {
 						<h3 className={DocStyles.subheader1}>Installs</h3>
 						<div className={ServiceStyles.section}>
 							<p>
-								Our specialty! We implement custom and/or template designs that fit you and your needs needs. 
+								We implement custom and/or templated designs that fit the needs of your project. 
 								We like to remain flexible and put you in control. 
 							</p> 
 							<p>
-								Our stairs and railing are sure to increase the 
-								value of your home or business. It's the first thing your patrons see, its 
-								a subtle but an essential piece... lets make that grand entrance!
+								Our stairs and railings are sure to increase the 
+								value of your home or business. It's the first thing your customers see, its 
+								a subtle but an essential part of your image.
 							</p>
 						</div>
 						<h4 className={DocStyles.subheader2}>Rail & Ballast</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
+								<li>Functional</li>
+								<li>Adaptations</li>
+								<li>Customized</li>
+								<li>Safety</li>
 								<li>Decorative</li>
-								<li>Mixed-Material</li>
-								<li>Design</li>
-								<li>Implementation</li>
-								<li>Fabrication</li>
-								<li>Custom</li>
 							</ul>
 						</div>
-						<h4 className={DocStyles.subheader2}>Stairs</h4>
+						<h4 className={DocStyles.subheader2}>Types</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
-								<li>Straightaway</li>
-								<li>Loft Access</li>
-								<li>Split</li>
+								<li>Straight-away</li>
+								<li>Spiral</li>
+								<li>Split-Level</li>
 								<li>Reinforced</li>
-								<li>Custom Design</li>
 							</ul>
 						</div>
-						<h4 className={DocStyles.subheader2}>Commercial & Residential</h4>
+						<h4 className={DocStyles.subheader2}>Where</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
 								<li>Interior</li>
 								<li>Exterior</li>
 								<li>Businesses</li>
+								<li>Commercial</li>
+								<li>Residential</li>
 							</ul>
 						</div>
 					</div>
@@ -63,24 +63,24 @@ function Services() {
 						<h3 className={DocStyles.subheader1}>Restorations</h3>
 						<div className={ServiceStyles.section}>
 							<p>
-								Have a project where a refresh is needed? We can fabricate portions or overhaul an existing 
-								installation in some cases. Most of the time however, it's far more effective to implement a new setup. 
+								We can fabricate portions or overhaul an existing installation in some cases. Most 
+								of the time, however, it's more effective to start from scratch. 
 							</p>
 							<p>
-								If a project like this is requested, but involves over 25% in overhauls, we are venturing into the 
-								'Installation' category for your job. Let's discuss what you have in mind.
+								25%-projects and under are considered as overhauls. Any work above that would push your 
+								project into the 'Installation' category for your job. Let's discuss what you have in 
+								mind.
 							</p>
 						</div>
-						<h4 className={DocStyles.subheader2}>Portional Additions</h4>
+						<h4 className={DocStyles.subheader2}>Types</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
 								<li>Damaged Sections</li>
 								<li>Partial Installs</li>
 								<li>Refurbishment</li>
-								<li>Stairs and Railing Sections</li>
 							</ul>
 						</div>
-						<h4 className={DocStyles.subheader2}>Damage & Repair</h4>
+						<h4 className={DocStyles.subheader2}>Spec & Requirements</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
 								<li>Water and Fire Damage</li>
@@ -99,26 +99,25 @@ function Services() {
 						<h3 className={DocStyles.subheader1}>Finishing</h3>
 						<div className={ServiceStyles.section}>
 							<p>
-								Want a pearly coat on that new stairway? Got rust? Need paint? 
-								So long as we don't have to remove the structure, we can refinish some current installations too! 
+								Our work for you can be finished in typical colors that nearly all railings and metal 
+								stairs receive. Some custom colors can be available if needed.  
 							</p>
 							<p>
-								Disclosure: we may still promote what we do best by offering a complete project we're proud of!
+								We only re-finish our own work, as our guarantee includes the finish for 10 years after 
+								your install.
 							</p>
 						</div>
 						<h4 className={DocStyles.subheader2}>Sealing & Paint</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
-								<li>Powder Coat</li>
-								<li>Lacquer</li>
-								<li>Polyetheline</li>
-								<li>Rustoleum Rust Sealant</li>
-								<li>Color</li>
+								<li>Primers</li>
+								<li>Durable Poly Coats</li>
+								<li>Black, Greys, & Color</li>
 								<li>Gloss, Semi-Gloss, Satin & Matte</li>
-								<li>Vintage, Patinaed or Unfinished</li>
+								<li>Unfinished</li>
 							</ul>
 						</div>
-						<h4 className={DocStyles.subheader2}>Refinishing</h4>
+						<h4 className={DocStyles.subheader2}>Types</h4>
 						<div className={ServiceStyles.sectionlist}>
 							<ul>
 								<li>Rust Prevention and Sealants</li>
@@ -130,8 +129,8 @@ function Services() {
 					</div>
 				</div>
 				<div className={ServiceStyles.quoteStatement}>
-					We can handle just about any job at hand. Feel free to reach out and get into contact with us, we're interested in what you 
-					have in mind. Get a Quote!
+					We can handle just about any job requested. Feel free to reach out and get into contact with us, we're 
+					interested in what you have in mind and helping you through the process.
 				</div>
 
 				{/* Get a Quote Button */}

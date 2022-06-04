@@ -16,26 +16,14 @@ function Footer() {
 	return (
 		<div className={FooterStyle.container}>
 			<div className={FooterStyle.logoandtext}>
-				<div className={FooterStyle.imageattrs}>
-					<Image 
-						src={"/images/emptydub_logo_t.png"} 
-						height={50} 
-						width={160}
-						aria-label='emptydub-production-logo'
-						alt="emptydub-logo" 
-						priority
-						layout='intrinsic'
-						className={FooterStyle.image}
-						/>
-				</div>
 				<div className={FooterStyle.logotext}>
-					Copyright © 2022, Emptydub Products
+					Copyright © 2022, <a href onClick={onClickUrl('https://miketwheeler.github.io')}>emptydub</a>
 				</div>
 			</div>
 			<div className={FooterStyle.texts}>
-				Some graphical elements and social icons were sourced and derived from asset sources at 
+				Some icons were sourced from public asset resources at
 				<a onClick={onClickUrl('https://flaticon.com')}>
-					FlatIcon.com
+					&thinsp;FlatIcon.com
 				</a>
 			</div>
 		</div>

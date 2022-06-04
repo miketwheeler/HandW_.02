@@ -1,8 +1,8 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
-import ContactFormStyles from './contact-form.module.css'
+import ContactFormStyles from './contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
@@ -57,7 +57,7 @@ const useStyles = makeStyles ({
 		fontSize: 28,
 	},
 	gudday: {
-		marginBottom: 40, 
+		margin: '40px 0', 
 	}
 });
 
@@ -89,9 +89,7 @@ function ContactForm() {
 	// Error Messages
 	const submitErrorText = "Something went wrong. Please try submitting your Quote Request again.";
 	const recaptchaErrorText = "The ReCaptcha has detected something strange. Please try again.";
-	const thankYouMessage = (date) => {
-		return `Thank you for your getting in touch with us! We will get back to you by 6:00pm PST within now and your callback range.`;
-	}
+	const thankYouMessage = (calltime) => `Thank you for your getting in touch with us! We will get back to you by 6:00pm in ${calltime}.`;
 	const errorMessage = `There was an error with your information submission. Please try again.`;
 
 	// Regex Validation
@@ -121,7 +119,7 @@ function ContactForm() {
 	useEffect(() => {
 		if(executeRecaptcha)
 			handleReCaptchaVerify();
-	  }, [executeRecaptcha, handleReCaptchaVerify]);
+	}, [executeRecaptcha, handleReCaptchaVerify]);
 
 	// Modal Close
 	const handleModalClose = () => {
@@ -314,7 +312,7 @@ function ContactForm() {
 						<RadioGroup 
 							row 
 							required
-							id='radio-selection-group-service-type'
+							id='radio-selection-group-services'
 							type='radio-group'
 							aria-label="select-service-radio-buttons" 
 							defaultValue="Other"
@@ -324,40 +322,40 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
-								id='radio-button-value-stairs'
+								id='radio-button-stairs'
 								type='radio-selection'
 								value="Stairs"
-								aria-label='radio-service-selection-value-stairs' 
+								aria-label='radio-selection-stairs' 
 								control={<Radio color="primary" />} 
 								label="Stairs"
 								labelPlacement="start"
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
-								id='radio-button-value-railing'
+								id='radio-button-railing'
 								type='radio-selection'
 								value="Railing" 
-								aria-label='radio-service-selection-value-railing'
+								aria-label='radio-selection-railing'
 								control={<Radio color="primary" />} 
 								label="Railing" 
 								labelPlacement="start"
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel
-								id='radio-button-value-refinishing'
+								id='radio-button-refinishing'
 								type='radio-selection'
 								value="Refinishing" 
-								aria-label='radio-service-selection-value-refinishing'
+								aria-label='radio-selection-refinishing'
 								control={<Radio color="primary" />} 
 								label="Refinishing"
 								labelPlacement="start"
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
-								id='radio-button-value-other'
+								id='radio-button-other'
 								type='radio-selection'
 								value="Other"
-								aria-label='radio-service-selection-value-other'
+								aria-label='radio-selection-other'
 								control={<Radio color="primary" />} 
 								label="Other"
 								labelPlacement="start"
@@ -383,30 +381,30 @@ function ContactForm() {
 							className={ContactFormStyles.radioContainer}
 							>
 							<FormControlLabel 
-								id='radio-button-value-next-day'
+								id='radio-button-next-day'
 								type='radio-selection'
 								value="Next Business Day"
-								aria-label='radio-callback-date-selection-value-next-business-day'
+								aria-label='radio-selection-next-business-day'
 								control={<Radio color="primary" />} 
-								label="Next Business Day"
+								label="1 Business Day"
 								labelPlacement="start"
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel 
-								id='radio-button-value-two-business-days'
+								id='radio-button-two-business-days'
 								type='radio-selection'
 								value="2 Business Days" 
-								aria-label='radio-callback-date-selection-value-two-business-days'
+								aria-label='radio-selection-two-business-days'
 								control={<Radio color="primary" />} 
 								label="2 Business Days" 
 								labelPlacement="start"
 								className={ContactFormStyles.radiobutton}
 							/>
 							<FormControlLabel
-								id='radio-button-value-three-business-days'
+								id='radio-button-three-business-days'
 								type='radio-selection'
 								value="3 Business Days" 
-								aria-label='radio-callback-date-selection-value-three-business-days'
+								aria-label='radio-selection-three-business-days'
 								control={<Radio color="primary" />} 
 								label="3 Business Days"
 								labelPlacement="start"
@@ -455,7 +453,7 @@ function ContactForm() {
 										success ? thankYouMessage(radioDateSelectionValue) : errorMessage
 									}
 								</p>
-								<h4 className={classes.gudday}>Have a good one!</h4>
+								<h4 className={classes.gudday}>Have a good day!</h4>
 								<Button 
 									className={ContactFormStyles.bttn}
 									type="button" 
