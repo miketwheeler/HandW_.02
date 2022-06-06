@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterStyle from './footer.module.css';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 
 function Footer() {
