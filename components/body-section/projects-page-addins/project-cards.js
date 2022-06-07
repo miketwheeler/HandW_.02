@@ -168,40 +168,38 @@ function ProjectCard(props) {
                 {
                     props.item.id % 2 === 0
                     ?
-                        <div className={ProjectStyles.cardInteriorContainer}>
-                            <div className={ProjectStyles.cardInnerStyle}>
-                                { 
-                                    // if image
-                                    !props.item.image 
-                                    ? 
-                                        <div className={ProjectStyles.imageContainer}> loading... </div>
-                                    : 
-                                        <div className={ProjectStyles.imageContainer}>
-                                            <Image
-                                                src={props.item.image} 
-                                                width={400}
-                                                height={465}
-                                                alt={"services-image"}
-                                                layout='intrinsic'
-                                                priority={true}
-                                                className={ProjectStyles.imageStyle}
-                                                />
-                                        </div>
+                        <div className={ProjectStyles.cardInnerStyle}>
+                            { 
+                                // if image
+                                !props.item.image 
+                                ? 
+                                    <div className={ProjectStyles.imageContainer}> loading... </div>
+                                : 
+                                    <div className={ProjectStyles.imageContainer}>
+                                        <Image
+                                            src={props.item.image} 
+                                            width={400}
+                                            height={465}
+                                            alt={"services-image"}
+                                            layout='intrinsic'
+                                            priority={true}
+                                            className={ProjectStyles.imageStyle}
+                                            />
+                                    </div>
+                            }
+                            <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
+                            <div className={ProjectStyles.captionContainer}>
+                                {
+                                    props.item.category
+                                    ? <p><strong>Category: </strong> {props.item.category}</p>
+                                    : null
                                 }
-                                <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
-                                <div className={ProjectStyles.captionContainer}>
-                                    {
-                                        props.item.category
-                                        ? <p><strong>Category: </strong> {props.item.category}</p>
-                                        : null
-                                    }
-                                    { 
-                                        props.item.completion 
-                                        ? <p><strong>Completed: </strong> {props.item.completion}</p>
-                                        : null
-                                    }
-                                    <p><strong>Description: </strong> {props.item.description}</p>
-                                </div>
+                                { 
+                                    props.item.completion 
+                                    ? <p><strong>Completed: </strong> {props.item.completion}</p>
+                                    : null
+                                }
+                                <p><strong>Description: </strong> {props.item.description}</p>
                             </div>
                         </div>
                     :

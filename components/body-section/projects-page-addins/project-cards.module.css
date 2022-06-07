@@ -19,35 +19,29 @@
         'image cardHeader'
         'image txtContent';
     padding-left: 8%;
-    /* border: 1px dashed blue; */
-    /* flex-direction: row-reverse; <<<<<--------- ***  */
 }
 .captionContainer {
     grid-area: txtContent;
-    display: flex;
     max-width: 420px;
     margin: 12px 0 12px 5%;
-    /* border: 1px solid green; */
 }
 .cardHeader {
     grid-area: cardHeader;
     margin: 20px 5%;
     max-width: 420px;
     font-weight: bold;
-    /* border: 1px solid orange; */
-
 }
 .imageContainer {
     grid-area: image;
     display: flex;
     justify-items: center;
     max-width: 380px;
-    max-height: 400px;
-    /* border: 1px dotted red; */
+    max-height: 380px;
 }
 .imageStyle {
     border-radius: 15px;
 }
+
 
 /* REVERSE LAYOUT - MD AND UP */
 .reverseCardInnerStyle {
@@ -57,30 +51,24 @@
     grid-template-areas: 
         'revCardHeader revImage'
         'revTxtContent revImage';
-    /* border: 1px dashed blue; */
 }
 .reverseCaptionContainer {
     grid-area: revTxtContent;
-    display: flex;
     max-width: 420px;
     margin: 12px 0 12px 5%;
-    /* border: 1px solid green; */
 }
 .reverseCardHeader {
     grid-area: revCardHeader;
     margin: 20px 5%;
     max-width: 420px;
     font-weight: bold;
-    /* border: 1px solid orange; */
 }
 .reverseImageContainer {
     grid-area: revImage;
     display: flex;
     justify-items: center;
     max-width: 380px;
-    max-height: 400px;
-    margin-left: 8%;
-    /* border: 1px dotted red; */
+    max-height: 380px;
 }
 
 
@@ -95,25 +83,23 @@
             'image' 
             'txtcontent';
         padding-left: 0;
-        /* border: 1px dashed blue; */
     }
     .cardHeader {
         grid-area: cardHeader;
         margin: 20px auto;
         max-width: 400px;
-        /* border: 1px solid orange; */
     }
     .captionContainer {
         grid-area: txtcontent;
         margin: 12px auto;
         max-width: 370px;
-        /* border: 1px solid green; */
     }
     .imageContainer {
         grid-area: image;
         margin: 0 auto;
-        /* border: 1px dotted red; */
     }
+
+
     /* REVERSED SM */
     .reverseCardInnerStyle {
         text-align: left;
@@ -125,23 +111,19 @@
             'revImage' 
             'revTxtcontent';
         padding-left: 0;
-        /* border: 1px dashed blue; */
     }
     .reverseCardHeader {
         grid-area: revCardHeader;
         margin: 20px auto;
         max-width: 400px;
-        /* border: 1px solid orange; */
     }
     .reverseCaptionContainer {
         grid-area: revTxtcontent;
         margin: 12px auto;
         max-width: 370px;
-        /* border: 1px solid green; */
     }
     .reverseImageContainer {
         grid-area: revImage;
         margin: 0 auto;
-        /* border: 1px dotted red; */
     }
 }
