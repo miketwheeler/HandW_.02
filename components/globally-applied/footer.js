@@ -17,12 +17,12 @@ function Footer() {
 		<div className={FooterStyle.container}>
 			<div className={FooterStyle.logoandtext}>
 				<div className={FooterStyle.logotext}>
-					Copyright © 2022, <a href onClick={onClickUrl('https://miketwheeler.github.io')}>emptydub</a>
+					Copyright © 2022, <a onClick={() => onClickUrl('https://miketwheeler.github.io')}>emptydub</a>
 				</div>
 			</div>
 			<div className={FooterStyle.texts}>
 				Some icons were sourced from public asset resources at
-				<a onClick={onClickUrl('https://flaticon.com')}>
+				<a onClick={() => onClickUrl('https://flaticon.com')}>
 					&thinsp;FlatIcon.com
 				</a>
 			</div>

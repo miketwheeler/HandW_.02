@@ -28,22 +28,6 @@ const captionStyle2 = {
     marginLeft: '20px',
 }
 
-// function useWindowWidth() {
-//     const [watchX, setWatchX] = useState(false);
-//     const mql = window.matchMedia("(max-width: 500px)");
-    
-//     useEffect(() => {
-//         function handleResize(e) {
-//             e.matches ? setWatchX(true) : setWatchX(false)
-//         }
-//         mql.addEventListener("change", handleResize);
-
-//         return () => { mql.removeEventListener("change", handleResize) }
-//     }, [mql])
-
-//     return watchX;
-// }
-
 
 // Main component exported to the appropriate ~Project~ section
 // Assembles all the cards into one component
@@ -165,7 +149,6 @@ function ProjectList() {
 
 // Individual card created from passed props- returns and is added to the project collection
 function ProjectCard(props) {
-    // let currWatchX = useWindowWidth();
 
     return (
         <div>
@@ -182,49 +165,84 @@ function ProjectCard(props) {
                 : null  // Or skip leading non-found elements
             }
             <div className={ProjectStyles.card}>
-                <div className={ProjectStyles.cardInteriorContainer}>
-                    {/* Alternating styles on EVERY OTHER CARD(on %2) */}
-                    <div className={ProjectStyles.cardInnerStyle}>
-                        { 
-                        // if image
-                        !props.item.image 
-                        ? <div className={ProjectStyles.imageContainer}> loading... </div>
-                        : <div className={ProjectStyles.imageContainer}>
-                                <Image
-                                    src={props.item.image} 
-                                    width={400}
-                                    height={465}
-                                    alt={"services-image"}
-                                    layout='intrinsic'
-                                    priority={true}
-                                    className={ProjectStyles.imageStyle}
-                                    />
-                            </div>
-                        }
-                        <div style={captionContainer}>
-                            {/* Odd cards set with alternating layout */}
-                            <div>
-                            {/* <div style={
-                                    props.item.id % 2 === 0 
-                                    ? {flexDirection: 'row-reverse'}
-                                    : {flexDirection: 'row'}
-                                }> */}
-                                <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
-                                {
-                                    props.item.category
-                                    ? <p><strong>Category: </strong> {props.item.category}</p>
-                                    : null
-                                }
+                {
+                    props.item.id % 2 === 0
+                    ?
+                        <div className={ProjectStyles.cardInteriorContainer}>
+                            <div className={ProjectStyles.cardInnerStyle}>
                                 { 
-                                    props.item.completion 
-                                    ? <p><strong>Completed: </strong> {props.item.completion}</p>
-                                    : null
+                                    // if image
+                                    !props.item.image 
+                                    ? 
+                                        <div className={ProjectStyles.imageContainer}> loading... </div>
+                                    : 
+                                        <div className={ProjectStyles.imageContainer}>
+                                            <Image
+                                                src={props.item.image} 
+                                                width={400}
+                                                height={465}
+                                                alt={"services-image"}
+                                                layout='intrinsic'
+                                                priority={true}
+                                                className={ProjectStyles.imageStyle}
+                                                />
+                                        </div>
                                 }
-                                <p><strong>Description: </strong> {props.item.description}</p>
+                                <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
+                                <div className={ProjectStyles.captionContainer}>
+                                    {
+                                        props.item.category
+                                        ? <p><strong>Category: </strong> {props.item.category}</p>
+                                        : null
+                                    }
+                                    { 
+                                        props.item.completion 
+                                        ? <p><strong>Completed: </strong> {props.item.completion}</p>
+                                        : null
+                                    }
+                                    <p><strong>Description: </strong> {props.item.description}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    :
+                        // REVERSED LAYOUT 
+                        <div className={ProjectStyles.reverseCardInnerStyle}>
+                            { 
+                                // if image
+                                !props.item.image 
+                                ? 
+                                    <div className={ProjectStyles.reverseImageContainer}> loading... </div>
+                                : 
+                                    <div className={ProjectStyles.reverseImageContainer}>
+                                        <Image
+                                            src={props.item.image} 
+                                            width={400}
+                                            height={465}
+                                            alt={"services-image"}
+                                            layout='intrinsic'
+                                            priority={true}
+                                            className={ProjectStyles.imageStyle}
+                                            />
+                                    </div>
+                            }
+                            <h3 className={ProjectStyles.reverseCardHeader}>{props.item.title}</h3>
+                            <div className={ProjectStyles.reverseCaptionContainer}>
+                                <div>
+                                    {
+                                        props.item.category
+                                        ? <p><strong>Category: </strong> {props.item.category}</p>
+                                        : null
+                                    }
+                                    { 
+                                        props.item.completion 
+                                        ? <p><strong>Completed: </strong> {props.item.completion}</p>
+                                        : null
+                                    }
+                                    <p><strong>Description: </strong> {props.item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                }
             </div>
         </div>
     )

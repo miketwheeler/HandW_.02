@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectStyles from './Projects.module.css';
-import ProjectList from '../components/body-section/projects-page-addins/project-list';
+// import ProjectList from '../components/body-section/projects-page-addins/project-list';
+import ProjectList from '../components/body-section/projects-page-addins/project-cards';
 import DocStyles from '../styles/contentStyles.module.css'
 import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
 
@@ -32,10 +33,10 @@ function Projects() {
 				</div>
 			</div>
 			<div className={ProjectStyles.projects}>
-				<div className={ProjectStyles.projectList}>
-				<h2 className={DocStyles.pageheader}>Projects & Our Facility</h2>
+				{/* <div className={ProjectStyles.projectList}> */}
+					<h2 className={DocStyles.pageheader}>Projects & Our Facility</h2>
 					<ProjectList />
-				</div>
+				{/* </div> */}
 				
 			</div>
 			

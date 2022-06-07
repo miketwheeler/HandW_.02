@@ -8,16 +8,11 @@ import Layout from '../components/layout/layout';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import dynamic from 'next/dynamic';
 
-// Mainsection content for routing in
+// Mainsection content dynamic routing - ie lazy
 const HomePage = dynamic(() => import("./Home"));
 const QuoteEstimates = dynamic(() => import("./Quotes"));
 const Services = dynamic(() => import("./Services"));
 const Projects = dynamic(() => import("./Projects"));
-// import HomePage from './Home';
-// import QuoteEstimates from './Quotes';
-// import Services from './Services';
-// import Projects from './Projects';
-
 
 export default function App() {
 	return (
@@ -28,12 +23,12 @@ export default function App() {
 				<CarouselComponent />
 				<div>
 					<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}>
-					<Switch>
-						<Route path="/quotes-estimates" component={QuoteEstimates}/>
-						<Route path="/services" component={Services}/>
-						<Route path="/projects" component={Projects}/>
-						<Route path="/" component={HomePage}/>
-					</Switch>
+						<Switch>
+							<Route path="/quotes-estimates" component={QuoteEstimates}/>
+							<Route path="/services" component={Services}/>
+							<Route path="/projects" component={Projects}/>
+							<Route path="/" component={HomePage}/>
+						</Switch>
 					</GoogleReCaptchaProvider>
 				</div>
 				<Infolink />
