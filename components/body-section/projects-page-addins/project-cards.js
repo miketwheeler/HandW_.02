@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import ProjectStyles from './project-cards.module.css';
-
 
 
 
@@ -15,22 +14,9 @@ const headingstyle = {
     borderStyle: 'solid',
     borderImage: 'linear-gradient(to right, rgb(182, 98, 50), rgba(182, 98, 50, 0.507), transparent) 0 0 60% 0',
 }
-// Text Content display
-const captionContainer = {
-    margin: 'auto 12px',
-    width: '100%',
-    minWidth: '120px'
-}
-const captionStyle1 = {
-    marginRight: '20px', 
-}
-const captionStyle2 = {
-    marginLeft: '20px',
-}
 
-
-// Main component exported to the appropriate ~Project~ section
-// Assembles all the cards into one component
+// EXPORTED - Main component exported to the appropriate ~Project~ section
+// Assembles all spun project-cards into one component
 function ProjectList() {
 	const projects = [
         // Installation Example
@@ -147,7 +133,7 @@ function ProjectList() {
 	)
 }
 
-// Individual card created from passed props- returns and is added to the project collection
+// Individual card - uses passed data
 function ProjectCard(props) {
 
     return (

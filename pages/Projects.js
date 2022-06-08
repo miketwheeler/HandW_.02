@@ -1,6 +1,5 @@
 import React from 'react';
 import ProjectStyles from './Projects.module.css';
-// import ProjectList from '../components/body-section/projects-page-addins/project-list';
 import ProjectList from '../components/body-section/projects-page-addins/project-cards';
 import DocStyles from '../styles/contentStyles.module.css'
 import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
