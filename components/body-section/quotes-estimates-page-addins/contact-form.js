@@ -1,12 +1,12 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { FormControl, FormControlLabel, FormLabel, RadioGroup, RadioButton, TextField, Radio, Button } from '@material-ui/core'
+import React, { useState, useCallback, useEffect } from 'react';
+import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
-import { RadioButtonChecked } from '@material-ui/icons';
+// import sendEmail from '../../../functions/sendemail/sendemail';
 const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
@@ -91,24 +91,16 @@ function ContactForm() {
 		message: { value: "", message: "Please leave us a memo (No Numbers Please)"},
 	};
 	const [checkVals, setCheckVals] = useState(initialStateVals);
-	const [radioSubjectSelectionValue, setRadioSubjectSelectionValue] = useState("Stairs");
-	const [radioDateSelectionValue, setRadioDateSelectionValue] = useState("1 Business Day");
-	
+	const [subject, setSubject] = useState("Stairs");
+	const [timeframe, setTimeframe] = useState("1 Business Day");
 	// Modal & Error Messages
 	const [success, setSuccess] = useState(false);
     const [messageModalOpen, setMessageModalOpen] = useState(messageModalOpen ? messageModalOpen : false);
-	
 	// captcha && form fields throw bool for submission button active/non-active
 	const [scoreCard, setScoreCard] = useState(0.0);
-
-	// TODO: Do I need these?
-	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
-	const [postErrorFlag, setPostErrorFlag] = useState(false);
-
 	// Form Error Checking Vars
 	const [isError, setIsError] = useState(false);
 	const docLabel = document.querySelector('.Mui-error');
-	
 	// Messages
 	const variousMessages = {
 		submitErrorText: "Something went wrong. Please try submitting your Quote Request again.",
@@ -116,7 +108,6 @@ function ContactForm() {
 		thankYouMessage: (calltime) => `Thank you for your getting in touch with us! We will get back to you by 6:00pm in ${calltime}.`,
 		errorMessage: `There was an error with your Quote Submission. Please try again.`
 	}
-	
 	// Field Validation
 	const regexComps = {
 		reNormString: /^([^0-9]*)$/,
@@ -142,25 +133,20 @@ function ContactForm() {
 	}
 
 	// Formats current date
-	const formattedCallbackDate = () => {
-		const dateString = new Date.toString(); // Sets the date to a string to parse
-		const callBackDate = dateString.substring(0,15); // Dayofweek Month day year (Ex: Monday Jan 30 2022)
-		const callBackTime = dateString.toString().substring(16,24); // time converted to standard time -skip GMT-xxxxx- 
-		const callBackTimezone = dateString.substring(34); // then the suffix time zone
-		return `${callBackDate} ${callBackTime} ${callBackTimezone}`;
+	const formattedCallbackDate = (date) => {
+		const dateString = date.toString(); // Sets the date to a string to parse
+		const callBackDate = `${dateString.substring(0,15)} ${dateString.substring(16, 24)} ${dateString.substring(34)}`; // grabs what's needed for this info
+		return callBackDate;
 	}
 	
 	// Evals on page load -- need to min this to var <onActivelyTypingOnForm>
 	useEffect(() => {
-		if(executeRecaptcha)
+		if(executeRecaptcha) {
 			handleReCaptchaVerify();
-	}, [executeRecaptcha, handleReCaptchaVerify]);
-
-	// Checks the form for Mui-based error thrown - active
-	useEffect(() =>{
+		}
 		docLabel !== undefined && docLabel ? setIsError(true) : setIsError(false);
-		console.log(isError);
-	}, [docLabel, isError])
+
+	}, [executeRecaptcha, handleReCaptchaVerify, docLabel, isError]);
 
 	// Success/Deny Message Modal Close Func
 	const handleModalClose = () => {
@@ -172,10 +158,8 @@ function ContactForm() {
 	// Called on submission
 	function resetForm() {
 		setCheckVals(initialStateVals)
-		// console.log(checkVals)
-		setRadioSubjectSelectionValue("Stairs");
-		setRadioDateSelectionValue("1 Business Day");
-		setIsVerifiedOnSubmit(false);
+		setSubject("Stairs");
+		setTimeframe("1 Business Day");
 		setIsError(false);
 	}
 
@@ -222,16 +206,14 @@ function ContactForm() {
 
 			if(response.data.score !== 0) {
 				scoreCard > 40 && response.data.action === 'submit' && response.data.success
-				? setIsVerifiedOnSubmit(true)
+				? setSuccess(false)
 				: null; 
 			}
 			else { window.alert(variousMessages.recaptchaErrorText) }
 		})
 		.catch(function(error) {
 			console.log("client-recaptcha-error-message", error)
-			setPostErrorFlag(true);
 			setMessageModalOpen(true);
-			window.alert(variousMessages.submitErrorText);
 		})
 	}, [executeRecaptcha, scoreCard]);
 	
@@ -244,13 +226,15 @@ function ContactForm() {
 		}
 		else {
 			const sendEmailUrl = '/.netlify/functions/sendemail';
+			const newDate = new Date()
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
+			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})` 
 			const templateData = {
 				'name': `${formattedName}`,
 				'phone': `${checkVals.phoneNumber.value}`,
-				'job': `${radioSubjectSelectionValue}`,
-				'needBy': `${radioDateSelectionValue.toUpperCase()} from (${formattedCallbackDate})`,
+				'job': `${subject}`,
+				'needBy': `${formattedTimeframe}`,
 				'text': `${formattedMessage}`,
 				'from': `${checkVals.email.value}`,
 			};
@@ -263,7 +247,6 @@ function ContactForm() {
 			})
 			.catch(function(error) {
 				console.log('client-email-error: ', error);
-				setPostErrorFlag(true);
 				setMessageModalOpen(true);
 				window.alert(variousMessages.submitErrorText);
 			})
@@ -274,7 +257,6 @@ function ContactForm() {
 		<ThemeProvider theme={theme}>
 			<form 
 				className={classes.formStyle} 
-				// autoComplete="off" 
 				onSubmit={(event) => handleSubmit(event)}
 				id='quote-form'
 				aria-label="job-quote-form"
@@ -342,8 +324,8 @@ function ContactForm() {
 						type='radio-group'
 						aria-label="subject-radio-buttons" 
 						defaultValue="Stairs"
-						value={radioSubjectSelectionValue} 
-						onChange={(e) => setRadioSubjectSelectionValue(e.target.value)}
+						value={subject} 
+						onChange={(e) => setSubject(e.target.value)}
 						className={ContactFormStyles.radioContainer}
 						>
 						<FormControlLabel 
@@ -405,8 +387,8 @@ function ContactForm() {
 						type='radio-group'
 						aria-label="timeframe-radio-buttons" 
 						defaultValue="1 Business Day"
-						value={radioDateSelectionValue} 
-						onChange={(e) => setRadioDateSelectionValue(e.target.value)}
+						value={timeframe} 
+						onChange={(e) => setTimeframe(e.target.value)}
 						className={ContactFormStyles.radioContainer}
 						>
 						<FormControlLabel 
@@ -474,7 +456,7 @@ function ContactForm() {
 							</h2>
 							<p id="modal-description" className={classes.modaltext}>
 								{
-									success ? variousMessages.thankYouMessage(radioDateSelectionValue) : variousMessages.errorMessage
+									success ? variousMessages.thankYouMessage(timeframe) : variousMessages.errorMessage
 								}
 							</p>
 							<h4 className={classes.haveGoodDayMsg}>Have a good day!</h4>

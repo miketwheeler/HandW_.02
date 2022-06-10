@@ -1,8 +1,15 @@
 require('dotenv').config()
 
-
-const { NEXT_PUBLIC_EJSU, NEXT_PUBLIC_EJS_SID, NEXT_PUBLIC_EJS_TID, NEXT_PUBLIC_EJS_UID, NEXT_PUBLIC_EJS_AT } = process.env;
 const axios = require('axios');
+
+const korurl = process.env.NEXT_PUBLIC_KORURL;
+const korak = process.env.NEXT_PUBLIC_KORAK;
+const korxapik = process.env.NEXT_PUBLIC_KORXAPIK;
+const ejssid = process.env.NEXT_PUBLIC_EJS_SID;
+const ejstid = process.env.NEXT_PUBLIC_EJS_TID;
+const ejsuid = process.env.NEXT_PUBLIC_EJS_UID;
+const ejsat = process.env.NEXT_PUBLIC_EJS_AT;
+
 
 exports.handler = async function(event, context) {
     if(!event.httpMethod === 'POST'){
@@ -11,44 +18,43 @@ exports.handler = async function(event, context) {
 
     let responseStatusCode = 0;
     let responseMessage = '';
-
     const parsedTemplateData = JSON.parse(event.body);
-
-    let options = { 
-        method: 'POST',
-        url: NEXT_PUBLIC_EJSU,
+    const assembledData = JSON.stringify({
+            "service_id": ejssid,
+            "template_id": ejstid,
+            "user_id": ejsuid,
+            "template_params": parsedTemplateData,
+            "accessToken": ejsat
+    });
+    const config = { 
+        method: 'post',
+        url: korurl,
         headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json',
+            "x-api-key": korxapik,
+            'authorization': korak,
+            'content-type': 'application/json',
         },
-        data: {
-            accessToken: NEXT_PUBLIC_EJS_AT,
-            service_id: NEXT_PUBLIC_EJS_SID,
-            template_id: NEXT_PUBLIC_EJS_TID,
-            template_params: parsedTemplateData,
-            user_id: NEXT_PUBLIC_EJS_UID,
-        }
+        data: assembledData
     }
     
-    // await axios.request(options)
-    // axios.request(options)
-    // .then(function(res) {
-    //     console.log(res.data);
-    //     responseStatusCode = res.statusCode;
-    //     responseMessage = res.message;
-    // })
-    // .catch(function(error) {
-    //     console.log(error);
-    //     responseStatusCode = error.statusCode;
-    //     responseMessage = error.message;
-    // })
+    await axios(config)
+    .then(function(res) {
+        console.log(res.data);
+        responseStatusCode = res.statusCode;
+        responseMessage = res.message;
+    })
+    .catch(function(error) {
+        console.log(error);
+        responseStatusCode = error.statusCode;
+        responseMessage = error.message;
+    })
     
-    console.log('send-email: ', parsedTemplateData)
+    // console.log('send-email: ', parsedTemplateData)
 
     return {
-        statusCode: 200,
-        body: JSON.stringify({message: 'success'})
-        // statusCode: responseStatusCode,
-        // body: JSON.stringify({message: `${responseMessage}`}),
+        // statusCode: 200,
+        // body: JSON.stringify({message: 'success'})
+        statusCode: responseStatusCode,
+        body: JSON.stringify({message: `${responseMessage}`}),
     }
 }
