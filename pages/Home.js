@@ -48,10 +48,8 @@ function HomePage() {
 					<h2 className={DocStyles.pageheader}>Our Services</h2>
 					<ServiceDeck />
 				</div>
-
 				{/* Get a quote button */}
 				<GettaQuoteButton />
-
 			</div>
 		</div>
 	)

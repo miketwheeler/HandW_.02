@@ -13,7 +13,6 @@ function MyApp({ Component, pageProps }) {
 				<link rel="icon" href="/android-chrome-512x512.png" />
 				<meta name="description" content="H&W Stair and Rail llc, lincoln nebraska" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				
 			</Head>
 			{ 
 				typeof window === 'undefined' ? null : 

@@ -113,7 +113,7 @@ function ContactForm() {
 		reNormString: /^([^0-9]*)$/,
 		rePhone: /[0-9]/g,
 		reEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-		reMessage: /([\n\r\t])/g
+		reMessage: /([\n\r\t])/g,
 	}
 	
 
@@ -129,7 +129,6 @@ function ContactForm() {
 				}
 			})
 		}
-		console.log("onChange checkVals: ", checkVals)
 	}
 
 	// Formats current date
@@ -141,12 +140,13 @@ function ContactForm() {
 	
 	// Evals on page load -- need to min this to var <onActivelyTypingOnForm>
 	useEffect(() => {
-		if(executeRecaptcha) {
+		if(executeRecaptcha)
 			handleReCaptchaVerify();
-		}
-		docLabel !== undefined && docLabel ? setIsError(true) : setIsError(false);
+	}, [executeRecaptcha, handleReCaptchaVerify]);
 
-	}, [executeRecaptcha, handleReCaptchaVerify, docLabel, isError]);
+	useEffect(() => {
+		docLabel !== undefined && docLabel ? setIsError(true) : setIsError(false);
+	}, [docLabel, isError])
 
 	// Success/Deny Message Modal Close Func
 	const handleModalClose = () => {
@@ -226,17 +226,17 @@ function ContactForm() {
 		}
 		else {
 			const sendEmailUrl = '/.netlify/functions/sendemail';
-			const newDate = new Date()
+			const newDate = new Date();
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
 			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})` 
 			const templateData = {
-				'name': `${formattedName}`,
-				'phone': `${checkVals.phoneNumber.value}`,
-				'job': `${subject}`,
-				'needBy': `${formattedTimeframe}`,
-				'text': `${formattedMessage}`,
-				'from': `${checkVals.email.value}`,
+				"name": `${formattedName}`,
+				"phone": `${checkVals.phoneNumber.value}`,
+				"job": `${subject}`,
+				"needBy": `${formattedTimeframe}`,
+				"text": `${formattedMessage}`,
+				"from": `${checkVals.email.value}`,
 			};
 			await axios.post(sendEmailUrl, templateData)
 			.then(function(response) {
@@ -459,7 +459,9 @@ function ContactForm() {
 									success ? variousMessages.thankYouMessage(timeframe) : variousMessages.errorMessage
 								}
 							</p>
-							<h4 className={classes.haveGoodDayMsg}>Have a good day!</h4>
+							{
+								success ? <h4 className={classes.haveGoodDayMsg}>Have a good day!</h4> : null
+							}
 							<Button 
 								className={classes.bttn}
 								type="button" 

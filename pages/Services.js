@@ -9,7 +9,6 @@ function Services() {
 		<div className={DocStyles.bodycontainer}>
 			<div className={ServiceStyles.serviceContainer}>
 			<h2 className={DocStyles.pageheader}>Our Services</h2>
-
 				{/* Services Listed */}
 				<div className={ServiceStyles.serviceSection}>
 					<div className={ServiceStyles.serviceColumn1}>
@@ -55,10 +54,8 @@ function Services() {
 							</ul>
 						</div>
 					</div>
-					
 					{/* column divider */}
 					<div className={ServiceStyles.divider1}></div>
-
 					<div className={ServiceStyles.serviceColumn2}>
 						<h3 className={DocStyles.subheader1}>Restorations</h3>
 						<div className={ServiceStyles.section}>
@@ -91,10 +88,8 @@ function Services() {
 							</ul>
 						</div>
 					</div>
-
 					{/* column divider */}
 					<div className={ServiceStyles.divider2}></div>
-
 					<div className={ServiceStyles.serviceColumn3}>
 						<h3 className={DocStyles.subheader1}>Finishing</h3>
 						<div className={ServiceStyles.section}>
@@ -132,10 +127,8 @@ function Services() {
 					We can handle just about any job requested. Feel free to reach out and get into contact with us, we're 
 					interested in what you have in mind and helping you through the process.
 				</div>
-
 				{/* Get a Quote Button */}
 				<GettaQuoteButton />
-
 			</div>
 		</div>
 	)

@@ -24,37 +24,35 @@ exports.handler = async function(event, context) {
             "template_id": ejstid,
             "user_id": ejsuid,
             "template_params": parsedTemplateData,
-            "accessToken": ejsat
+            "accessToken": korak
     });
     const config = { 
         method: 'post',
         url: korurl,
         headers: {
-            "x-api-key": korxapik,
+            'x-api-key': korxapik,
             'authorization': korak,
             'content-type': 'application/json',
         },
         data: assembledData
     }
-    
-    await axios(config)
-    .then(function(res) {
-        console.log(res.data);
-        responseStatusCode = res.statusCode;
+
+    axios(config)
+    .then(function (res) {
+        console.log(JSON.stringify(res.data));
+        responseStatusCode = res.data;
         responseMessage = res.message;
     })
-    .catch(function(error) {
+    .catch(function (error) {
         console.log(error);
         responseStatusCode = error.statusCode;
         responseMessage = error.message;
     })
     
-    // console.log('send-email: ', parsedTemplateData)
-
     return {
-        // statusCode: 200,
+        statusCode: 200,
         // body: JSON.stringify({message: 'success'})
-        statusCode: responseStatusCode,
+        // statusCode: responseStatusCode,
         body: JSON.stringify({message: `${responseMessage}`}),
     }
 }

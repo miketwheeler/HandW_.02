@@ -17,7 +17,6 @@ const Projects = dynamic(() => import("./Projects"));
 export default function App() {
 	return (
 		<>
-			
 			<Layout>
 				<Navigation />
 				<CarouselComponent />
@@ -34,7 +33,6 @@ export default function App() {
 				<Infolink />
 				<Footer />
 			</Layout>
-			
 		</>
 	);
 }

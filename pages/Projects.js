@@ -12,7 +12,7 @@ function Projects() {
 				<h2 className={DocStyles.pageheader}>Why We Do It</h2>
 				<div className={ProjectStyles.note}>
 					<br />
-					<p>Patrons,</p>
+					<p>Hello,</p>
 					<br />
 					<p>
 						As welders we noticed our abilities set us apart.  After working at other companies, 
@@ -32,16 +32,11 @@ function Projects() {
 				</div>
 			</div>
 			<div className={ProjectStyles.projects}>
-				{/* <div className={ProjectStyles.projectList}> */}
 					<h2 className={DocStyles.pageheader}>Projects & Our Facility</h2>
-					<ProjectList />
-				{/* </div> */}
-				
+					<ProjectList />				
 			</div>
-			
 			{/* Get a quote button */}
 			<GettaQuoteButton />
-
 		</div>
 	)
 }
