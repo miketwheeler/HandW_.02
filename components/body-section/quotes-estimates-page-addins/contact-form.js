@@ -1,13 +1,12 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
+import { FormControl, FormControlLabel, FormLabel, RadioGroup, RadioButton, TextField, Radio, Button } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
+import { RadioButtonChecked } from '@material-ui/icons';
 const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
@@ -29,6 +28,16 @@ const useStyles = makeStyles ({
 		'&:focus': {
 			color: 'rgb(49, 49, 173)',
 		}
+	},
+	bttn: {
+		width: '150px',
+		height: '50px',
+		marginTop: '14px',
+		backgroundColor: 'rgb(182, 98, 50)', 
+		color: 'white', 
+		marginRight: '2px',
+		float: 'right',
+		fontSize: '18px',
 	},
 	paper: {
         position: 'absolute',
@@ -79,37 +88,43 @@ function ContactForm() {
 		fullName: { value: "", message: "Please provide a valid Name" },
 		phoneNumber: { value: "", message: "Please provide a valid Phone Number" },
 		email: { value: "", message: "Please provide a valid Email" },
-		message: { value: "", message: "Please leave us a memo (No Numbers)"}
+		message: { value: "", message: "Please leave us a memo (No Numbers Please)"},
 	};
 	const [checkVals, setCheckVals] = useState(initialStateVals);
-	const [radioSubjectSelectionValue, setRadioSubjectSelectionValue] = useState("Other");
-	const [radioDateSelectionValue, setRadioDateSelectionValue] = useState("Next Business Day");
+	const [radioSubjectSelectionValue, setRadioSubjectSelectionValue] = useState("Stairs");
+	const [radioDateSelectionValue, setRadioDateSelectionValue] = useState("1 Business Day");
+	
 	// Modal & Error Messages
 	const [success, setSuccess] = useState(false);
     const [messageModalOpen, setMessageModalOpen] = useState(messageModalOpen ? messageModalOpen : false);
+	
 	// captcha && form fields throw bool for submission button active/non-active
 	const [scoreCard, setScoreCard] = useState(0.0);
+
+	// TODO: Do I need these?
 	const [isVerifiedOnSubmit, setIsVerifiedOnSubmit] = useState(false);
 	const [postErrorFlag, setPostErrorFlag] = useState(false);
+
+	// Form Error Checking Vars
 	const [isError, setIsError] = useState(false);
+	const docLabel = document.querySelector('.Mui-error');
+	
 	// Messages
 	const variousMessages = {
 		submitErrorText: "Something went wrong. Please try submitting your Quote Request again.",
 		recaptchaErrorText: "The ReCaptcha has detected something strange. Please try again.",
 		thankYouMessage: (calltime) => `Thank you for your getting in touch with us! We will get back to you by 6:00pm in ${calltime}.`,
-		errorMessage: `There was an error with your information submission. Please try again.`
+		errorMessage: `There was an error with your Quote Submission. Please try again.`
 	}
+	
+	// Field Validation
 	const regexComps = {
 		reNormString: /^([^0-9]*)$/,
 		rePhone: /[0-9]/g,
 		reEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 		reMessage: /([\n\r\t])/g
 	}
-	// const reNormString = /^([^0-9]*)$/;
-	// const rePhone = /[0-9]/g;
-	// const reEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	// const reMessage = /([\n\r\t])/g;
-	const docLabel = document.querySelector('.Mui-error');
+	
 
 	// Form submission & resets
 	const handleChange = (e) => {
@@ -123,6 +138,7 @@ function ContactForm() {
 				}
 			})
 		}
+		console.log("onChange checkVals: ", checkVals)
 	}
 
 	// Formats current date
@@ -156,9 +172,9 @@ function ContactForm() {
 	// Called on submission
 	function resetForm() {
 		setCheckVals(initialStateVals)
-		console.log(checkVals)
-		setRadioSubjectSelectionValue("Other");
-		setRadioDateSelectionValue("Next Business Day");
+		// console.log(checkVals)
+		setRadioSubjectSelectionValue("Stairs");
+		setRadioDateSelectionValue("1 Business Day");
 		setIsVerifiedOnSubmit(false);
 		setIsError(false);
 	}
@@ -228,7 +244,7 @@ function ContactForm() {
 		}
 		else {
 			const sendEmailUrl = '/.netlify/functions/sendemail';
-			const formattedMessage = checkVals.message.value.replace(reMessage, " ");
+			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
 			const templateData = {
 				'name': `${formattedName}`,
@@ -258,10 +274,9 @@ function ContactForm() {
 		<ThemeProvider theme={theme}>
 			<form 
 				className={classes.formStyle} 
-				autoComplete="off" 
+				// autoComplete="off" 
 				onSubmit={(event) => handleSubmit(event)}
 				id='quote-form'
-				// type='form'
 				aria-label="job-quote-form"
 				>
 				{/* Name */}
@@ -271,7 +286,6 @@ function ContactForm() {
 						InputLabelProps={{classes: {root: classes.label}}}
 						id="fullName"
 						label="Name"
-						type="text"
 						aria-label="full-name"
 						value={checkVals.fullName.value}
 						fullWidth
@@ -288,15 +302,14 @@ function ContactForm() {
 						InputLabelProps={{classes: {root: classes.label}}}
 						id="phoneNumber"
 						label="Phone Number"
-						type="text"
 						aria-label='phone-number'
 						value={checkVals.phoneNumber.value}
 						fullWidth
 						variant="outlined"
 						margin="normal"
-						customInput={TextField}
 						format="+1 (###) ###-####"
 						mask="_"
+						customInput={TextField}
 						onChange={handleChange}
 						error={vetInputs('phoneNumber')}
 						helperText={vetInputs('phoneNumber') ? checkVals.phoneNumber.message : null}
@@ -307,12 +320,11 @@ function ContactForm() {
 						InputLabelProps={{classes: {root: classes.label}}}
 						id="email"
 						label="Email" 
-						type="text"
 						aria-label="your-email"
-						value={checkVals.email.value}
 						fullWidth
 						variant="outlined"
 						margin="normal"      
+						value={checkVals.email.value}
 						onChange={handleChange}
 						error={vetInputs('email')}
 						helperText={vetInputs('email') ? checkVals.email.message : null}
@@ -326,53 +338,57 @@ function ContactForm() {
 					<RadioGroup 
 						row 
 						required
-						id='radio-selection-group-services'
+						id='subject-matter'
 						type='radio-group'
-						aria-label="select-service-radio-buttons" 
-						defaultValue="Other"
-						name="currentSelection" 
+						aria-label="subject-radio-buttons" 
+						defaultValue="Stairs"
 						value={radioSubjectSelectionValue} 
 						onChange={(e) => setRadioSubjectSelectionValue(e.target.value)}
 						className={ContactFormStyles.radioContainer}
 						>
 						<FormControlLabel 
-							id='radio-button-stairs'
-							type='radio-selection'
-							value="Stairs"
-							aria-label='radio-selection-stairs' 
-							control={<Radio color="primary" />} 
+							id='Stairs'
 							label="Stairs"
+							value="Stairs"
+							aria-label='stairs' 
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 						<FormControlLabel 
-							id='radio-button-railing'
-							type='radio-selection'
-							value="Railing" 
-							aria-label='radio-selection-railing'
-							control={<Radio color="primary" />} 
+							id='Railing'
 							label="Railing" 
+							value="Railing" 
+							aria-label='railing'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
+							className={ContactFormStyles.radiobutton}
+						/>
+						<FormControlLabel 
+							id='Stair-and-Rail'
+							label="Stair & Railing"
+							value="Stair & Railing"
+							aria-label='stairs-and-railing' 
+							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 						<FormControlLabel
-							id='radio-button-refinishing'
-							type='radio-selection'
-							value="Refinishing" 
-							aria-label='radio-selection-refinishing'
-							control={<Radio color="primary" />} 
+							id='Refinishing'
 							label="Refinishing"
+							value="Refinishing" 
+							aria-label='refinishing'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 						<FormControlLabel 
-							id='radio-button-other'
-							type='radio-selection'
-							value="Other"
-							aria-label='radio-selection-other'
-							control={<Radio color="primary" />} 
+							id='Other'
 							label="Other"
+							value="Other"
+							aria-label='other'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 					</RadioGroup>
@@ -385,43 +401,39 @@ function ContactForm() {
 					<RadioGroup 
 						row 
 						required
-						id='radio-selection-group-date'
+						id='timeframe'
 						type='radio-group'
-						aria-label="select-date-radio-buttons" 
-						defaultValue="Next Business Day"
-						name="dateSelection" 
+						aria-label="timeframe-radio-buttons" 
+						defaultValue="1 Business Day"
 						value={radioDateSelectionValue} 
 						onChange={(e) => setRadioDateSelectionValue(e.target.value)}
 						className={ContactFormStyles.radioContainer}
 						>
 						<FormControlLabel 
-							id='radio-button-next-day'
-							type='radio-selection'
-							value="Next Business Day"
-							aria-label='radio-selection-next-business-day'
-							control={<Radio color="primary" />} 
+							id='one-day'
 							label="1 Business Day"
+							value="1 Business Day"
+							aria-label='one-business-day'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 						<FormControlLabel 
-							id='radio-button-two-business-days'
-							type='radio-selection'
-							value="2 Business Days" 
-							aria-label='radio-selection-two-business-days'
-							control={<Radio color="primary" />} 
+							id='two-days'
 							label="2 Business Days" 
+							value="2 Business Days" 
+							aria-label='two-business-days'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 						<FormControlLabel
-							id='radio-button-three-business-days'
-							type='radio-selection'
-							value="3 Business Days" 
-							aria-label='radio-selection-three-business-days'
-							control={<Radio color="primary" />} 
+							id='three-days'
 							label="3 Business Days"
+							value="3 Business Days" 
+							aria-label='three-business-days'
 							labelPlacement="start"
+							control={<Radio color="primary" />} 
 							className={ContactFormStyles.radiobutton}
 						/>
 					</RadioGroup>
@@ -432,8 +444,7 @@ function ContactForm() {
 						required
 						InputLabelProps={{classes: {root: classes.label}}}
 						id="message"
-						label="Message or Other"
-						type="text"
+						label="Message and Other Notes"
 						aria-label="your-message"
 						value={checkVals.message.value}
 						fullWidth 
@@ -447,7 +458,7 @@ function ContactForm() {
 						helperText={vetInputs('message') ? checkVals.message.message : null}
 					/>
 				</FormControl>
-				{/* MODAL - Display on successful filling and submission of form data*/}
+				{/* MODAL - Display SUCCESS or FAILED Modal Message*/}
 				<Modal
 					open={messageModalOpen}
 					onClose={handleModalClose}
@@ -468,12 +479,11 @@ function ContactForm() {
 							</p>
 							<h4 className={classes.haveGoodDayMsg}>Have a good day!</h4>
 							<Button 
-								className={ContactFormStyles.bttn}
+								className={classes.bttn}
 								type="button" 
 								variant="contained"
 								aria-label='ok-close-modal-button' 
 								onClick={handleModalClose}
-								style={{ backgroundColor: 'rgb(145, 71, 22, 0.940)', color: 'white', marginRight: '2px', float: 'right' }}
 								size="large"
 								>
 								Ok
@@ -485,11 +495,10 @@ function ContactForm() {
 				{/* Form Submit Button */}
 				<div className={ContactFormStyles.bttncase}>
 					<Button 
-						className={ContactFormStyles.bttn}
+						className={classes.bttn}
 						type="submit" 
 						aria-label='submit-information-button'
 						variant="contained"
-						style={{ backgroundColor: 'rgb(182, 98, 50)', color: 'white', marginRight: '2px', fontSize: '18px' }}
 						size="large"
 						disabled={isError}
 						>
