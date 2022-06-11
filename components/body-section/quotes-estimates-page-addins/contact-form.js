@@ -6,7 +6,6 @@ import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
-// import sendEmail from '../../../functions/sendemail/sendemail';
 const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
@@ -224,8 +223,7 @@ function ContactForm() {
 		}
 		const token = await executeRecaptcha('submit');
 		const timestamp = new Date().toUTCString();
-		const tokeStamp = { toke: token, stamp: timestamp }
-		setTokeStamp(tokeStamp);
+		setTokeStamp({ toke: token, stamp: timestamp });
 	};
 
 	// ///////////////////////////////////////////////////
@@ -252,7 +250,6 @@ function ContactForm() {
 					"from": `${checkVals.email.value}`,
 				}
 			};
-			console.log('date Obj: ', dataObj)
 			await axios.post(sendEmailUrl, dataObj)
 			.then(function(response) {
 				console.log('client-email-success-message: ', response.status);
