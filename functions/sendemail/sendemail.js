@@ -8,7 +8,6 @@ const korxapik = process.env.NEXT_PUBLIC_KORXAPIK;
 const ejssid = process.env.NEXT_PUBLIC_EJS_SID;
 const ejstid = process.env.NEXT_PUBLIC_EJS_TID;
 const ejsuid = process.env.NEXT_PUBLIC_EJS_UID;
-const ejsat = process.env.NEXT_PUBLIC_EJS_AT;
 
 
 exports.handler = async function(event, context) {

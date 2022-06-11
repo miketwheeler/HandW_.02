@@ -82,7 +82,7 @@ const useStyles = makeStyles ({
 function ContactForm() { 
 	const classes = useStyles();
 	const { executeRecaptcha } = useGoogleReCaptcha();
-	const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
+	// const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -97,7 +97,7 @@ function ContactForm() {
 	const [success, setSuccess] = useState(false);
     const [messageModalOpen, setMessageModalOpen] = useState(messageModalOpen ? messageModalOpen : false);
 	// captcha && form fields throw bool for submission button active/non-active
-	const [scoreCard, setScoreCard] = useState(0.0);
+	// const [scoreCard, setScoreCard] = useState(0.0);
 	// Form Error Checking Vars
 	const [isError, setIsError] = useState(false);
 	const docLabel = document.querySelector('.Mui-error');
@@ -212,19 +212,19 @@ function ContactForm() {
 	// }, [executeRecaptcha, scoreCard]);
 
 	// Evals recaptcha on page load
-	useEffect(() => {
-		if(executeRecaptcha)
-			handleReCaptchaVerify();
-	}, [executeRecaptcha]);
+	// useEffect(() => {
+	// 	if(executeRecaptcha)
+	// 		handleReCaptchaVerify();
+	// }, [executeRecaptcha]);
 
-	const handleReCaptchaVerify = async () => {
-		if (!executeRecaptcha) {
-			console.log('Execute recaptcha not yet available');
-		}
-		const token = await executeRecaptcha('submit');
-		const timestamp = new Date().toUTCString();
-		setTokeStamp({ toke: token, stamp: timestamp });
-	};
+	// const handleReCaptchaVerify = async () => {
+	// 	if (!executeRecaptcha) {
+	// 		console.log('Execute recaptcha not yet available');
+	// 	}
+	// 	const token = await executeRecaptcha('submit');
+	// 	const timestamp = new Date().toUTCString();
+	// 	setTokeStamp({ toke: token, stamp: timestamp });
+	// };
 
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
@@ -240,7 +240,7 @@ function ContactForm() {
 			const formattedName = checkVals.fullName.value.trim();
 			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})`
 			const dataObj = {
-				tokeStamp,
+				// tokeStamp,
 				templateData: {
 					"name": `${formattedName}`,
 					"phone": `${checkVals.phoneNumber.value}`,
