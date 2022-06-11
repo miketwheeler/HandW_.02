@@ -81,7 +81,7 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() { 
 	const classes = useStyles();
-	const { executeRecaptcha } = useGoogleReCaptcha();
+	// const { executeRecaptcha } = useGoogleReCaptcha();
 	// const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
 	// Form Fields State Obj
 	const initialStateVals = {
@@ -230,10 +230,10 @@ function ContactForm() {
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		if (!executeRecaptcha) {
-			console.log('Execute recaptcha disrupted or delayed');
-		}
-		else {
+		// if (!executeRecaptcha) {
+		// 	console.log('Execute recaptcha disrupted or delayed');
+		// }
+		// else {
 			const sendEmailUrl = '/.netlify/functions/sendemail';
 			const newDate = new Date();
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
@@ -262,7 +262,7 @@ function ContactForm() {
 				setMessageModalOpen(true);
 				window.alert(variousMessages.submitErrorText);
 			})
-		}
+		// }
 	}
 
 	return (
