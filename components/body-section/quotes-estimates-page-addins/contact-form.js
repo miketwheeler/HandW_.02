@@ -138,12 +138,6 @@ function ContactForm() {
 		return callBackDate;
 	}
 	
-	// Evals on page load -- need to min this to var <onActivelyTypingOnForm>
-	useEffect(() => {
-		if(executeRecaptcha)
-			handleReCaptchaVerify();
-	}, [executeRecaptcha, handleReCaptchaVerify]);
-
 	useEffect(() => {
 		docLabel !== undefined && docLabel ? setIsError(true) : setIsError(false);
 	}, [docLabel, isError])
@@ -216,6 +210,13 @@ function ContactForm() {
 			setMessageModalOpen(true);
 		})
 	}, [executeRecaptcha, scoreCard]);
+
+	// Evals recaptcha on page load
+	useEffect(() => {
+		if(executeRecaptcha)
+			handleReCaptchaVerify();
+	}, [executeRecaptcha, handleReCaptchaVerify]);
+
 	
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
