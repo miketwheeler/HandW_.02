@@ -19,17 +19,21 @@ exports.handler = async function(event, context) {
     let responseStatusCode = 0;
     let responseMessage = '';
     const parsedTemplateData = JSON.parse(event.body);
+    const token = parsedTemplateData.tokeStamp.toke;
+    const timestamp = parsedTemplateData.tokeStamp.stamp;
     const assembledData = JSON.stringify({
             "service_id": ejssid,
             "template_id": ejstid,
             "user_id": ejsuid,
-            "template_params": parsedTemplateData,
+            "template_params": parsedTemplateData.templateData,
             "accessToken": korak
     });
     const config = { 
         method: 'post',
         url: korurl,
         headers: {
+            token,
+            timestamp,
             'x-api-key': korxapik,
             'authorization': korak,
             'content-type': 'application/json',

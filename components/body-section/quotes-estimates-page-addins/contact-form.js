@@ -83,6 +83,7 @@ const useStyles = makeStyles ({
 function ContactForm() { 
 	const classes = useStyles();
 	const { executeRecaptcha } = useGoogleReCaptcha();
+	const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -185,39 +186,48 @@ function ContactForm() {
 
 	// ////////////////////////////////////////////////
 	// Invoke Recaptcha Evaluation
-	const handleReCaptchaVerify = useCallback(async () => {
-		if(!executeRecaptcha) {
-			console.log('Execute recaptcha not yet available');
-			return;
-		}
-		const checkRecaptchaRoute = '/.netlify/functions/recaptchas';
-		const token = await executeRecaptcha('submit');
+	// const handleReCaptchaVerify = useCallback(async () => {
+	// 	if(!executeRecaptcha) {
+	// 		console.log('Execute recaptcha not yet available');
+	// 		return;
+	// 	}
+	// 	const checkRecaptchaRoute = '/.netlify/functions/recaptchas';
+	// 	const token = await executeRecaptcha('submit');
 
-		await axios.post(checkRecaptchaRoute, { 'token': token })
-		.then(function(response) {
-			console.log('client-recaptcha-status: ', response.statusText)
-			setScoreCard(response.data.score * 100);
+	// 	await axios.post(checkRecaptchaRoute, { 'token': token })
+	// 	.then(function(response) {
+	// 		console.log('client-recaptcha-status: ', response.statusText)
+	// 		setScoreCard(response.data.score * 100);
 
-			if(response.data.score !== 0) {
-				scoreCard > 40 && response.data.action === 'submit' && response.data.success
-				? setSuccess(false)
-				: null; 
-			}
-			else { window.alert(variousMessages.recaptchaErrorText) }
-		})
-		.catch(function(error) {
-			console.log("client-recaptcha-error-message", error)
-			setMessageModalOpen(true);
-		})
-	}, [executeRecaptcha, scoreCard]);
+	// 		if(response.data.score !== 0) {
+	// 			scoreCard > 40 && response.data.action === 'submit' && response.data.success
+	// 			? setSuccess(false)
+	// 			: null; 
+	// 		}
+	// 		else { window.alert(variousMessages.recaptchaErrorText) }
+	// 	})
+	// 	.catch(function(error) {
+	// 		console.log("client-recaptcha-error-message", error)
+	// 		setMessageModalOpen(true);
+	// 	})
+	// }, [executeRecaptcha, scoreCard]);
 
 	// Evals recaptcha on page load
 	useEffect(() => {
 		if(executeRecaptcha)
 			handleReCaptchaVerify();
-	}, [executeRecaptcha, handleReCaptchaVerify]);
+	}, [executeRecaptcha]);
 
-	
+	const handleReCaptchaVerify = async () => {
+		if (!executeRecaptcha) {
+			console.log('Execute recaptcha not yet available');
+		}
+		const token = await executeRecaptcha('submit');
+		const timestamp = new Date().toUTCString();
+		const tokeStamp = { toke: token, stamp: timestamp }
+		setTokeStamp(tokeStamp);
+	};
+
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
@@ -230,16 +240,20 @@ function ContactForm() {
 			const newDate = new Date();
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
-			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})` 
-			const templateData = {
-				"name": `${formattedName}`,
-				"phone": `${checkVals.phoneNumber.value}`,
-				"job": `${subject}`,
-				"needBy": `${formattedTimeframe}`,
-				"text": `${formattedMessage}`,
-				"from": `${checkVals.email.value}`,
+			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})`
+			const dataObj = {
+				tokeStamp,
+				templateData: {
+					"name": `${formattedName}`,
+					"phone": `${checkVals.phoneNumber.value}`,
+					"job": `${subject}`,
+					"needBy": `${formattedTimeframe}`,
+					"text": `${formattedMessage}`,
+					"from": `${checkVals.email.value}`,
+				}
 			};
-			await axios.post(sendEmailUrl, templateData)
+			console.log('date Obj: ', dataObj)
+			await axios.post(sendEmailUrl, dataObj)
 			.then(function(response) {
 				console.log('client-email-success-message: ', response.status);
 				setSuccess(true);
