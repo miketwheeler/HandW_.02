@@ -258,7 +258,7 @@ function ContactForm() {
 				resetForm();
 			})
 			.catch(function(error) {
-				console.log('client-email-error: ', error);
+				console.log('client-email-error: ', error.status);
 				setMessageModalOpen(true);
 				window.alert(variousMessages.submitErrorText);
 			})

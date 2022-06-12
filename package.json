@@ -38,7 +38,7 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.2.4",
+    "@netlify/plugin-nextjs": "^4.8.0",
     "@next/bundle-analyzer": "^12.1.0",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",

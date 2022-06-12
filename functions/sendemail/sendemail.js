@@ -40,22 +40,20 @@ exports.handler = async function(event, context) {
         data: assembledData
     }
 
-    axios(config)
+    await axios(config)
     .then(function (res) {
-        console.log(JSON.stringify(res.data));
-        responseStatusCode = res.data;
-        responseMessage = res.message;
+        // console.log(JSON.stringify(res.data));
+        responseStatusCode = res.status;
+        responseMessage = res.statusText;
     })
     .catch(function (error) {
         console.log(error);
-        responseStatusCode = error.statusCode;
-        responseMessage = error.message;
+        responseStatusCode = error.status;
+        responseMessage = error.statusText;
     })
     
     return {
         statusCode: 200,
-        // body: JSON.stringify({message: 'success'})
-        // statusCode: responseStatusCode,
         body: JSON.stringify({message: `${responseMessage}`}),
     }
 }
