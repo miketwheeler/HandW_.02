@@ -15,11 +15,8 @@ exports.handler = async function(event, context) {
         return { statusCode: 405, body: 'Method Not Allowed', headers: { 'Allow': 'POST' } }
     }
 
-    let responseStatusCode = 0;
     let responseMessage = '';
     const parsedTemplateData = JSON.parse(event.body);
-    // const token = parsedTemplateData.tokeStamp.toke;
-    // const timestamp = parsedTemplateData.tokeStamp.stamp;
     const assembledData = JSON.stringify({
             "service_id": ejssid,
             "template_id": ejstid,
@@ -31,8 +28,6 @@ exports.handler = async function(event, context) {
         method: 'post',
         url: korurl,
         headers: {
-            // token,
-            // timestamp,
             'x-api-key': korxapik,
             'authorization': korak,
             'content-type': 'application/json',
@@ -42,7 +37,6 @@ exports.handler = async function(event, context) {
 
     await axios(config)
     .then(function (res) {
-        // console.log(JSON.stringify(res.data));
         responseStatusCode = res.status;
         responseMessage = res.statusText;
     })
