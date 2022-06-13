@@ -15,13 +15,14 @@ exports.handler = async function(event, context) {
         return { statusCode: 405, body: 'Method Not Allowed', headers: { 'Allow': 'POST' } }
     }
 
-    let responseMessage = '';
+    let responseStatusCode;
+    let responseMessage;
     const parsedTemplateData = JSON.parse(event.body);
     const assembledData = JSON.stringify({
             "service_id": ejssid,
             "template_id": ejstid,
             "user_id": ejsuid,
-            "template_params": parsedTemplateData.templateData,
+            "template_params": parsedTemplateData,
             "accessToken": korak
     });
     const config = { 
@@ -36,18 +37,21 @@ exports.handler = async function(event, context) {
     }
 
     await axios(config)
-    .then(function (res) {
-        responseStatusCode = res.status;
-        responseMessage = res.statusText;
+    .then(function (response) {
+        responseStatusCode = response.status;
+        responseMessage = response.statusText;
     })
     .catch(function (error) {
         console.log(error);
-        responseStatusCode = error.status;
-        responseMessage = error.statusText;
+        if(error.response)
+            responseStatusCode = error.response.status;
+        responseMessage = error.response.statusText;
     })
     
+    console.log("responseStatusCode: ", responseStatusCode)
+    console.log('responseMessage: ', responseMessage)
     return {
-        statusCode: 200,
-        body: JSON.stringify({message: `${responseMessage}`}),
+        statusCode: responseStatusCode,
+        body: responseMessage
     }
 }

@@ -1,8 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
 import ContactFormStyles from './contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
@@ -81,8 +80,6 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() { 
 	const classes = useStyles();
-	// const { executeRecaptcha } = useGoogleReCaptcha();
-	// const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -96,15 +93,12 @@ function ContactForm() {
 	// Modal & Error Messages
 	const [success, setSuccess] = useState(false);
     const [messageModalOpen, setMessageModalOpen] = useState(messageModalOpen ? messageModalOpen : false);
-	// captcha && form fields throw bool for submission button active/non-active
-	// const [scoreCard, setScoreCard] = useState(0.0);
 	// Form Error Checking Vars
 	const [isError, setIsError] = useState(false);
 	const docLabel = document.querySelector('.Mui-error');
 	// Messages
 	const variousMessages = {
 		submitErrorText: "Something went wrong. Please try submitting your Quote Request again.",
-		recaptchaErrorText: "The ReCaptcha has detected something strange. Please try again.",
 		thankYouMessage: (calltime) => `Thank you for your getting in touch with us! We will get back to you by 6:00pm in ${calltime}.`,
 		errorMessage: `There was an error with your Quote Submission. Please try again.`
 	}
@@ -183,86 +177,39 @@ function ContactForm() {
 		else return null;
 	}
 
-	// ////////////////////////////////////////////////
-	// Invoke Recaptcha Evaluation
-	// const handleReCaptchaVerify = useCallback(async () => {
-	// 	if(!executeRecaptcha) {
-	// 		console.log('Execute recaptcha not yet available');
-	// 		return;
-	// 	}
-	// 	const checkRecaptchaRoute = '/.netlify/functions/recaptchas';
-	// 	const token = await executeRecaptcha('submit');
-
-	// 	await axios.post(checkRecaptchaRoute, { 'token': token })
-	// 	.then(function(response) {
-	// 		console.log('client-recaptcha-status: ', response.statusText)
-	// 		setScoreCard(response.data.score * 100);
-
-	// 		if(response.data.score !== 0) {
-	// 			scoreCard > 40 && response.data.action === 'submit' && response.data.success
-	// 			? setSuccess(false)
-	// 			: null; 
-	// 		}
-	// 		else { window.alert(variousMessages.recaptchaErrorText) }
-	// 	})
-	// 	.catch(function(error) {
-	// 		console.log("client-recaptcha-error-message", error)
-	// 		setMessageModalOpen(true);
-	// 	})
-	// }, [executeRecaptcha, scoreCard]);
-
-	// Evals recaptcha on page load
-	// useEffect(() => {
-	// 	if(executeRecaptcha)
-	// 		handleReCaptchaVerify();
-	// }, [executeRecaptcha]);
-
-	// const handleReCaptchaVerify = async () => {
-	// 	if (!executeRecaptcha) {
-	// 		console.log('Execute recaptcha not yet available');
-	// 	}
-	// 	const token = await executeRecaptcha('submit');
-	// 	const timestamp = new Date().toUTCString();
-	// 	setTokeStamp({ toke: token, stamp: timestamp });
-	// };
-
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		// if (!executeRecaptcha) {
-		// 	console.log('Execute recaptcha disrupted or delayed');
-		// }
-		// else {
-			const sendEmailUrl = '/.netlify/functions/sendemail';
-			const newDate = new Date();
-			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
-			const formattedName = checkVals.fullName.value.trim();
-			const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})`
-			const dataObj = {
-				// tokeStamp,
-				templateData: {
-					"name": `${formattedName}`,
-					"phone": `${checkVals.phoneNumber.value}`,
-					"job": `${subject}`,
-					"needBy": `${formattedTimeframe}`,
-					"text": `${formattedMessage}`,
-					"from": `${checkVals.email.value}`,
-				}
-			};
-			await axios.post(sendEmailUrl, dataObj)
-			.then(function(response) {
-				console.log('client-email-success-message: ', response.status);
-				setSuccess(true);
-				setMessageModalOpen(true);
-				resetForm();
-			})
-			.catch(function(error) {
-				console.log('client-email-error: ', error.status);
-				setMessageModalOpen(true);
-				window.alert(variousMessages.submitErrorText);
-			})
-		// }
+		const sendEmailUrl = '/.netlify/functions/sendemail';
+		const newDate = new Date();
+		const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
+		const formattedName = checkVals.fullName.value.trim();
+		const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})`
+		const dataObj = {
+			"name": `${formattedName}`,
+			"phone": `${checkVals.phoneNumber.value}`,
+			"job": `${subject}`,
+			"needBy": `${formattedTimeframe}`,
+			"text": `${formattedMessage}`,
+			"from": `${checkVals.email.value}`,
+		};
+		await axios.post(sendEmailUrl, dataObj)
+		.then(function(response) {
+			console.log(
+				`SUCCESS on CLIENT EMAIL->\nnum: ${response.status}\nstatus: ${response.statusText}\ndata: ${response.data}`
+			);
+			setSuccess(true);
+			setMessageModalOpen(true);
+			resetForm();
+		})
+		.catch(function(error) {
+			console.log(
+				`ERROR on CLIENT EMAIL->\nnum: ${error.response.status}\nstatus: ${error.response.statusText}\ndata: ${error.response.data}`
+			);
+			setMessageModalOpen(true);
+			window.alert(variousMessages.submitErrorText);
+		})
 	}
 
 	return (

@@ -21,7 +21,7 @@ module.exports = withBundleAnalyzer({
 			headers: [
 				{
 					key: 'Content-Security-Policy',
-					value: "default-src 'unsafe-inline' 'self'; font-src 'none'; img-src 'self' data:; script-src 'unsafe-eval' 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src 'self' https://www.google.com/",
+					value: "default-src 'unsafe-inline' 'self'; font-src 'none'; img-src 'self' data:; script-src 'unsafe-eval' 'self'; frame-src 'self';",
 				},
 				{
 					key: 'Referrer-Policy',
