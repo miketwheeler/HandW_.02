@@ -2,7 +2,7 @@
     publish=".next"
 
 [functions]
-    directory="functions"
+    directory="functions/sendemail"
 
 [dev]
     command="npm run dev"

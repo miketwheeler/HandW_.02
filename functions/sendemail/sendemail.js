@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
         console.log(error);
         if(error.response)
             responseStatusCode = error.response.status;
-        responseMessage = error.response.statusText;
+            responseMessage = error.response.statusText;
     })
     
     console.log("responseStatusCode: ", responseStatusCode)
