@@ -5,7 +5,6 @@ import CarouselComponent from '../components/globally-applied/my-carousel';
 import Infolink from '../components/globally-applied/contact-display';
 import Footer from '../components/globally-applied/footer';
 import Layout from '../components/layout/layout';
-// import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import dynamic from 'next/dynamic';
 
 // Mainsection content dynamic routing - ie lazy
@@ -20,14 +19,12 @@ export default function App() {
 			<Layout>
 				<Navigation />
 				<CarouselComponent />
-					{/* <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RCPK}> */}
-						<Switch>
-							<Route path="/quotes-estimates" component={QuoteEstimates}/>
-							<Route path="/services" component={Services}/>
-							<Route path="/projects" component={Projects}/>
-							<Route path="/" component={HomePage}/>
-						</Switch>
-					{/* </GoogleReCaptchaProvider> */}
+					<Switch>
+						<Route path="/quotes-estimates" component={QuoteEstimates}/>
+						<Route path="/services" component={Services}/>
+						<Route path="/projects" component={Projects}/>
+						<Route path="/" component={HomePage}/>
+					</Switch>
 				<Infolink />
 				<Footer />
 			</Layout>

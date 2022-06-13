@@ -185,7 +185,7 @@ function ContactForm() {
 		const newDate = new Date();
 		const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 		const formattedName = checkVals.fullName.value.trim();
-		const formattedTimeframe = `${timeframe.toUpperCase()} from (${formattedCallbackDate(newDate)})`
+		const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
 		const dataObj = {
 			"name": `${formattedName}`,
 			"phone": `${checkVals.phoneNumber.value}`,

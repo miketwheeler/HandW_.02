@@ -18,9 +18,10 @@ exports.handler = async function(event, context) {
     });
     const config = { 
         method: 'post',
-        url: process.env.NEXT_PUBLIC_KORURL,
+        // url: process.env.NEXT_PUBLIC_KORURL,
+        url: process.env.NEXT_PUBLIC_EJSURL,
         headers: {
-            'x-api-key': process.env.NEXT_PUBLIC_KORXAPIK,
+            // 'x-api-key': process.env.NEXT_PUBLIC_KORXAPIK,
             'authorization': process.env.NEXT_PUBLIC_KORAK,
             'content-type': 'application/json',
         },
