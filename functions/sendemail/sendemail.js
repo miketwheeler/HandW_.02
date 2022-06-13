@@ -16,7 +16,7 @@ exports.handler = async function(event, context) {
     }
 
     let responseStatusCode;
-    let responseMessage;
+    // let responseMessage;
     const parsedTemplateData = JSON.parse(event.body);
     const assembledData = JSON.stringify({
             "service_id": ejssid,
@@ -39,19 +39,19 @@ exports.handler = async function(event, context) {
     await axios(config)
     .then(function (response) {
         responseStatusCode = response.status;
-        responseMessage = response.statusText;
+        // responseMessage = response.statusText;
     })
     .catch(function (error) {
         console.log(error);
         if(error.response)
             responseStatusCode = error.response.status;
-            responseMessage = error.response.statusText;
+            // responseMessage = error.response.statusText;
     })
     
     console.log("responseStatusCode: ", responseStatusCode)
-    console.log('responseMessage: ', responseMessage)
+    // console.log('responseMessage: ', responseMessage)
     return {
-        statusCode: responseStatusCode,
-        body: responseMessage
+        statusCode: responseStatusCode ? responseStatusCode : 500,
+        // body: responseMessage
     }
 }
