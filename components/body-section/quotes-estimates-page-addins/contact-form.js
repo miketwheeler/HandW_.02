@@ -197,7 +197,7 @@ function ContactForm() {
 		await axios.post(sendEmailUrl, dataObj)
 		.then(function(response) {
 			console.log(
-				`SUCCESS on CLIENT EMAIL->\nnum: ${response.status}\ndata: ${response.data ? response.data : "none-given"}`
+				`SUCCESS on CLIENT EMAIL->\nnum: ${response.status}`
 			);
 			setSuccess(true);
 			setMessageModalOpen(true);
@@ -205,7 +205,7 @@ function ContactForm() {
 		})
 		.catch(function(error) {
 			console.log(
-				`ERROR on CLIENT EMAIL->\nnum: ${error.response.status}\ndata: ${error.response.data ? error.response.data : "none-given"}`
+				`ERROR on CLIENT EMAIL->\nnum: ${error.response.status}`
 			);
 			setMessageModalOpen(true);
 			window.alert(variousMessages.submitErrorText);
