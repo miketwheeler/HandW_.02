@@ -10,11 +10,11 @@ exports.handler = async function(event, context) {
     let responseStatusCode;
     const parsedTemplateData = JSON.parse(event.body);
     const assembledData = JSON.stringify({
-            "service_id": `${process.env.NEXT_PUBLIC_EJS_SID}`,
-            "template_id": `${process.env.NEXT_PUBLIC_EJS_TID}`,
-            "user_id": `${process.env.NEXT_PUBLIC_EJS_UID}`,
-            "template_params": parsedTemplateData,
-            "accessToken": `${process.env.NEXT_PUBLIC_KORAK}`
+        "service_id": `${process.env.NEXT_PUBLIC_EJS_SID}`,
+        "template_id": `${process.env.NEXT_PUBLIC_EJS_TID}`,
+        "user_id": `${process.env.NEXT_PUBLIC_EJS_UID}`,
+        "template_params": parsedTemplateData,
+        "accessToken": `${process.env.NEXT_PUBLIC_KORAK}`
     });
     const config = { 
         method: 'post',
@@ -28,11 +28,11 @@ exports.handler = async function(event, context) {
 
     await axios(config)
     .then(function (response) {
-        responseStatusCode = response.status;
+        responseStatusCode = 200;
     })
     .catch(function (error) {
         if(error.response)
-            responseStatusCode = error.response.status;
+            responseStatusCode = 433;
     })
     
     console.log("responseStatusCode: ", responseStatusCode)
