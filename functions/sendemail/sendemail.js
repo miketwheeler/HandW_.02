@@ -7,7 +7,7 @@ exports.handler = async function(event, context) {
         return { statusCode: 405, body: 'Method Not Allowed', headers: { 'Allow': 'POST' } }
     }
 
-    // let responseStatusCode;
+    let respondWith = 444;
     const parsedTemplateData = JSON.parse(event.body);
     const assembledData = JSON.stringify({
         "service_id": process.env.NEXT_PUBLIC_EJS_SID,
@@ -28,16 +28,19 @@ exports.handler = async function(event, context) {
 
     await axios(config)
     .then((response) => {
-        console.log("response:: ", response.status)
-        responseStatusCode = response.status;
+        console.log("response:: ", response)
+        // respondWith = response.status;
+        respondWith = response.status;
+        // {
+        //     statusCode: respondWith ? respondWith : 500,
+        // }
     })
     .catch((error) => {
         console.log("error.response:: ", error.response)
         if(error.response)
-            responseStatusCode = error.response.status;
+            respondWith = error.response.status;
     })
+
+    return { statusCode: respondWith };
     
-    return {
-        statusCode: responseStatusCode ? responseStatusCode : 500,
-    }
 }
