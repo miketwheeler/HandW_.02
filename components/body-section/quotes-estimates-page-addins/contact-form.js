@@ -197,7 +197,7 @@ function ContactForm() {
 		await axios.post(sendEmailUrl, dataObj)
 		.then((response) => {
 			console.log(
-				`SUCCESS on CLIENT EMAIL->\nstatus::[ ${response.status} ]  text?::[ ${response.statusText} ]  data?::[ ${JSON.stringify(response.data)} ]`  
+				`SUCCESS on CLIENT EMAIL->\nstatus::[ ${JSON.stringify(response.status)} ]\nstatusText::[ ${JSON.stringify(response.statusText)} ]`  
 			);
 			setSuccess(true);
 			setMessageModalOpen(true);
@@ -205,7 +205,7 @@ function ContactForm() {
 		})
 		.catch((error) => {
 			console.log(
-				`ERROR on CLIENT EMAIL->\nstatus::[ ${error.response.status} ]  text?::[ ${error.response.statusText} ]  data?::[ ${JSON.stringify(error.response.data)} ]`
+				`ERROR on CLIENT EMAIL->\nerrorStatus::[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText::[ ${JSON.stringify(error.response.statusText)} ]`
 			);
 			setMessageModalOpen(true);
 			window.alert(variousMessages.submitErrorText);
