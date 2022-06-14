@@ -187,25 +187,25 @@ function ContactForm() {
 		const formattedName = checkVals.fullName.value.trim();
 		const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
 		const dataObj = {
-			"name": `${formattedName}`,
-			"phone": `${checkVals.phoneNumber.value}`,
-			"job": `${subject}`,
-			"needBy": `${formattedTimeframe}`,
-			"text": `${formattedMessage}`,
-			"from": `${checkVals.email.value}`,
+			"name": formattedName,
+			"phone": checkVals.phoneNumber.value,
+			"job": subject,
+			"needBy": formattedTimeframe,
+			"text": formattedMessage,
+			"from": checkVals.email.value,
 		};
 		await axios.post(sendEmailUrl, dataObj)
-		.then(function(response) {
+		.then((response) => {
 			console.log(
-				`SUCCESS on CLIENT EMAIL->\nnum: ${response.status}`
+				`SUCCESS on CLIENT EMAIL->\nstatus::[ ${response.status} ]  text?::[ ${response.statusText} ]  data?::[ ${response.data} ]`  
 			);
 			setSuccess(true);
 			setMessageModalOpen(true);
 			resetForm();
 		})
-		.catch(function(error) {
+		.catch((error) => {
 			console.log(
-				`ERROR on CLIENT EMAIL->\nnum: ${error.response.status}`
+				`ERROR on CLIENT EMAIL->\nstatus::[ ${error.response.status} ]  text?::[ ${error.response.statusText} ]  data?::[ ${error.response.data} ]`
 			);
 			setMessageModalOpen(true);
 			window.alert(variousMessages.submitErrorText);
