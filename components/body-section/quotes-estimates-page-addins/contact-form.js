@@ -82,7 +82,7 @@ const useStyles = makeStyles ({
 function ContactForm() { 
 	const classes = useStyles();
 	const { executeRecaptcha } = useGoogleReCaptcha();
-	const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
+	const [recaptchaData, setRecaptchaData] = useState({ token: null, timestamp: null });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -184,14 +184,14 @@ function ContactForm() {
 		if(executeRecaptcha)
 			handleReCaptchaVerify();
 	}, [executeRecaptcha]);
-	
+
 	const handleReCaptchaVerify = async () => {
 		if (!executeRecaptcha) {
 			console.log('Execute recaptcha not yet available');
 		}
-		const token = await executeRecaptcha('submit');
-		const timestamp = new Date().toUTCString();
-		setTokeStamp({ toke: token, stamp: timestamp });
+		const toke = await executeRecaptcha('submit');
+		const stamp = new Date().toUTCString();
+		setRecaptchaData({ token: toke, timestamp: stamp });
 	};
 
 	// ///////////////////////////////////////////////////
@@ -207,8 +207,9 @@ function ContactForm() {
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
 			const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
+			// console.log("client-recaptchaData: ", recaptchaData)
 			const dataObj = {
-				tokeStamp,
+				recaptchaData,
 				templateData: {
 					"name": formattedName,
 					"phone": checkVals.phoneNumber.value,
@@ -221,7 +222,7 @@ function ContactForm() {
 			await axios.post(sendEmailUrl, dataObj)
 			.then((response) => {
 				console.log(
-					`SUCCESS on CLIENT EMAIL->\nstatus::[ ${JSON.stringify(response.status)} ]\nstatusText::[ ${JSON.stringify(response.statusText)} ]`  
+					`SUCCESS on CLIENT EMAIL->\nstatus:[ ${JSON.stringify(response.status)} ]\nstatusText:[ ${JSON.stringify(response.statusText)} ]`  
 				);
 				setSuccess(true);
 				setMessageModalOpen(true);
@@ -229,13 +230,13 @@ function ContactForm() {
 			})
 			.catch((error) => {
 				console.log(
-					`ERROR on CLIENT EMAIL->\nerrorStatus::[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText::[ ${JSON.stringify(error.response.statusText)} ]`
+					`ERROR on CLIENT EMAIL->\nerrorStatus:[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText:[ ${JSON.stringify(error.response.statusText)} ]`
 				);
 				setMessageModalOpen(true);
 				window.alert(variousMessages.submitErrorText);
 			})
 		}
-	}
+	};
 
 	return (
 		<ThemeProvider theme={theme}>

@@ -8,8 +8,9 @@ exports.handler = async function(event, context) {
     }
 
     const parsedTemplateData = JSON.parse(event.body);
-    const token = parsedTemplateData.tokeStamp.toke;
-    const timestamp = parsedTemplateData.tokeStamp.stamp;
+    const token = parsedTemplateData.recaptchaData.token;
+    const timestamp = parsedTemplateData.recaptchaData.timestamp;
+
     const assembledData = JSON.stringify({
         "service_id": process.env.NEXT_PUBLIC_EJS_SID,
         "template_id": process.env.NEXT_PUBLIC_EJS_TID,
@@ -19,7 +20,6 @@ exports.handler = async function(event, context) {
     });
     const config = { 
         method: 'post',
-        // url: process.env.NEXT_PUBLIC_EJSURL,
         url: process.env.NEXT_PUBLIC_KORURL,
         headers: {
             token,
