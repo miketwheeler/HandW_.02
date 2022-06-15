@@ -20,7 +20,7 @@ export default function App() {
 			<Layout>
 				<Navigation />
 				<CarouselComponent />
-					<GoogleReCaptchaProvider reCaptchaKey={`${process.env.NEXT_PUBLIC_RCPK}`}>
+					<GoogleReCaptchaProvider reCaptchaKey="6LfLYTseAAAAAD0xcMu6nn8hrVsSYKw6SfXGUQSM">
 						<Switch>
 							<Route path="/quotes-estimates" component={QuoteEstimates}/>
 							<Route path="/services" component={Services}/>
