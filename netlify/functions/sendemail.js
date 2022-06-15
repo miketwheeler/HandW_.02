@@ -7,36 +7,29 @@ exports.handler = async function(event, context) {
         return { statusCode: 405, body: 'Method Not Allowed', headers: { 'Allow': 'POST' } }
     }
 
-    let responseStatusCode = 444;
     const parsedTemplateData = JSON.parse(event.body);
+    const token = parsedTemplateData.tokeStamp.toke;
+    const timestamp = parsedTemplateData.tokeStamp.stamp;
     const assembledData = JSON.stringify({
         "service_id": process.env.NEXT_PUBLIC_EJS_SID,
         "template_id": process.env.NEXT_PUBLIC_EJS_TID,
         "user_id": process.env.NEXT_PUBLIC_EJS_UID,
-        "template_params": parsedTemplateData,
+        "template_params": parsedTemplateData.templateData,
         "accessToken": process.env.NEXT_PUBLIC_KORAK
     });
     const config = { 
         method: 'post',
-        url: process.env.NEXT_PUBLIC_EJSURL,
+        // url: process.env.NEXT_PUBLIC_EJSURL,
+        url: process.env.NEXT_PUBLIC_KORURL,
         headers: {
+            token,
+            timestamp,
+            'x-api-key': process.env.NEXT_PUBLIC_KORXAPIK,
             'authorization': process.env.NEXT_PUBLIC_KORAK,
             'content-type': 'application/json',
         },
         data: assembledData
     }
-
-    // await axios(config)
-    // .then((response) => {
-    //     console.log("response:: ", response.statusCode)
-    //     // responseStatusCode = response.status;
-    //     responseStatusCode = response.statusCode || 200;
-    // })
-    // .catch((error) => {
-    //     console.log("func-error:: ", error)
-    //     if(error)
-    //         responseStatusCode = error.statusCode || 500;
-    // })
 
     return axios(config)
     .then((response) => { 

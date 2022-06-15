@@ -5,6 +5,7 @@ import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/sty
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
@@ -80,6 +81,8 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() { 
 	const classes = useStyles();
+	const { executeRecaptcha } = useGoogleReCaptcha();
+	const [tokeStamp, setTokeStamp] = useState({ toke: "", stamp: "" });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -176,40 +179,62 @@ function ContactForm() {
 		}
 		else return null;
 	}
+	// Evals recaptcha on page load
+	useEffect(() => {
+		if(executeRecaptcha)
+			handleReCaptchaVerify();
+	}, [executeRecaptcha]);
+	
+	const handleReCaptchaVerify = async () => {
+		if (!executeRecaptcha) {
+			console.log('Execute recaptcha not yet available');
+		}
+		const token = await executeRecaptcha('submit');
+		const timestamp = new Date().toUTCString();
+		setTokeStamp({ toke: token, stamp: timestamp });
+	};
 
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const sendEmailUrl = '/.netlify/functions/sendemail';
-		const newDate = new Date();
-		const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
-		const formattedName = checkVals.fullName.value.trim();
-		const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
-		const dataObj = {
-			"name": formattedName,
-			"phone": checkVals.phoneNumber.value,
-			"job": subject,
-			"needBy": formattedTimeframe,
-			"text": formattedMessage,
-			"from": checkVals.email.value,
-		};
-		await axios.post(sendEmailUrl, dataObj)
-		.then((response) => {
-			console.log(
-				`SUCCESS on CLIENT EMAIL->\nstatus::[ ${JSON.stringify(response.status)} ]\nstatusText::[ ${JSON.stringify(response.statusText)} ]`  
-			);
-			setSuccess(true);
-			setMessageModalOpen(true);
-			resetForm();
-		})
-		.catch((error) => {
-			console.log(
-				`ERROR on CLIENT EMAIL->\nerrorStatus::[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText::[ ${JSON.stringify(error.response.statusText)} ]`
-			);
-			setMessageModalOpen(true);
-			window.alert(variousMessages.submitErrorText);
-		})
+		if (!executeRecaptcha) {
+			console.log('Execute recaptcha disrupted or delayed');
+		}
+		else {
+			const sendEmailUrl = '/.netlify/functions/sendemail';
+			const newDate = new Date();
+			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
+			const formattedName = checkVals.fullName.value.trim();
+			const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
+			const dataObj = {
+				tokeStamp,
+				templateData: {
+					"name": formattedName,
+					"phone": checkVals.phoneNumber.value,
+					"job": subject,
+					"needBy": formattedTimeframe,
+					"text": formattedMessage,
+					"from": checkVals.email.value,
+				}
+			};
+			await axios.post(sendEmailUrl, dataObj)
+			.then((response) => {
+				console.log(
+					`SUCCESS on CLIENT EMAIL->\nstatus::[ ${JSON.stringify(response.status)} ]\nstatusText::[ ${JSON.stringify(response.statusText)} ]`  
+				);
+				setSuccess(true);
+				setMessageModalOpen(true);
+				resetForm();
+			})
+			.catch((error) => {
+				console.log(
+					`ERROR on CLIENT EMAIL->\nerrorStatus::[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText::[ ${JSON.stringify(error.response.statusText)} ]`
+				);
+				setMessageModalOpen(true);
+				window.alert(variousMessages.submitErrorText);
+			})
+		}
 	}
 
 	return (
