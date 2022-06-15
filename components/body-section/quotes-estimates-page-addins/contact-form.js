@@ -181,41 +181,36 @@ function ContactForm() {
 	// Dispatch email-data 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		if (!executeRecaptcha) {
-			console.log('Execute recaptcha disrupted or delayed');
-		}
-		else {
-			const sendEmailUrl = '/.netlify/functions/sendemail';
-			const newDate = new Date();
-			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
-			const formattedName = checkVals.fullName.value.trim();
-			const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
+		const sendEmailUrl = '/.netlify/functions/sendemail';
+		const newDate = new Date();
+		const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
+		const formattedName = checkVals.fullName.value.trim();
+		const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
 
-			const dataObj = {
-				"name": formattedName,
-				"phone": checkVals.phoneNumber.value,
-				"job": subject,
-				"needBy": formattedTimeframe,
-				"text": formattedMessage,
-				"from": checkVals.email.value,
-			};
-			await axios.post(sendEmailUrl, dataObj)
-			.then((response) => {
-				console.log(
-					`SUCCESS on CLIENT EMAIL->\nstatus:[ ${JSON.stringify(response.status)} ]\nstatusText:[ ${JSON.stringify(response.statusText)} ]`  
-				);
-				setSuccess(true);
-				setMessageModalOpen(true);
-				resetForm();
-			})
-			.catch((error) => {
-				console.log(
-					`ERROR on CLIENT EMAIL->\nerrorStatus:[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText:[ ${JSON.stringify(error.response.statusText)} ]`
-				);
-				setMessageModalOpen(true);
-				window.alert(variousMessages.submitErrorText);
-			})
-		}
+		const dataObj = {
+			"name": formattedName,
+			"phone": checkVals.phoneNumber.value,
+			"job": subject,
+			"needBy": formattedTimeframe,
+			"text": formattedMessage,
+			"from": checkVals.email.value,
+		};
+		await axios.post(sendEmailUrl, dataObj)
+		.then((response) => {
+			console.log(
+				`SUCCESS on CLIENT EMAIL->\nstatus:[ ${JSON.stringify(response.status)} ]\nstatusText:[ ${JSON.stringify(response.statusText)} ]`  
+			);
+			setSuccess(true);
+			setMessageModalOpen(true);
+			resetForm();
+		})
+		.catch((error) => {
+			console.log(
+				`ERROR on CLIENT EMAIL->\nerrorStatus:[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText:[ ${JSON.stringify(error.response.statusText)} ]`
+			);
+			setMessageModalOpen(true);
+			window.alert(variousMessages.submitErrorText);
+		})
 	};
 
 	return (
