@@ -5,7 +5,6 @@ import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/sty
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
 import dynamic from 'next/dynamic';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
@@ -81,8 +80,6 @@ const useStyles = makeStyles ({
 // Contact form Component for the Quotes page
 function ContactForm() { 
 	const classes = useStyles();
-	const { executeRecaptcha } = useGoogleReCaptcha();
-	const [recaptchaData, setRecaptchaData] = useState({ token: null, timestamp: null });
 	// Form Fields State Obj
 	const initialStateVals = {
 		fullName: { value: "", message: "Please provide a valid Name" },
@@ -179,20 +176,6 @@ function ContactForm() {
 		}
 		else return null;
 	}
-	// Evals recaptcha on page load
-	useEffect(() => {
-		if(executeRecaptcha)
-			handleReCaptchaVerify();
-	}, [executeRecaptcha]);
-
-	const handleReCaptchaVerify = async () => {
-		if (!executeRecaptcha) {
-			console.log('Execute recaptcha not yet available');
-		}
-		const toke = await executeRecaptcha('submit');
-		const stamp = new Date().toUTCString();
-		setRecaptchaData({ token: toke, timestamp: stamp });
-	};
 
 	// ///////////////////////////////////////////////////
 	// Dispatch email-data 
@@ -207,17 +190,14 @@ function ContactForm() {
 			const formattedMessage = checkVals.message.value.replace(regexComps.reMessage, " ");
 			const formattedName = checkVals.fullName.value.trim();
 			const formattedTimeframe = `${timeframe.toUpperCase()} from ${formattedCallbackDate(newDate)}`
-			// console.log("client-recaptchaData: ", recaptchaData)
+
 			const dataObj = {
-				recaptchaData,
-				templateData: {
-					"name": formattedName,
-					"phone": checkVals.phoneNumber.value,
-					"job": subject,
-					"needBy": formattedTimeframe,
-					"text": formattedMessage,
-					"from": checkVals.email.value,
-				}
+				"name": formattedName,
+				"phone": checkVals.phoneNumber.value,
+				"job": subject,
+				"needBy": formattedTimeframe,
+				"text": formattedMessage,
+				"from": checkVals.email.value,
 			};
 			await axios.post(sendEmailUrl, dataObj)
 			.then((response) => {

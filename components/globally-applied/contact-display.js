@@ -46,21 +46,11 @@ function ContactDisplay() {
 			description: "instagram", 
 			linkedto: "https://www.instagram.com"
 		},
-		// { 
-		// 	image: "/images/icons/2x/2x-linkedin.png", 
-		// 	description: "linked in", 
-		// 	linkedto: "https://www.linkedin.com"
-		// },
 		{ 
 			image: "/images/icons/2x/2x-twitter.png", 
 			description: "twitter", 
 			linkedto: "https://www.twitter.com"
 		},
-		// { 
-		// 	image: "/images/icons/2x/2x-youtube.png", 
-		// 	description: "youtube", 
-		// 	linkedto: "https://www.youtube.com"
-		// }
 	]
 	return (
 		<div className={ContactDisplayStyle.objparams}>

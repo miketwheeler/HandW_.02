@@ -2,10 +2,11 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image';
 import CarouselStyles from './my-carousel.module.css';
+import dataSet from '../data/dataSets';
 
 function MyCarousel(props)
 {
-	var items = [
+	const items = [
 		{ name: "H&W Welders", image: "/images/welders_wbias_9.png" },
 		{ name: "Welding", image: "/images/welding_railing.jpg" },
 		{ name: "Hardly Working", image: "/images/hardly_working.jpg" },

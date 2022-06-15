@@ -6,10 +6,7 @@ exports.handler = async function(event, context) {
     if(!event.httpMethod === 'POST'){
         return { statusCode: 405, body: 'Method Not Allowed', headers: { 'Allow': 'POST' } }
     }
-
     const parsedTemplateData = JSON.parse(event.body);
-    const token = parsedTemplateData.recaptchaData.token;
-    const timestamp = parsedTemplateData.recaptchaData.timestamp;
 
     const assembledData = JSON.stringify({
         "service_id": process.env.NEXT_PUBLIC_EJS_SID,
@@ -20,11 +17,8 @@ exports.handler = async function(event, context) {
     });
     const config = { 
         method: 'post',
-        url: process.env.NEXT_PUBLIC_KORURL,
+        url: process.env.NEXT_PUBLIC_EJSURL,
         headers: {
-            token,
-            timestamp,
-            'x-api-key': process.env.NEXT_PUBLIC_KORXAPIK,
             'authorization': process.env.NEXT_PUBLIC_KORAK,
             'content-type': 'application/json',
         },
@@ -35,6 +29,7 @@ exports.handler = async function(event, context) {
     .then((response) => { 
         return { statusCode: 200, body: response.data ? JSON.stringify(response.data) : "no-response-data-given" }
     })
+
     .catch((error) => {
         console.log(error);
         return { statusCode: 422, body: `Error: ${error ? error : "no error data given"}`}
