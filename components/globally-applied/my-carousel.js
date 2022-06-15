@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image';
 import CarouselStyles from './my-carousel.module.css';
-import dataSet from '../data/dataSets';
+// import dataSet from '../data/dataSets.js';
 
 function MyCarousel(props)
 {
@@ -31,7 +31,7 @@ function MyCarousel(props)
 function Item(props)
 {
     return (
-        <div>
+        // <div>
             <Image 
 				src={props.item.image}
 				priority={true} 
@@ -43,7 +43,7 @@ function Item(props)
 				id={`image-${props.item.name}`}
 				type="image"
 				/>
-        </div>
+        // </div>
     )
 }
 
