@@ -103,8 +103,8 @@ function MyNavbar() {
 						<Image 
 							src="/images/hw_mainlogo.png"
 							alt="Company Logo"
-							width={335}
-							height={162}
+							width={315}
+							height={160}
 							priority={true}
 							/>
 					</div>
@@ -128,7 +128,7 @@ function MyNavbar() {
 							style={toggleStyle}
 							/>
 						<Navbar.Collapse className="justify-content-center" id="navbar-nav" >
-							<Nav defaultActiveKey="/" activeKey={usePathname} style={{ fontSize: '42px', margin: '0px 10px'}}>
+							<Nav defaultActiveKey="/" activeKey={usePathname} style={{fontSize: '42px', margin: '0px 10px'}}>
 								{/* Mobile Hamburger Menu (med and down) */}
 								<div className="flexi d-md-none d-lg-none d-xl-none d-xxl-none fs-2 mt-3 mb-3">
 									{ assembleMenu(false, tabSet) }

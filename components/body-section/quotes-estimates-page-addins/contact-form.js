@@ -14,7 +14,7 @@ const theme = createMuiTheme({
 		primary: { main: 'rgb(182, 98, 50)'	}, 
 		secondary: { main: 'rgb(56, 56, 56)' } }
 })
-const useStyles = makeStyles ({
+const useStyles = makeStyles({
 	label: {
 		backgroundColor: "white",
 		fontSize: '1.1rem',
@@ -110,7 +110,6 @@ function ContactForm() {
 		reMessage: /([\n\r\t])/g,
 	}
 	
-
 	// Form submission & resets
 	const handleChange = (e) => {
 		const {id, value} = e.target;

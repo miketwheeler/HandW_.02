@@ -2,10 +2,10 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image';
 import CarouselStyles from './my-carousel.module.css';
-// import dataSet from '../data/dataSets.js';
+import SpinningLoader from './spinning-loader';
 
-function MyCarousel(props)
-{
+function MyCarousel() {
+
 	const items = [
 		{ name: "H&W Welders", image: "/images/welders_wbias_9.png" },
 		{ name: "Welding", image: "/images/welding_railing.jpg" },
@@ -21,7 +21,9 @@ function MyCarousel(props)
 				indicatorContainerProps={{style: { marginTop: '-2px'}, ariaLabel: 'current-carousel-image'}}
 				>
 				{
-					items.map((item, i) => <Item key={i} item={item} /> )
+					items.map((item, i) => 
+						<Item key={i} item={item} /> 
+					)
 				}
 			</Carousel>
 		</div>
@@ -31,19 +33,17 @@ function MyCarousel(props)
 function Item(props)
 {
     return (
-        // <div>
-            <Image 
-				src={props.item.image}
-				priority={true} 
-				aria-label={props.item.name}
-				width={1300} 
-				height={380} 
-				layout='intrinsic'
-				alt={"carousel highlight image"}
-				id={`image-${props.item.name}`}
-				type="image"
-				/>
-        // </div>
+		<Image 
+			src={props.item.image}
+			priority={true} 
+			aria-label={props.item.name}
+			width={1300} 
+			height={380} 
+			// layout='intrinsic'
+			alt={"carousel highlight image"}
+			id={`image-${props.item.name}`}
+			// type="image"
+			/>
     )
 }
 

@@ -1,3 +1,7 @@
+.sticky-top-class {
+	position: sticky;
+	top: 0;
+}
 .linkSurround {
 	width: 180px;
 	max-height: 40px !important;
@@ -11,8 +15,9 @@
 	padding: 0;
 }
 .imageattrs {
-	width: 335px;
-	height: 160px;
+	display: block;
+	max-width: 335px;
+	max-height: 160px;
 }
 .linkText:hover {
 	color: rgb(255, 255, 255);
