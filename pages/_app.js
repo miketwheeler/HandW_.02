@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import App from 'next/app';
+// import App from 'next/app';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Head from 'next/head';
@@ -7,7 +7,7 @@ import Head from 'next/head';
 
 // function MyApp({ Component, pageProps }) {
 function MyApp({Component}) {
-  return(
+	return (
 		<div>
 		{/* <div suppressHydrationWarning> */}
 			<Head>

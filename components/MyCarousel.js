@@ -2,7 +2,6 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image';
 import CarouselStyles from '../styles/componentStyles/my-carousel.module.css';
-import SpinningLoader from './SpinningLoader';
 import { carouselSet } from '../data/dataSets';
 
 
@@ -34,6 +33,8 @@ function Item(props) {
 			height={380} 
 			alt={"carousel highlight image"}
 			id={`image-${props.item.name}`}
+			placeholder='blur'
+			blurDataURL='../public/images/blurs/blurred.png'
 		/>
     )
 }

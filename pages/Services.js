@@ -1,10 +1,8 @@
 import React from 'react';
 import ServiceStyles from '../styles/pageStyles/Services.module.css';
 import DocStyles from '../styles/contentStyles.module.css';
-import dynamic from 'next/dynamic';
+import GettaQuoteButton from '../components/GettaQuoteButton';
 
-
-const GettaQuoteButton = dynamic(() => import('../components/GettaQuoteButton'));
 
 
 function Services() {

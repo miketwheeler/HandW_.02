@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
+import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button, Modal} from '@material-ui/core'
 import ContactFormStyles from '../styles/componentStyles/contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
-import dynamic from 'next/dynamic';
-const Modal  = dynamic(() => import('@material-ui/core/Modal'));
+// import dynamic from 'next/dynamic';
+
+// const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying

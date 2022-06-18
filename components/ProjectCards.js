@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Image from 'next/image';
 import ProjectStyles from '../styles/componentStyles/project-cards.module.css';
 import { projectSet } from '../data/dataSets';
@@ -15,87 +15,76 @@ const headingstyle = {
     borderImage: 'linear-gradient(to right, rgb(182, 98, 50), rgba(182, 98, 50, 0.507), transparent) 0 0 60% 0',
 }
 
+function CardInners({props}) {
+    return (
+        <div>
+            {
+                props.item.category
+                ? <p><strong>Category: </strong> {props.item.category}</p>
+                : null
+            }
+            { 
+                props.item.completion 
+                ? <p><strong>Completed: </strong> {props.item.completion}</p>
+                : null
+            }
+            <p><strong>Description: </strong> {props.item.description}</p>
+        </div>
+    )
+}
+
+function MyImage({imageProp}) {
+    return (
+        <Image
+            src={imageProp} 
+            width={400}
+            height={465}
+            alt={"services-image"}
+            layout='intrinsic'
+            priority={true}
+            className={ProjectStyles.imageStyle}
+            placeholder='blur'
+            blurDataURL='../public/images/blurs/blurred.png'
+        />
+    )
+}
+
+
 // Individual card - uses passed data
 function ProjectCard(props) {
+    const cardId = props.item.id;
+    const idList = [1,2,6,12];
+    const headingList = ["Project Highlight", "Our Latest Orders", "The Team at Work", "The Shop"]
 
     return (
         <div>
             {
-                // The Section Headers for preceeding each section of Projects by number
-                props.item.id === 1
-                ? <h3 style={headingstyle}>Project Highlight</h3>
-                : props.item.id === 2
-                ? <h3 style={headingstyle}>Our Latest Orders</h3>
-                : props.item.id === 6
-                ? <h3 style={headingstyle}>The Team At Work</h3>
-                : props.item.id === 12
-                ? <h3 style={headingstyle}>The Shop</h3>
-                : null  // Or skip leading non-found elements
+                idList.includes(cardId) 
+                ? <h3 style={headingstyle}>{headingList[idList.indexOf(cardId)]}</h3>
+                : null
             }
             <div className={ProjectStyles.card}>
                 {
-                    props.item.id % 2 === 0
+                    cardId % 2 === 0 // every other card oriented in reverse
                     ?
                     <div className={ProjectStyles.cardInnerStyle}>
-                        { 
-                            <div className={ProjectStyles.imageContainer}>
-                                <Image
-                                    src={props.item.image} 
-                                    width={400}
-                                    height={465}
-                                    alt={"services-image"}
-                                    layout='intrinsic'
-                                    priority={true}
-                                    className={ProjectStyles.imageStyle}
-                                />
-                            </div>
-                        }
+                        <div className={ProjectStyles.imageContainer}>
+                            <MyImage imageProp={props.item.image} />
+                        </div>
                         <h3 className={ProjectStyles.cardHeader}>{props.item.title}</h3>
                         <div className={ProjectStyles.captionContainer}>
-                            {
-                                props.item.category
-                                ? <p><strong>Category: </strong> {props.item.category}</p>
-                                : null
-                            }
-                            { 
-                                props.item.completion 
-                                ? <p><strong>Completed: </strong> {props.item.completion}</p>
-                                : null
-                            }
-                            <p><strong>Description: </strong> {props.item.description}</p>
+                            <CardInners props={props} />
                         </div>
                     </div>
                     :
                     // REVERSED LAYOUT 
                     <div className={ProjectStyles.reverseCardInnerStyle}>
-                        { 
-                            <div className={ProjectStyles.reverseImageContainer}>
-                                <Image
-                                    src={props.item.image} 
-                                    width={400}
-                                    height={465}
-                                    alt={"services-image"}
-                                    layout='intrinsic'
-                                    priority={true}
-                                    className={ProjectStyles.imageStyle}
-                                />
-                            </div>
-                        }
+                        <div className={ProjectStyles.reverseImageContainer}>
+                            <MyImage imageProp={props.item.image} />
+                        </div>
                         <h3 className={ProjectStyles.reverseCardHeader}>{props.item.title}</h3>
                         <div className={ProjectStyles.reverseCaptionContainer}>
-                            <div>
-                                {
-                                    props.item.category
-                                    ? <p><strong>Category: </strong> {props.item.category}</p>
-                                    : null
-                                }
-                                { 
-                                    props.item.completion 
-                                    ? <p><strong>Completed: </strong> {props.item.completion}</p>
-                                    : null
-                                }
-                                <p><strong>Description: </strong> {props.item.description}</p>
-                            </div>
+                            <CardInners props={props} />
                         </div>
                     </div>
                 }

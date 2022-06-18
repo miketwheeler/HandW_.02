@@ -2,7 +2,6 @@ import React from 'react';
 import FooterStyle from '../styles/componentStyles/footer.module.css';
 
 
-
 function Footer() {
 	const openNewTab = (url) => {
 		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');

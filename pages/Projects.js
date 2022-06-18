@@ -2,10 +2,7 @@ import React from 'react';
 import ProjectStyles from '../styles/pageStyles/Projects.module.css';
 import DocStyles from '../styles/contentStyles.module.css'
 import ProjectList from '../components/ProjectCards';
-import dynamic from 'next/dynamic';
-
-
-const GettaQuoteButton = dynamic(() => import('../components/GettaQuoteButton'));
+import GettaQuoteButton from '../components/GettaQuoteButton';
 
 
 function Projects() {
