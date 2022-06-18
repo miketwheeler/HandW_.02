@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, FormControlLabel, FormLabel, RadioGroup, TextField, Radio, Button } from '@material-ui/core'
-import ContactFormStyles from './contact-form.module.css';
+import ContactFormStyles from '../styles/componentStyles/contact-form.module.css';
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
@@ -76,7 +76,6 @@ const useStyles = makeStyles({
 	}
 });
 
-
 // Contact form Component for the Quotes page
 function ContactForm() { 
 	const classes = useStyles();
@@ -85,7 +84,7 @@ function ContactForm() {
 		fullName: { value: "", message: "Please provide a valid Name" },
 		phoneNumber: { value: "", message: "Please provide a valid Phone Number" },
 		email: { value: "", message: "Please provide a valid Email" },
-		message: { value: "", message: "Please leave us a memo (No Numbers Please)"},
+		message: { value: "", message: "Please leave us a memo (No Numbers Please)" }
 	};
 	const [checkVals, setCheckVals] = useState(initialStateVals);
 	const [subject, setSubject] = useState("Stairs");
@@ -109,7 +108,6 @@ function ContactForm() {
 		reEmail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 		reMessage: /([\n\r\t])/g,
 	}
-	
 	// Form submission & resets
 	const handleChange = (e) => {
 		const {id, value} = e.target;
@@ -123,25 +121,21 @@ function ContactForm() {
 			})
 		}
 	}
-
 	// Formats current date
 	const formattedCallbackDate = (date) => {
 		const dateString = date.toString(); // Sets the date to a string to parse
 		const callBackDate = `${dateString.substring(0,15)} ${dateString.substring(16, 24)} ${dateString.substring(34)}`; // grabs what's needed for this info
 		return callBackDate;
 	}
-	
 	useEffect(() => {
 		docLabel !== undefined && docLabel ? setIsError(true) : setIsError(false);
 	}, [docLabel, isError])
-
 	// Success/Deny Message Modal Close Func
 	const handleModalClose = () => {
         setMessageModalOpen(false),
 		setSuccess(false),
 		window.scrollTo({ top: 0, behavior: 'smooth'})
     }
-
 	// Called on submission
 	function resetForm() {
 		setCheckVals(initialStateVals)
@@ -149,7 +143,6 @@ function ContactForm() {
 		setTimeframe("1 Business Day");
 		setIsError(false);
 	}
-
 	// Field Enforcement Checks
 	const vetInputs = (xIn) => {
 		let checkX = checkVals[xIn].value;
@@ -197,7 +190,7 @@ function ContactForm() {
 		await axios.post(sendEmailUrl, dataObj)
 		.then((response) => {
 			console.log(
-				`SUCCESS on CLIENT EMAIL->\nstatus:[ ${JSON.stringify(response.status)} ]\nstatusText:[ ${JSON.stringify(response.statusText)} ]`  
+				`SUCCESS on CLIENT EMAIL->\nstatus:[ ${JSON.stringify(response.status)} ]`  
 			);
 			setSuccess(true);
 			setMessageModalOpen(true);
@@ -205,7 +198,7 @@ function ContactForm() {
 		})
 		.catch((error) => {
 			console.log(
-				`ERROR on CLIENT EMAIL->\nerrorStatus:[ ${JSON.stringify(error.response.status)} ]\nerrorStatusText:[ ${JSON.stringify(error.response.statusText)} ]`
+				`ERROR on CLIENT EMAIL->\nerrorStatus:[ ${JSON.stringify(error.response.status)} ]`
 			);
 			setMessageModalOpen(true);
 			window.alert(variousMessages.submitErrorText);
@@ -383,7 +376,7 @@ function ContactForm() {
 				<FormControl style={{width: '100%'}}>
 					<TextField
 						required
-						InputLabelProps={{classes: {root: classes.label}}}
+						InputLabelProps={{ classes: {root: classes.label} }}
 						id="message"
 						label="Message and Other Notes"
 						aria-label="your-message"
@@ -428,7 +421,7 @@ function ContactForm() {
 								aria-label='ok-close-modal-button' 
 								onClick={handleModalClose}
 								size="large"
-								>
+							>
 								Ok
 							</Button>
 						</div>

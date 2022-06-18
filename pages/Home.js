@@ -1,12 +1,11 @@
 import React from 'react';
-import HomePageStyles from './Home.module.css';
-import ServiceDeck from '../components/body-section/home-page-addins/services-card-deck';
+import HomePageStyles from '../styles/pageStyles/Home.module.css';
+import ServiceDeck from '../components/ServicesCardDeck';
 import DocStyles from '../styles/contentStyles.module.css';
-// import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
 import dynamic from 'next/dynamic';
 
 
-const GettaQuoteButton = dynamic(() => import('../components/globally-applied/GettaQuoteButton'));
+const GettaQuoteButton = dynamic(() => import('../components/GettaQuoteButton'));
 
 function HomePage() {
 	

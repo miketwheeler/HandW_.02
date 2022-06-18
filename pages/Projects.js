@@ -1,12 +1,11 @@
 import React from 'react';
-import ProjectStyles from './Projects.module.css';
-import ProjectList from '../components/body-section/projects-page-addins/project-cards';
+import ProjectStyles from '../styles/pageStyles/Projects.module.css';
 import DocStyles from '../styles/contentStyles.module.css'
-// import GettaQuoteButton from '../components/globally-applied/GettaQuoteButton';
+import ProjectList from '../components/ProjectCards';
 import dynamic from 'next/dynamic';
 
 
-const GettaQuoteButton = dynamic(() => import('../components/globally-applied/GettaQuoteButton'));
+const GettaQuoteButton = dynamic(() => import('../components/GettaQuoteButton'));
 
 
 function Projects() {

@@ -1,21 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Navigation from '../components/globally-applied/my-navbar';
-import CarouselComponent from '../components/globally-applied/my-carousel';
-import Infolink from '../components/globally-applied/contact-display';
-import Footer from '../components/globally-applied/footer';
-import Layout from '../components/layout/layout';
-// import dynamic from 'next/dynamic';
+import Navigation from '../components/MyNavbar';
+import CarouselComponent from '../components/MyCarousel';
+// import Infolink from '../components/InfoLink';
+// import Footer from '../components/Footer';
+import Layout from '../styles/layout/layout';
 import HomePage from './Home';
 import QuotesEstimates from './Quotes';
 import Services from './Services';
 import Projects from './Projects';
+import dynamic from 'next/dynamic';
 
-// Mainsection content dynamic routing - ie lazy
-// const HomePage = dynamic(() => import("./Home"));
-// const QuoteEstimates = dynamic(() => import("./Quotes"));
-// const Services = dynamic(() => import("./Services"));
-// const Projects = dynamic(() => import("./Projects"));
+
+const DynamicFooter = dynamic(() => import('../components/Footer'));
+const DynamicInfoLink = dynamic(() => import('../components/InfoLink'))
+
 
 export default function App() {
 	return (
@@ -29,8 +28,8 @@ export default function App() {
 						<Route path="/projects" component={Projects}/>
 						<Route path="/" component={HomePage}/>
 					</Switch>
-				<Infolink />
-				<Footer />
+				<DynamicInfoLink />
+				<DynamicFooter />
 			</Layout>
 		</>
 	);

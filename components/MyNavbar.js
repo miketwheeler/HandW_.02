@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import MyNavbarStyle from './my-navbar.module.css';
+import MyNavbarStyle from '../styles/componentStyles/my-navbar.module.css';
 import Image from 'next/image';
 import { useLocation } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Row, Col, Navbar, Nav, NavbarBrand } from 'react-bootstrap';
+import { tabSet } from '../data/dataSets';
 
 
 let usePathname = () => {
@@ -28,14 +29,6 @@ const toggleStyle = {
 	color: 'grey', 
 	borderWidth: '1px', 
 	top: '10px'
-}
-const tabSet = {
-	tabData: [
-		{ id: "home", linkto: "/", tabText: "Home" },
-		{ id: "quotes-estimates", linkto: "/quotes-estimates", tabText: "Quotes" },
-		{ id: "services", linkto: "/services", tabText: "Services" },
-		{ id: "projects", linkto: "/projects", tabText: "Projects" },
-	]
 }
 
 function MyTab(props) {
@@ -76,8 +69,6 @@ function assembleMenu(layout, list) {
 		</>
 	)
 }
-
-
 
 function MyNavbar() {
 	const [expanded, setExpanded] = useState(false);

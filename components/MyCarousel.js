@@ -1,18 +1,12 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Image from 'next/image';
-import CarouselStyles from './my-carousel.module.css';
-import SpinningLoader from './spinning-loader';
+import CarouselStyles from '../styles/componentStyles/my-carousel.module.css';
+import SpinningLoader from './SpinningLoader';
+import { carouselSet } from '../data/dataSets';
+
 
 function MyCarousel() {
-
-	const items = [
-		{ name: "H&W Welders", image: "/images/welders_wbias_9.png" },
-		{ name: "Welding", image: "/images/welding_railing.jpg" },
-		{ name: "Hardly Working", image: "/images/hardly_working.jpg" },
-		{ name: "Welding2", image: "/images/jigwelding.jpg" }
-	]
-
 	return (
 		<div className={CarouselStyles.carouselcontainer}>
 			<Carousel 
@@ -21,7 +15,7 @@ function MyCarousel() {
 				indicatorContainerProps={{style: { marginTop: '-2px'}, ariaLabel: 'current-carousel-image'}}
 				>
 				{
-					items.map((item, i) => 
+					carouselSet.carouselItems.map((item, i) => 
 						<Item key={i} item={item} /> 
 					)
 				}
@@ -30,8 +24,7 @@ function MyCarousel() {
 	)
 }
 
-function Item(props)
-{
+function Item(props) {
     return (
 		<Image 
 			src={props.item.image}
@@ -39,11 +32,9 @@ function Item(props)
 			aria-label={props.item.name}
 			width={1300} 
 			height={380} 
-			// layout='intrinsic'
 			alt={"carousel highlight image"}
 			id={`image-${props.item.name}`}
-			// type="image"
-			/>
+		/>
     )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import ContactForm from './../components/body-section/quotes-estimates-page-addins/contact-form';
+import ContactForm from '../components/ContactForm';
 import DocStyles from '../styles/contentStyles.module.css';
 
 

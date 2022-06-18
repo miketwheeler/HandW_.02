@@ -1,12 +1,11 @@
 // import { Icon } from '@material-ui/core'
 import React from 'react';
-import ContactDisplayStyle from './contact-display.module.css';
+import ContactDisplayStyle from '../styles/componentStyles/info-link.module.css';
 import Image from 'next/image';
-
+import { socialSet } from '../data/dataSets';
 
 
 function ContactDisplay() {
-
 	const openNewTab = (url) => {
 		const newWindow = window.open(url, '_blank', 'noopener, noreferrer');
 		if(newWindow) newWindow.opener = null;
@@ -25,7 +24,6 @@ function ContactDisplay() {
 						alt={props.item.description} 
 						width={76}
 						height={76}
-						priority={true}
 						layout='intrinsic'
 						className={ContactDisplayStyle.socialicon}
 					/>
@@ -34,24 +32,6 @@ function ContactDisplay() {
 		)
 	}
 
-	// TODO: replace with real links to proper socials
-	const socials = [
-		{ 
-			image: "/images/icons/2x/2x-facebook.png", 
-			description: "facebook" ,
-			linkedto: "https://www.facebook.com/handwstairandrail" 
-		},
-		{ 
-			image: "/images/icons/2x/2x-instagram.png", 
-			description: "instagram", 
-			linkedto: "https://www.instagram.com"
-		},
-		{ 
-			image: "/images/icons/2x/2x-twitter.png", 
-			description: "twitter", 
-			linkedto: "https://www.twitter.com"
-		},
-	]
 	return (
 		<div className={ContactDisplayStyle.objparams}>
 			<div className={ContactDisplayStyle.infobox}>
@@ -82,7 +62,7 @@ function ContactDisplay() {
 				</div>
 				<div className={ContactDisplayStyle.socialicons}>
 					{
-						socials.map((item, i) => <SocialIcon key={i} item={item} />)
+						socialSet.socials.map((item, i) => <SocialIcon key={i} item={item} />)
 					}
 				</div>
 			</div>
@@ -93,8 +73,7 @@ function ContactDisplay() {
 						alt="H&W Company Logo"
 						width={192}
 						height={97}
-						priority={true}
-						layout='intrinsic'
+						layout='responsive'
 						/>
 				</div>
 				<div className={ContactDisplayStyle.businessdetail}>

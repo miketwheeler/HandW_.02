@@ -1,21 +1,16 @@
 import React from 'react';
-import ServiceDeckStyles from './services-card-deck.module.css';
+import ServiceDeckStyles from '../styles/componentStyles/services-card-deck.module.css';
 import Image from 'next/image';
+import { serviceSet } from '../data/dataSets';
 
 // Main component exported to the appropriate 'Home Page' section
 // Assembles a series of cards into a div for the imported & rendered component
-function ServiceDeck(props) {
-	const contents = [
-		{ image: "/images/icons/2x/2x-design.png", description: "Design, Repair, Redesign, and Remodeling"},
-		{ image: "/images/icons/2x/2x-stairs.png", description: "Ballast and Handrail"},
-		{ image: "/images/icons/2x/2x-home-city.png", description: "Commercial and Residential"},
-		{ image: "/images/icons/2x/2x-welder.png", description: "Interior and Exterior Fabrication"},
-		{ image: "/images/icons/2x/2x-finishing.png", description: "Other Fixtures, Amenities, Painting and Refinishing"}
-	]
-	
+function ServiceDeck() {	
 	return (
 		<div className={ServiceDeckStyles.container}>
-			{contents.map((item, i) => <MakeMiniCard key={i} item={item}/>)}
+			{
+				serviceSet.contents.map((item, i) => <MakeMiniCard key={i} item={item}/>)
+			}
 		</div>
 	)
 }
@@ -27,7 +22,7 @@ function MakeMiniCard(props) {
 			<div className={ServiceDeckStyles.imageattrs}>
 				<Image 
 					src={props.item.image} 
-					layout='intrinsic'
+					layout="intrinsic"
 					alt={"services icons"}
 					width={256}
 					height={256}

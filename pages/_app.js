@@ -5,9 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Head from 'next/head';
 
 
-function MyApp({ Component, pageProps }) {
+// function MyApp({ Component, pageProps }) {
+function MyApp({Component}) {
   return(
-		<div suppressHydrationWarning>
+		<div>
+		{/* <div suppressHydrationWarning> */}
 			<Head>
 				<title>H&W Stair and Rail</title>
 				<link rel="icon" href="/android-chrome-512x512.png" />
@@ -17,17 +19,17 @@ function MyApp({ Component, pageProps }) {
 			{ 
 				typeof window === 'undefined' ? null : 
 				<Router>
-					<Component {...pageProps} />
+					<Component />
 				</Router>
 			}
 		</div>
 	)
 }
-MyApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-	const appProps = await App.getInitialProps(appContext);
+// MyApp.getInitialProps = async (appContext) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+// 	const appProps = await App.getInitialProps(appContext);
 
-	return { ...appProps }
-}
+// 	return { ...appProps }
+// }
 
 export default MyApp;

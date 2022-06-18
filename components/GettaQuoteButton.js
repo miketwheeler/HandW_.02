@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import DocStyles from '../../styles/contentStyles.module.css';
+import DocStyles from '../styles/contentStyles.module.css';
 
 
 
