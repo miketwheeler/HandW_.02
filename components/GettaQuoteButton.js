@@ -32,4 +32,4 @@ function GettaQuoteButton() {
     )
 }
 
-export default GettaQuoteButton
+export default GettaQuoteButton;

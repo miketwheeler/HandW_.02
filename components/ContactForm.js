@@ -4,9 +4,7 @@ import ContactFormStyles from '../styles/componentStyles/contact-form.module.css
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import axios from 'axios';
 import NumberFormat from 'react-number-format';
-// import dynamic from 'next/dynamic';
 
-// const Modal  = dynamic(() => import('@material-ui/core/Modal'));
 
 
 // Styles applied to MUI form inputs - assists and fixes the native label incorrectly displaying

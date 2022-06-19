@@ -74,8 +74,6 @@ function ContactDisplay() {
 						width={192}
 						height={97}
 						layout='responsive'
-						placeholder='blur'
-						blurDataURL='../public/images/blurs/blurred.png'
 						/>
 				</div>
 				<div className={ContactDisplayStyle.businessdetail}>
