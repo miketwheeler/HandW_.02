@@ -16,7 +16,8 @@ function Footer() {
 		<div className={FooterStyle.container}>
 			<div className={FooterStyle.logoandtext}>
 				<div className={FooterStyle.logotext}>
-					Copyright © 2022, <a onClick={() => onClickUrl('https://miketwheeler.github.io')}>mikewheeler</a>
+					Copyright © 2022 
+					{/* <a onClick={() => onClickUrl('https://miketwheeler.github.io')}>mikewheeler</a> */}
 				</div>
 			</div>
 			<div className={FooterStyle.texts}>
